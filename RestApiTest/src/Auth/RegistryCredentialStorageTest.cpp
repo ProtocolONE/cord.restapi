@@ -1,0 +1,61 @@
+
+#include "gtest/gtest.h"
+#include "MemoryLeaksChecker.h"
+#include "Auth/RegistryCredentialStorage.h"
+#include "GameNetCredential.h"
+
+class RegistryCredentialStorageTest : public ::testing::Test
+{
+public:
+  RegistryCredentialStorageTest() {
+    this->leakChecker.start();
+  }
+
+  ~RegistryCredentialStorageTest() {
+    this->leakChecker.finish();
+    if(this->leakChecker.isMemoryLeaks())
+      failTest("Memory leak detected!"); 
+  }
+
+private:
+  void failTest(const char* message) 
+  { 
+    FAIL() << message; 
+  }
+
+  MemoryLeaksChecker leakChecker;
+};
+
+TEST_F(RegistryCredentialStorageTest, saveLoad)
+{
+  using GGS::RestApi::Auth::RegistryCredentialStorage;
+  using GGS::RestApi::GameNetCredential;
+
+  RegistryCredentialStorage storage;
+  storage.reset();
+
+  GameNetCredential credential;
+  QString userId("123123123");
+  QString appKey("jk1rghksdfgnsdjklfgnsdjklfgn34");
+  QString cookie("djkflsghui2n5489dfjkln12093=-12mfsdf1=12+123");
+  credential.setUserId(userId);
+  credential.setAppKey(appKey);
+  credential.setCookie(cookie);
+
+  GameNetCredential credential1;
+  ASSERT_FALSE(storage.tryLoad(credential1));
+
+  storage.save(credential);
+
+  GameNetCredential credential2;
+  ASSERT_TRUE(storage.tryLoad(credential2));
+
+  ASSERT_EQ(0, credential.userId().compare(credential2.userId()));
+  ASSERT_EQ(0, credential.appKey().compare(credential2.appKey()));
+  ASSERT_EQ(0, credential.cookie().compare(credential2.cookie()));
+
+  storage.reset();
+
+  GameNetCredential credential3;
+  ASSERT_FALSE(storage.tryLoad(credential3));
+}

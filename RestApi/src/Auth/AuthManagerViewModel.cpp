@@ -1,3 +1,13 @@
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
 #include "Auth/AuthManagerViewModel.h"
 #include <QtCore/QDebug>
 namespace GGS {
@@ -16,19 +26,6 @@ namespace GGS {
         this->_genericAuth.setAuthUrl("https://gnlogin.ru/");
         this->_manager.registerMethod(&_genericAuth);
 
-        //        setAuthManager(&authManger);
-        //        setGenericAuth(&genericAuth);
-
-        /*
-        QObject *item = nQMLContainer->rootObject();
-        AuthManagerViewModel* authModel = item->findChild<AuthManagerViewModel*>("authManager");
-        if (authModel != 0 ) {
-        qDebug() << "Assign auth manager";
-
-        authModel->setAuthManager(&authManger);
-        authModel->setGenericAuth(&genericAuth);
-        }
-        */
         qDebug() << QObject::connect(&this->_manager, SIGNAL(started()), this, SLOT(managerAuthStarted()));
         qDebug() << QObject::connect(&this->_manager, SIGNAL(finishedSuccessfully()), this, SLOT(managerAuthFinished()));
         qDebug() << QObject::connect(&this->_manager, SIGNAL(error(int)), this, SLOT(managerAuthError(int)));
@@ -40,8 +37,6 @@ namespace GGS {
 
       void AuthManagerViewModel::login( const QString& methodType )
       {
-        qDebug() << _accountName << " pass " << _password;    // !!!
-
         this->_manager.login(methodType);
       }
 

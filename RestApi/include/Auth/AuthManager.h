@@ -28,8 +28,8 @@ namespace GGS {
       {
         Q_OBJECT
       public:
-        AuthManager(void);
-        ~AuthManager(void);
+        AuthManager();
+        ~AuthManager();
 
         void registerMethod( GameNetAuthInterface *method );
 

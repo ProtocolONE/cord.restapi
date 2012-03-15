@@ -1,56 +1,71 @@
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
 #ifndef _GGS_RESTAPI_COMMAND_BASE_H_
 #define _GGS_RESTAPI_COMMAND_BASE_H_
 
 #include "restapi_global.h"
 
 #include "CommandBaseInterface.h"
+#include <QMetaObject>
 
 namespace GGS {
-  namespace RestApi {
+	namespace RestApi {
 
-    class RESTAPI_EXPORT CommandBase : public CommandBaseInterface
-    {
-    public:
-      CommandBase(void);
-      ~CommandBase(void);
+		class RESTAPI_EXPORT CommandBase : public CommandBaseInterface 
+		{
+		public:
+			CommandBase();
+			~CommandBase();
 
-      void setAuthRequire(bool isAuthRequire);
-      void setCacheable(bool isCacheable);
-      void setCacheTime(int cacheTime);
-      void appendParameter(const QString& name, const QString& value);
+			void setAuthRequire(bool isAuthRequire);
+			void setCacheable(bool isCacheable);
+			void setCacheTime(int cacheTime);
+			void appendParameter(const QString& name, const QString& value);
 
-      virtual const bool isRestapiOverrided() const { return this->_isRestapiOverrided; };
+			const QString& getGenericErrorMessage() { return this->genericErrorMessage; }
+			const int getGenericErrorMessageCode() { return this->genericErrorMessageCode; }
 
-      virtual const QString& restapiUrl() const { return this->_restApiUrl; }
+			virtual const bool isRestapiOverrided() const { return this->_isRestapiOverrided; };
 
-      bool isAuthRequire();
+			virtual const QString& restapiUrl() const { return this->_restApiUrl; }
 
-      bool isCacheable();
+			bool isAuthRequire();
+			bool isCacheable();
 
-      int cacheTime();
+			int cacheTime();
 
-      const QMap<QString, QString>* commandParameters() const;
+			const QMap<QString, QString>* commandParameters() const;
 
-      virtual void resultCallback( CommandResults commandResultCode, QString response );
+			virtual bool resultCallback( CommandResults commandResultCode, QString response );
+			bool errorResultParse( CommandResults commandResultCode, QString response );
 
-      void setRestapiUrl( const QString& url );
+			void setRestapiUrl( const QString& url );
 
-      virtual CommandResults resultCode();
+			virtual CommandResults resultCode();
 
-    protected:
-      CommandResults _resultCode;
+		protected:
+			CommandResults _resultCode;
+			QString genericErrorMessage;
+			int genericErrorMessageCode;
 
-    private:
-      bool _isAuthRequire;
-      bool _isCacheable;
-      int _cacheTime;
+		private:
+			bool _isAuthRequire;
+			bool _isCacheable;
+			int _cacheTime;
 
-      QString _restApiUrl;
-      bool _isRestapiOverrided;
+			QString _restApiUrl;
+			bool _isRestapiOverrided;
 
-      QMap<QString, QString> _commandParameters;
-    };
-
-  }
+			QMap<QString, QString> _commandParameters;
+		};
+	}
 }
 #endif // _GGS_RESTAPI_COMMAND_BASE_H_

@@ -7,6 +7,7 @@
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
+
 #ifndef _GGS_RESTAPI_AUTH_AUTHMANAGERVIEWMODEL_H_
 #define _GGS_RESTAPI_AUTH_AUTHMANAGERVIEWMODEL_H_
 
@@ -59,9 +60,6 @@ namespace GGS {
         bool autoSaveAuth() { return this->_autoSaveAuthSettings; }
         void setAutoSaveAuth(bool autoSaveAuthSettings);
 
-   //     void setAuthManager(GGS::RestApi::Auth::AuthManager *manager) { this->_manager = manager; }
-   //     void setGenericAuth(GGS::RestApi::Auth::GenericAuth *genericAuth) { this->_genericAuth = genericAuth; }
-
       public slots:
         void login(const QString& methodType);
         void autoLogin();
@@ -85,8 +83,6 @@ namespace GGS {
         void managerAuthError(int resultCode);
 
       private:
-   //     QPointer<GGS::RestApi::Auth::AuthManager> _manager;
-   //     QPointer<GGS::RestApi::Auth::GenericAuth> _genericAuth;
         bool _autoSaveAuthSettings;
         QString _accountName;
         QString _password;

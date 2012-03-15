@@ -33,17 +33,15 @@ namespace GGS {
 
       void AuthManager::login( const QString& type )
       {
-        qDebug() << "[DEBUG] type - " << type << " registeredMethods - " << _registeredMethods;   // !!!
-
         if(!this->_registeredMethods.contains(type)) {
-          // UNDONE евент запулить
+          emit this->error(GameNetAuthResultInterface::UnknownAuthMethod);
+          qDebug() << " attempt to execute an unknown authentication method (" << type << ")";
           return;
         }
 
         emit this->started();
         GameNetAuthInterface *method = this->_registeredMethods[type];
         method->login();
-        qDebug() << "[DEBUG]  method->login(); " ;
       }
 
       void AuthManager::authResult( const GameNetCredential& credential )

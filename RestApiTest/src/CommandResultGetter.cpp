@@ -1,5 +1,5 @@
 #include "CommandResultGetter.h"
-
+#include "gtest/gtest.h"
 
 CommandResultGetter::CommandResultGetter(void)
 {
@@ -13,6 +13,11 @@ CommandResultGetter::~CommandResultGetter(void)
 void CommandResultGetter::commandResult( )
 {
   loop.exit();
+}
+
+void CommandResultGetter::genericError(const QString& message, int messageId )
+{
+//   qDebug() << "[DEBUG] generic Error " << message << " " << messageId ;
 }
 
 void CommandResultGetter::test2() 
@@ -37,7 +42,8 @@ void CommandResultGetter::test2()
   GetDetailedServices cmd;
   cmd.appendParameter("someRusParam", QString::fromLocal8Bit("Привет, Мир!"));
   cmd.appendParameter("lang", "en");
-  QObject::connect(&cmd, SIGNAL(result()), this, SLOT(commandResult()));
+  ASSERT_TRUE(QObject::connect(&cmd, SIGNAL(result()), this, SLOT(commandResult())));
+ // ASSERT_TRUE(QObject::connect(&cmd, SIGNAL(genericError(QString,int)), this, SLOT(genericError(QString,int))));
 
   restapi.execute(&cmd);
   loop.exec();

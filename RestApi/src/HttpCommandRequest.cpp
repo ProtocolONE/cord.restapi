@@ -1,3 +1,13 @@
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
 #include "HttpCommandRequest.h"
 
 namespace GGS {
@@ -7,6 +17,8 @@ namespace GGS {
       : QObject(parent)
     {
       // UNDONE: ’от€... если считать этот класс в единственном экземпл€ре, то вызвать можно и тут.     
+      // 19.03.2012 Igor.Bugaev - инициализаци€ curl остаетс€ до написани€ враппера
+      
       curl_global_init(CURL_GLOBAL_ALL);
       this->_cache = 0;
     }

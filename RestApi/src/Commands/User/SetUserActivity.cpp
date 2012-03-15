@@ -1,4 +1,16 @@
-#include "Commands\User\SeetUserActivity.h"
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
+#include "Commands\User\SetUserActivity.h"
+#include <qdebug.h>
+#include <qdatetime>
 
 namespace GGS {
   namespace RestApi {
@@ -10,47 +22,36 @@ namespace GGS {
           this->appendParameter("version", "1");
           this->appendParameter("lang", "ru");
           this->setAuthRequire(true);
-
-          _response = NULL;
         }
 
         SetUserActivity::~SetUserActivity(){
-          delete _response;
         }
 
-        void SetUserActivity::resultCallback( CommandResults commandResultCode, QString response ){
-          if(commandResultCode != CommandResults::NoError) {
-            this->_resultCode = commandResultCode;
-            emit this->result();
-            return;
+        bool SetUserActivity::resultCallback( CommandResults commandResultCode, QString response )
+        {
+          if (errorResultParse(commandResultCode, response)){
+            emit this->result(0);
+            return true;
           }
-
-          this->_response = new Response::UserSetActivityResponse();
-
-          QDomDocument doc;
-          if (!doc.setContent(response)) {
-            this->_resultCode = CommandResults::XmlError;
-            emit this->result();
-            return;
-          }
-
+          QDomDocument doc; doc.setContent(response);
           QDomElement responseElement = doc.documentElement();
 
           if(responseElement.isNull()) {
-            this->_resultCode = CommandResults::XmlError;
-            emit this->result();
-            return;
+            this->_resultCode = XmlError;
+            emit this->result(0);
+            return true;
           }
 
           QDomElement el = responseElement.firstChildElement("timeout");
           if(!el.isNull()) {
-            this->_response->setTimeout(el.text().toInt());
+            this->_resultCode = NoError;
+            emit this->result(el.text().toInt());
+            return false;
           }
-        
-          this->_resultCode = CommandResults::NoError;
-          emit this->result();
-        }
 
+          emit this->result(0);
+          return true;
+        }
       }
     }
   }

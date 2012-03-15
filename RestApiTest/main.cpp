@@ -13,9 +13,14 @@
 #pragma comment(lib, "RestApiX86.lib")
 #endif 
 
+#include <stdio.h>
+
 int main(int argc, char *argv[])
 {
   QCoreApplication app(argc, argv);
   testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  RUN_ALL_TESTS();
+
+  int i;
+  std::cin >> i;
 }

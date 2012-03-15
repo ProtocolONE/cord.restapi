@@ -7,7 +7,7 @@
 #include "Commands/User/GetUserMainInfo.h"
 #include "Commands/User/Response/UserMainInfoResponse.h"
 #include "FakeCache.h"
-
+#include "Commands\User\SetUserActivityTest.h"
 #include <QtCore/QEventLoop>
 #include <QtCore/QTimer>
 
@@ -99,7 +99,7 @@ TEST_F(GetUserMainInfoTest, normalParseTest)
   using GGS::RestApi::Commands::User::Response::UserMainInfoResponse;
   GetUserMainInfo command;
 
-  command.resultCallback(CommandBaseInterface::CommandResults::NoError, this->getNormalResponse());
+  command.resultCallback(CommandBaseInterface::NoError, this->getNormalResponse());
   UserMainInfoResponse *answer = command.response();
   ASSERT_EQ(0, answer->marketingId().compare(QString("12356")));
   ASSERT_EQ(0, answer->nickname().compare(QString("unittest")));
@@ -136,7 +136,8 @@ TEST_F(GetUserMainInfoTest, restApiTest)
   restapi.setCridential(auth);
   restapi.setRequest(&request);
 
-  GetUserMainInfo command;
+  //GetUserMainInfo command;
+  GGS::RestApi::Commands::User::SetUserActivity command;
   QEventLoop loop;
 
   // даем 5 секунд на выполнение теста. потом убиваем евент улп
@@ -144,5 +145,5 @@ TEST_F(GetUserMainInfoTest, restApiTest)
   restapi.execute(&command);
   loop.exec();
 
-  ASSERT_TRUE(command.resultCode() == CommandBaseInterface::CommandResults::NoError);
+  ASSERT_TRUE(command.resultCode() == CommandBaseInterface::NoError);
 }

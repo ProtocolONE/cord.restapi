@@ -8,12 +8,14 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#ifndef _GGS_RESTAPI_COMMANDS_USER_GETBALANCE_H_
-#define _GGS_RESTAPI_COMMANDS_USER_GETBALANCE_H_
+#ifndef _GGS_RESTAPI_COMMANDS_USER_GETUSESERVICEACCOUNT_H_
+#define _GGS_RESTAPI_COMMANDS_USER_GETUSESERVICEACCOUNT_H_
 
 #include "restapi_global.h"
 #include "CommandBase.h"
+#include "Response/UserServiceAccountResponse.h"
 
+#include <QtCore/QPointer>
 #include <QtXml/QDomDocument>
 
 namespace GGS {
@@ -21,21 +23,27 @@ namespace GGS {
     namespace Commands {
       namespace User {
 
-        class RESTAPI_EXPORT GetBalance : public QObject,
+        class RESTAPI_EXPORT GetUserServiceAccount : public QObject,
           public CommandBase
         {
           Q_OBJECT
         public:
-          GetBalance();
-          ~GetBalance();
-          
+          GetUserServiceAccount();
+          ~GetUserServiceAccount();
+
           virtual bool resultCallback( CommandResults commandResultCode, QString response );
+
+          Response::UserServiceAccountResponse* response() { return this->_response; }
+
         signals:
-          void result(int balance);
+          void result();
+
+        private:
+          Response::UserServiceAccountResponse* _response;
         };
+
       }
     }
   }
 }
-
-#endif // _GGS_RESTAPI_COMMANDS_USER_GETBALANCE_H_
+#endif

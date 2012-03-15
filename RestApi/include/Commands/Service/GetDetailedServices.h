@@ -1,3 +1,13 @@
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
 #ifndef _GGS_RESTAPI_COMMANDS_SERVICE_GETDETAILEDSERVICES_H_
 #define _GGS_RESTAPI_COMMANDS_SERVICE_GETDETAILEDSERVICES_H_
 
@@ -20,16 +30,15 @@ namespace GGS {
         {
           Q_OBJECT
         public:
-          explicit GetDetailedServices(QObject *parrent = 0);
-          ~GetDetailedServices(void);
+          GetDetailedServices();
+          ~GetDetailedServices();
 
-          virtual void resultCallback( CommandResults commandResultCode, QString response );
+          virtual bool resultCallback( CommandResults commandResultCode, QString response );
 
           Response::DetailedServicesResponse* response() { return this->_response; }
 
         signals:
           void result();
-
         private:
           QPointer<Response::DetailedServicesResponse> _response;
         };

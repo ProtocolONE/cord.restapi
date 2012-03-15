@@ -14,15 +14,17 @@ namespace GGS {
   namespace RestApi {
     namespace Auth {
 
-      GenericAuth::GenericAuth(void)
+      GenericAuth::GenericAuth()
       {
         this->_methodType = "generic";
         // UNDONE: Хотя... если считать этот класс в единственном экземпляре, то вызвать можно и тут.
+        // 19.03.2012  igor.bugaev - инициализация курла остается здесь до написания врапера.
+
         curl_global_init(CURL_GLOBAL_ALL);
         this->_resultCallback = 0;
       }
 
-      GenericAuth::~GenericAuth(void)
+      GenericAuth::~GenericAuth()
       {
       }
 
@@ -38,12 +40,11 @@ namespace GGS {
 
       QString GenericAuth::passwordHash( const QString& password )
       {
-        return QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Algorithm::Sha1).toHex());
+        return QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha1).toHex());
       }
 
       void GenericAuth::loginSync()
       {
-        // Пока что синхронный метод, возможно стоит вынести в поток
         HttpRequest http;
         HttpRequestInterface::ResultCodes result;
 
@@ -54,26 +55,37 @@ namespace GGS {
         QString response = http.execute(this->_authUrl, query, result);
 
         if(result != HttpRequestInterface::NoError) {
-          this->_resultCallback->authFailed(GameNetAuthResultInterface::AuthResultCodes::UnknownError);
+          this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
           return;
         }
 
-        // UNDONE: вынести ошибки из http с сетью
         QDomDocument document;
         document.setContent(response);
 
         if (!document.setContent(response)) {
-          this->_resultCallback->authFailed(GameNetAuthResultInterface::AuthResultCodes::UnknownError);
+          this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
           return;
         }
 
         QDomElement responseElement = document.documentElement();
+        QDomElement errorElement = responseElement.firstChildElement("error");
+        QDomElement errorMessage  = errorElement.firstChildElement("message");
+        QDomElement errorCode  = errorElement.firstChildElement("code");
+
+        if (!errorMessage.isNull() || !errorCode.isNull()){
+          int genericErrorMessageCode = errorCode.text().toInt();          
+          if (genericErrorMessageCode == 100)
+            this->_resultCallback->authFailed(GameNetAuthResultInterface::WrongLoginOrPassword);
+          else
+            this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
+          return;
+        }
+
         QDomElement authElement = responseElement.firstChildElement("auth");
         QDomElement userIdElement = authElement.firstChildElement("userId");
 
         if(userIdElement.isNull()) {
-          // ERROR
-          this->_resultCallback->authFailed(GameNetAuthResultInterface::AuthResultCodes::UnknownError);
+          this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
           return;
         }
 
@@ -81,16 +93,14 @@ namespace GGS {
 
         QDomElement appKeyElement = authElement.firstChildElement("appKey");
         if (appKeyElement.isNull()) {
-          // ERROR
-          this->_resultCallback->authFailed(GameNetAuthResultInterface::AuthResultCodes::UnknownError);
+          this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
           return;
         }
         this->_cridential.setAppKey(appKeyElement.text());
 
         QDomElement cookieElement = authElement.firstChildElement("cookie");
         if (cookieElement.isNull()) {
-          // ERROR
-          this->_resultCallback->authFailed(GameNetAuthResultInterface::AuthResultCodes::UnknownError);
+          this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
           return;
         }
         this->_cridential.setCookie(cookieElement.text());

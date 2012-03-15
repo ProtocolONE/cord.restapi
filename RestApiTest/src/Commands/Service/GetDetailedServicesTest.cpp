@@ -217,7 +217,7 @@ TEST_F(GetDetailedServicesTest, ParserTest)
 
   GetDetailedServices *cmd = new GetDetailedServices();
 
-  cmd->resultCallback(CommandBaseInterface::CommandResults::NoError, this->getNormalServiceInfoExample());
+  cmd->resultCallback(CommandBaseInterface::NoError, this->getNormalServiceInfoExample());
   
   DetailedServicesResponse* response = cmd->response();
   QMap<quint64, DetailedServiceInfo *> serviceList = response->serviceList();

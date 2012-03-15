@@ -33,7 +33,7 @@ public:
 
 public slots:
   void commandResult();
-  //void commandResult(int resultCode);
+  void genericError(const QString& message, int messageId );
 
 };
 

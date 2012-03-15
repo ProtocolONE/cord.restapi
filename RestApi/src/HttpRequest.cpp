@@ -1,15 +1,24 @@
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
 #include "HttpRequest.h"
+#include <qdatetime.h>
 
 namespace GGS {
   namespace RestApi {
 
-    HttpRequest::HttpRequest(void)
-    {
+    HttpRequest::HttpRequest() {
     }
 
 
-    HttpRequest::~HttpRequest(void)
-    {
+    HttpRequest::~HttpRequest() {
     }
 
     int HttpRequest::curlReadCallback( char *buf, int size, int nmemb, QByteArray *extraData )
@@ -24,9 +33,28 @@ namespace GGS {
       return nBytes;
     }
 
+    int HttpRequest::curlFileDownloadProgress(void* ptr, double TotalToDownload, double NowDownloaded, double TotalToUpload, double NowUploaded)
+    {
+      static double _lastDownloadSize = 0.0f;
+      static qint64 _lastCallbackTime = QDateTime::currentMSecsSinceEpoch();
+
+      if ( abs(_lastDownloadSize - NowDownloaded) > 0.1)
+      {
+        _lastDownloadSize = NowDownloaded;
+        _lastCallbackTime = QDateTime::currentMSecsSinceEpoch();
+      }
+      else
+      {
+        if ( QDateTime::currentMSecsSinceEpoch() - _lastCallbackTime > 30000)
+        {
+          return 1;
+        }
+      }
+      return 0;
+    }
+
     QString HttpRequest::execute( const QString& url, const QString& query, HttpRequestInterface::ResultCodes& resultCode )
     {
-
       CURL *pointerCurl;
       CURLcode result;
 
@@ -35,48 +63,71 @@ namespace GGS {
       struct curl_slist *slist=NULL;
       slist = curl_slist_append(slist, "Connection: Keep-Alive");  
       slist = curl_slist_append(slist, "Keep-Alive: 300");
-      // UNDONE: вытставить редирект и праивльные такмймауты. Вожно подписаться на прогресс колл бек для аборта по таймауту
+
       result = curl_easy_setopt(pointerCurl, CURLOPT_HTTPHEADER, slist);
-      if(result != CURLcode::CURLE_OK) {
-        resultCode = HttpRequestInterface::ResultCodes::CurlError;
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
+        return QString();
+      }
+
+      result = curl_easy_setopt(pointerCurl, CURLOPT_FOLLOWLOCATION, 1);
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
+        return QString();
+      }
+
+      result = curl_easy_setopt(pointerCurl, CURLOPT_TIMEOUT, 30);
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
         return QString();
       }
 
       result = curl_easy_setopt(pointerCurl, CURLOPT_SSL_VERIFYPEER, 0L);
-      if(result != CURLcode::CURLE_OK) {
-        resultCode = HttpRequestInterface::ResultCodes::CurlError;
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
         return QString();
       }
 
       result = curl_easy_setopt(pointerCurl, CURLOPT_SSL_VERIFYHOST, 0L);
-      if(result != CURLcode::CURLE_OK) {
-        resultCode = HttpRequestInterface::ResultCodes::CurlError;
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
         return QString();
       }
 
       result = curl_easy_setopt(pointerCurl, CURLOPT_WRITEFUNCTION, curlReadCallback);
-      if(result != CURLcode::CURLE_OK) {
-        resultCode = HttpRequestInterface::ResultCodes::CurlError;
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
+        return QString();
+      }
+
+      result = curl_easy_setopt(pointerCurl, CURLOPT_NOPROGRESS, 0);
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
+        return QString();
+      }
+
+      result = curl_easy_setopt(pointerCurl, CURLOPT_PROGRESSFUNCTION, curlFileDownloadProgress);
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
         return QString();
       }
 
       char *encoding = "gzip";
       result = curl_easy_setopt(pointerCurl, CURLOPT_ACCEPT_ENCODING, encoding);
-      if(result != CURLcode::CURLE_OK) {
-        resultCode = HttpRequestInterface::ResultCodes::CurlError;
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
         return QString();
       }
 
       QByteArray responseArray;
       result = curl_easy_setopt(pointerCurl, CURLOPT_WRITEDATA, &responseArray);
-      if(result != CURLcode::CURLE_OK) {
-        resultCode = HttpRequestInterface::ResultCodes::CurlError;
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
         return QString();
       }
 
       bool isGetRequest = (url.length() + query.length() + 1) < 1500;
-      //bool isGetRequest = false;
-      
+
       QString getUrl = url;
       if(isGetRequest) {
         getUrl.append('?');
@@ -86,8 +137,8 @@ namespace GGS {
       QByteArray urlArray = getUrl.toAscii();
       char *urlpointer = urlArray.data();
       result = curl_easy_setopt(pointerCurl, CURLOPT_URL, urlpointer);
-      if(result != CURLcode::CURLE_OK) {
-        resultCode = HttpRequestInterface::ResultCodes::CurlError;
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
         return QString();
       }
 
@@ -97,22 +148,22 @@ namespace GGS {
         postArray = query.toAscii();
         post = postArray.data();
         result = curl_easy_setopt(pointerCurl, CURLOPT_POSTFIELDS, post);
-        if(result != CURLcode::CURLE_OK) {
-          resultCode = HttpRequestInterface::ResultCodes::CurlError;
+        if(result != CURLE_OK) {
+          resultCode = HttpRequestInterface::CurlError;
           return QString();
         }
       }
 
       result = curl_easy_perform(pointerCurl);
-      if(result != CURLcode::CURLE_OK) {
-        resultCode = HttpRequestInterface::ResultCodes::CurlError;
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
         return QString();
       }
 
       curl_easy_cleanup(pointerCurl);
       curl_slist_free_all(slist);
 
-      resultCode = ResultCodes::NoError;
+      resultCode = NoError;
       return QString::fromUtf8(responseArray.data());
     }
 

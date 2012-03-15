@@ -25,9 +25,8 @@ namespace GGS {
         {
           Q_OBJECT
         public:
-          UserAgentWebPage(void);
-          ~UserAgentWebPage(void);
-
+          UserAgentWebPage();
+          ~UserAgentWebPage();
 
           /// <summary>При необходимости можно вынести строку юзерагента в настраиваемую переменную. На данный момент маскируемся под chrome с тегом GNA.</summary>
           /// <remarks>Ilya.Tkachenko, 27.02.2012.</remarks>

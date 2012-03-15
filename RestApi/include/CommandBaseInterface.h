@@ -1,3 +1,13 @@
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
 #ifndef _GGS_RESTAPI_COMMAND_BASE_INTERFACE_H_
 #define _GGS_RESTAPI_COMMAND_BASE_INTERFACE_H_
 
@@ -50,7 +60,10 @@ namespace GGS {
       /// <remarks>Ilya.Tkachenko, 10.02.2012.</remarks>
       /// <param name="commandResult">The command result.</param>
       /// <param name="response">     The response.</param>
-      virtual void resultCallback(CommandResults commandResultCode, QString response) = 0;
+      /// <param name="return bool">  Is error.</param>
+      virtual bool resultCallback(CommandResults commandResultCode, QString response) = 0;
+
+      virtual bool errorResultParse( CommandResults commandResultCode, QString response ) = 0;
 
       virtual void setRestapiUrl(const QString& url) = 0;
 
@@ -62,7 +75,6 @@ namespace GGS {
 
       virtual void appendParameter( const QString& name, const QString& value ) = 0;
     };
-
   }
 }
 #endif // _GGS_RESTAPI_COMMAND_BASE_INTERFACE_H_

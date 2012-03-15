@@ -1,46 +1,39 @@
-#include "Commands/User/GetUserServiseAccount.h"
+
+#include "Commands/User/GetUserServiceAccount.h"
 
 namespace GGS {
   namespace RestApi {
     namespace Commands {
       namespace User {
 
-        GetUserServiseAccount::GetUserServiseAccount(){
+        GetUserServiceAccount::GetUserServiceAccount(){
           this->appendParameter("method", "user.getServiceAccount");
           this->appendParameter("version", "1");
           this->appendParameter("lang", "ru");
           this->setAuthRequire(true);
 
-          _response = NULL;
+          _response = 0;
         }
 
-        GetUserServiseAccount::~GetUserServiseAccount(){
+        GetUserServiceAccount::~GetUserServiceAccount(){
           delete _response;
         }
 
-        void GetUserServiseAccount::resultCallback( CommandResults commandResultCode, QString response ){
-          if(commandResultCode != CommandResults::NoError) {
-            this->_resultCode = commandResultCode;
+        bool GetUserServiceAccount::resultCallback( CommandResults commandResultCode, QString response ){
+          if (errorResultParse(commandResultCode, response)){
             emit this->result();
-            return;
+            return true;
           }
 
-          this->_response = new Response::UserServiseAccountResponse();
-
-          QDomDocument doc;
-          if (!doc.setContent(response)) {
-            this->_resultCode = CommandResults::XmlError;
-            emit this->result();
-            return;
-          }
-
+          this->_response = new Response::UserServiceAccountResponse();
+          QDomDocument doc; doc.setContent(response);
           QDomElement responseElement = doc.documentElement();
           QDomElement serviseAccountElement = responseElement.firstChildElement("serviceAccount");
 
           if(serviseAccountElement.isNull()) {
-            this->_resultCode = CommandResults::XmlError;
+            this->_resultCode = XmlError;
             emit this->result();
-            return;
+            return true;
           }
 
           QDomElement el = serviseAccountElement.firstChildElement("login");
@@ -62,11 +55,11 @@ namespace GGS {
           if(!el.isNull()) {
             this->_response->setToken(el.text());
           }
-        
-          this->_resultCode = CommandResults::NoError;
-          emit this->result();
-        }
 
+          this->_resultCode = NoError;
+          emit this->result();
+          return false;
+        }
       }
     }
   }

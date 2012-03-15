@@ -1,3 +1,13 @@
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
 #include "Commands/User/GetUserMainInfo.h"
 
 namespace GGS {
@@ -5,8 +15,7 @@ namespace GGS {
     namespace Commands {
       namespace User {
 
-        GetUserMainInfo::GetUserMainInfo(void)
-        {
+        GetUserMainInfo::GetUserMainInfo() {
           this->appendParameter("method", "user.getMainInfo");
           this->appendParameter("version", "1");
           this->appendParameter("lang", "ru");
@@ -16,35 +25,26 @@ namespace GGS {
         }
 
 
-        GetUserMainInfo::~GetUserMainInfo(void)
-        {
+        GetUserMainInfo::~GetUserMainInfo() {
            delete this->_response;
         }
 
-        void GetUserMainInfo::resultCallback( CommandResults commandResultCode, QString response )
+        bool GetUserMainInfo::resultCallback( CommandResults commandResultCode, QString response )
         {
-          if(commandResultCode != CommandResults::NoError) {
-            this->_resultCode = commandResultCode;
+          if (errorResultParse(commandResultCode, response)){
             emit this->result();
-            return;
+            return true;
           }
 
           this->_response = new Response::UserMainInfoResponse();
-
-          QDomDocument doc;
-          if (!doc.setContent(response)) {
-            this->_resultCode = CommandResults::XmlError;
-            emit this->result();
-            return;
-          }
-
+		  QDomDocument doc; doc.setContent(response);
           QDomElement responseElement = doc.documentElement();
           QDomElement mainInfoElement = responseElement.firstChildElement("mainInfo");
 
           if(mainInfoElement.isNull()) {
-            this->_resultCode = CommandResults::XmlError;
+            this->_resultCode = XmlError;
             emit this->result();
-            return;
+            return true;
           }
 
           QDomElement el = mainInfoElement.firstChildElement("mmid");
@@ -101,10 +101,10 @@ namespace GGS {
             }
           }
 
-          this->_resultCode = CommandResults::NoError;
+          this->_resultCode = NoError;
           emit this->result();
+		     return false;
         }
-
       }
     }
   }

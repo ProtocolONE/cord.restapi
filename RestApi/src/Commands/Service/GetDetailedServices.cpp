@@ -1,41 +1,41 @@
+/****************************************************************************
+** This file is a part of Syncopate Limited GameNet Application or it parts.
+**
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** All rights reserved.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+****************************************************************************/
+
 #include "Commands/Service/GetDetailedServices.h"
 
 namespace GGS {
   namespace RestApi {
     namespace Commands {
       namespace Service {
-        GetDetailedServices::GetDetailedServices(QObject *parrent)
-          : QObject(parrent)
+        GetDetailedServices::GetDetailedServices()
         {
           this->appendParameter("method", "service.getDetailedServices");
           this->appendParameter("version", "1");
           this->appendParameter("lang", "ru");
+		      this->_response = 0;
         }
 
-        GetDetailedServices::~GetDetailedServices(void)
+        GetDetailedServices::~GetDetailedServices()
         {
-          if(this->_response) {
             delete this->_response;
-          }
         }
 
-        void GetDetailedServices::resultCallback( CommandResults commandResultCode, QString response )
+        bool GetDetailedServices::resultCallback( CommandResults commandResultCode, QString response )
         {
-          if(commandResultCode != CommandBaseInterface::NoError) {
-            this->_resultCode = commandResultCode;
+          if (errorResultParse(commandResultCode, response)){
             emit this->result();
-            return;
+            return true;
           }
 
           this->_response = new Response::DetailedServicesResponse();
-
-          QDomDocument doc;
-          if (!doc.setContent(response)) {
-            this->_resultCode = CommandBaseInterface::XmlError;
-            emit this->result();
-            return;
-          }
-
+          QDomDocument doc; doc.setContent(response);
           QDomElement responseElement = doc.documentElement();
           QDomElement serviceListElement = responseElement.firstChildElement("serviceList");
 
@@ -53,7 +53,7 @@ namespace GGS {
           if(serviceDetailElement.isNull()) {
             this->_resultCode = CommandBaseInterface::NoError;
             emit this->result();
-            return;
+            return true;
           }
 
           for(QDomElement row = serviceDetailElement.firstChildElement("row"); !row.isNull(); row = row.nextSiblingElement("row")) {
@@ -79,9 +79,8 @@ namespace GGS {
 
           this->_resultCode = CommandBaseInterface::NoError;
           emit this->result();
-          // UNDONE finished.
+          return false;
         }
-
       }
     }
   }

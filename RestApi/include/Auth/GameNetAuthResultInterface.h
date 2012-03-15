@@ -7,6 +7,7 @@
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
+
 #ifndef _GGS_RESTAPI_AUTH_GAMENET_AUTHRESULTINTERFACE_H_
 #define _GGS_RESTAPI_AUTH_GAMENET_AUTHRESULTINTERFACE_H_
 
@@ -26,6 +27,7 @@ namespace GGS {
           Cancel = 2, // Ќапример в случаи закрыти€ окна вконтакта - можно не показывать ошибку.
           NetworkError = 3,
           WrongLoginOrPassword = 4, 
+          UnknownAuthMethod = 5,
         };
 
         ~GameNetAuthResultInterface() {}

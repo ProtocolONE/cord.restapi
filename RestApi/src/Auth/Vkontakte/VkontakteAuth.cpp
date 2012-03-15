@@ -7,6 +7,7 @@
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
+
 #include "Auth/Vkontakte/VkontakteAuth.h"
 #include <qdebug.h>
 
@@ -15,36 +16,31 @@ namespace GGS {
     namespace Auth {
       namespace Vkontakte {
 
-        VkontakteAuth::VkontakteAuth(void)
-        {
+        VkontakteAuth::VkontakteAuth(){
           this->_resultCallback = 0;
           this->_isAuthStarted = false;
           this->_methodType = "vkontakte";
         }
 
-        VkontakteAuth::~VkontakteAuth(void)
-        {
+        VkontakteAuth::~VkontakteAuth() {
         }
 
         void VkontakteAuth::login()
         {
-          qDebug() << __FILE__ << __LINE__ << " _authStartedLock.lock();";
           this->_authStartedLock.lock();
           if (this->_isAuthStarted) {
-            qDebug() << __FILE__ << __LINE__ << " _authStartedLock.unlock();";
             this->_authStartedLock.unlock();
             return;
           }
 
           this->_isAuthStarted = true;
-          qDebug() << __FILE__ << __LINE__ << " _authStartedLock.unlock();";
           this->_authStartedLock.unlock();
 
           this->_view = new VkontakteWebView();
           this->_userPage = new UserAgentWebPage();
           this->_view->setPage(this->_userPage);
           
-          // UNDONE: подумать все ли параметры полузны
+          // UNDONE: подумать все ли параметры полезны
           this->_view->page()->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls,true);
           this->_view->page()->settings()->setAttribute(QWebSettings::LocalContentCanAccessFileUrls,true);
           this->_view->page()->settings()->setAttribute(QWebSettings::LocalStorageEnabled,true);
@@ -74,23 +70,19 @@ namespace GGS {
 
         void VkontakteAuth::setAuthResult( bool isSuccess )
         {
-          qDebug() << __FILE__ << __LINE__ << " _authStartedLock.lock();";
           this->_authStartedLock.lock();
           if (!this->_isAuthStarted) {
-            qDebug() << __FILE__ << __LINE__ << " _authStartedLock.unlock();";
             this->_authStartedLock.unlock();
             return;
           }
 
-          // UNDONE: результат выслать
           if(isSuccess) {
             this->_resultCallback->authResult(this->_credential);
           } else {
-            this->_resultCallback->authFailed(Auth::GameNetAuthResultInterface:: AuthResultCodes::Cancel);
+            this->_resultCallback->authFailed(Auth::GameNetAuthResultInterface::Cancel);
           }
 
           this->_isAuthStarted = false;
-          qDebug() << __FILE__ << __LINE__ << " _authStartedLock.unlock();";
           this->_authStartedLock.unlock();
           this->_view->close();
           this->_userPage->deleteLater();

@@ -7,6 +7,7 @@
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
+
 #include "Auth/Vkontakte/VkontakteWebView.h"
 
 namespace GGS {
@@ -14,13 +15,11 @@ namespace GGS {
     namespace Auth {
       namespace Vkontakte {
 
-        VkontakteWebView::VkontakteWebView(void)
-        {
+        VkontakteWebView::VkontakteWebView(){
         }
 
 
-        VkontakteWebView::~VkontakteWebView(void)
-        {
+        VkontakteWebView::~VkontakteWebView(){
         }
 
         void VkontakteWebView::closeEvent( QCloseEvent *event )

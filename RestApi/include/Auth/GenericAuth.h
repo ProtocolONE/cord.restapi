@@ -7,6 +7,7 @@
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
+
 #ifndef _GGS_RESTAPI_AUTH_GENERICAUTH_H_
 #define _GGS_RESTAPI_AUTH_GENERICAUTH_H_
 
@@ -31,8 +32,8 @@ namespace GGS {
       {
         Q_OBJECT
       public:
-        GenericAuth(void);
-        ~GenericAuth(void);
+        GenericAuth();
+        ~GenericAuth();
 
         const QString& type() { return this->_methodType; }
         void login();
@@ -55,10 +56,7 @@ namespace GGS {
         QString _authUrl;
         QString _login;
         QString _password;
-
-
       };
-
     }
   }
 }

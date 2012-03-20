@@ -93,7 +93,10 @@ xcopy /Y /I /R /E $(ProjectDir)include\*.h $(GnaCommonLibs)\RestApi\trunk\includ
 xcopy /Y /I /R $(ProjectDir)lib\zlibwapi.dll $(TargetDir)</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>xcopy /Y /I /R $(TargetDir)*.dll $(GnaCommonLibs)\RestApi\trunk\bin
+      <Command>@echo xcopy /Y /I /R $(TargetDir)*.dll $(GnaCommonLibs)\RestApi\trunk\bin
+@echo xcopy /Y /I /R $(TargetDir)*.lib $(GnaCommonLibs)\RestApi\trunk\lib
+@echo xcopy /Y /I /R /E $(ProjectDir)include\*.h $(GnaCommonLibs)\RestApi\trunk\include
+xcopy /Y /I /R $(TargetDir)*.dll $(GnaCommonLibs)\RestApi\trunk\bin
 xcopy /Y /I /R $(TargetDir)*.lib $(GnaCommonLibs)\RestApi\trunk\lib
 xcopy /Y /I /R /E $(ProjectDir)include\*.h $(GnaCommonLibs)\RestApi\trunk\include</Command>
     </PostBuildEvent>

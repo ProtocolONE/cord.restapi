@@ -30,7 +30,7 @@ namespace GGS {
 					SetUserActivity();
 					~SetUserActivity();
 
-					virtual bool resultCallback( CommandResults commandResultCode, QString response );
+					virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
 
 				signals:
 					void result(int timeout);

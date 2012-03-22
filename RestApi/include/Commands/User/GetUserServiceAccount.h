@@ -31,7 +31,7 @@ namespace GGS {
           GetUserServiceAccount();
           ~GetUserServiceAccount();
 
-          virtual bool resultCallback( CommandResults commandResultCode, QString response );
+          virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
 
           Response::UserServiceAccountResponse* response() { return this->_response; }
 

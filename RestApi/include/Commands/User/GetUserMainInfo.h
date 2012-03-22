@@ -31,7 +31,7 @@ namespace GGS {
           GetUserMainInfo();
           ~GetUserMainInfo();
 
-          virtual bool resultCallback( CommandResults commandResultCode, QString response );
+          virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
 
           Response::UserMainInfoResponse* response() { return this->_response; }
 

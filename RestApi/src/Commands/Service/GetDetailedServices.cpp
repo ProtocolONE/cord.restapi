@@ -27,16 +27,10 @@ namespace GGS {
             delete this->_response;
         }
 
-        bool GetDetailedServices::resultCallback( CommandResults commandResultCode, QString response )
+        bool GetDetailedServices::callMethod( CommandResults commandResultCode, QDomDocument response )
         {
-          if (errorResultParse(commandResultCode, response)){
-            emit this->result();
-            return true;
-          }
-
           this->_response = new Response::DetailedServicesResponse();
-          QDomDocument doc; doc.setContent(response);
-          QDomElement responseElement = doc.documentElement();
+          QDomElement responseElement = response.documentElement();
           QDomElement serviceListElement = responseElement.firstChildElement("serviceList");
 
           for(QDomElement row = serviceListElement.firstChildElement("row"); !row.isNull(); row = row.nextSiblingElement("row")) {

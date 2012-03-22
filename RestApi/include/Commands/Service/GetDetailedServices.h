@@ -33,7 +33,7 @@ namespace GGS {
           GetDetailedServices();
           ~GetDetailedServices();
 
-          virtual bool resultCallback( CommandResults commandResultCode, QString response );
+          virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
 
           Response::DetailedServicesResponse* response() { return this->_response; }
 

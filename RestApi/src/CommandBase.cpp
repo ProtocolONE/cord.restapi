@@ -46,23 +46,29 @@ namespace GGS {
       return &this->_commandParameters;
     }
 
-    bool CommandBase::resultCallback( CommandResults commandResultCode, QString response ) {   
-      return true;
-    }
-
-    bool CommandBase::errorResultParse( CommandResults commandResultCode, QString response ){
+    bool CommandBase::resultCallback( CommandResults commandResultCode, QString response ) {  
       if(commandResultCode != CommandBaseInterface::NoError) {
         this->_resultCode = commandResultCode;
         return true;
       }
-
       QDomDocument doc;
       if (!doc.setContent(response)) {
         this->_resultCode = CommandBaseInterface::XmlError;
         return true;
       }
 
-      QDomElement responseElement = doc.documentElement();
+      if (errorResultParse(commandResultCode, doc))
+        return true;
+
+      if (callMethod(commandResultCode, doc))
+        return true;
+
+
+      return false;
+    }
+
+    bool CommandBase::errorResultParse( CommandResults commandResultCode, QDomDocument response ){
+      QDomElement responseElement = response.documentElement();
       QDomElement errorElement = responseElement.firstChildElement("error");
       QDomElement errorMessage  = errorElement.firstChildElement("message");
       QDomElement errorCode  = errorElement.firstChildElement("code");
@@ -73,6 +79,10 @@ namespace GGS {
         return true;
       }
       return false;
+    }
+
+    bool CommandBase::callMethod( CommandResults commandResultCode, QDomDocument response ){
+      return true;
     }
 
     void CommandBase::setAuthRequire( bool isAuthRequire ) {

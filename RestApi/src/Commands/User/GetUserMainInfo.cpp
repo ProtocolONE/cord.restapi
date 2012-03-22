@@ -29,16 +29,10 @@ namespace GGS {
            delete this->_response;
         }
 
-        bool GetUserMainInfo::resultCallback( CommandResults commandResultCode, QString response )
+        bool GetUserMainInfo::callMethod( CommandResults commandResultCode, QDomDocument response )
         {
-          if (errorResultParse(commandResultCode, response)){
-            emit this->result();
-            return true;
-          }
-
           this->_response = new Response::UserMainInfoResponse();
-		  QDomDocument doc; doc.setContent(response);
-          QDomElement responseElement = doc.documentElement();
+          QDomElement responseElement = response.documentElement();
           QDomElement mainInfoElement = responseElement.firstChildElement("mainInfo");
 
           if(mainInfoElement.isNull()) {

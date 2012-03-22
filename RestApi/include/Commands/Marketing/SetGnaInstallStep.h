@@ -47,7 +47,7 @@ namespace GGS {
           SetGnaInstallStep();
           ~SetGnaInstallStep();
           
-          virtual bool resultCallback( CommandResults commandResultCode, QString response );
+          virtual bool SetGnaInstallStep::callMethod( CommandResults commandResultCode, QDomDocument response );
         signals:
           void result(int resultCode);
 		  // ¬озвращает 0 если данные не записались, 

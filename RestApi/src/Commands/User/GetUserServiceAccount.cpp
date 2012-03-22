@@ -19,15 +19,10 @@ namespace GGS {
           delete _response;
         }
 
-        bool GetUserServiceAccount::resultCallback( CommandResults commandResultCode, QString response ){
-          if (errorResultParse(commandResultCode, response)){
-            emit this->result();
-            return true;
-          }
-
+        bool GetUserServiceAccount::callMethod( CommandResults commandResultCode, QDomDocument response ){
           this->_response = new Response::UserServiceAccountResponse();
-          QDomDocument doc; doc.setContent(response);
-          QDomElement responseElement = doc.documentElement();
+
+          QDomElement responseElement = response.documentElement();
           QDomElement serviseAccountElement = responseElement.firstChildElement("serviceAccount");
 
           if(serviseAccountElement.isNull()) {

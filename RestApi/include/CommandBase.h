@@ -15,6 +15,7 @@
 
 #include "CommandBaseInterface.h"
 #include <QMetaObject>
+#include <qdom.h>
 
 namespace GGS {
 	namespace RestApi {
@@ -33,7 +34,7 @@ namespace GGS {
 			const QString& getGenericErrorMessage() { return this->genericErrorMessage; }
 			const int getGenericErrorMessageCode() { return this->genericErrorMessageCode; }
 
-			virtual const bool isRestapiOverrided() const { return this->_isRestapiOverrided; };
+			virtual const bool isRestapiOverrided() const { return this->_isRestapiOverrided; }
 
 			virtual const QString& restapiUrl() const { return this->_restApiUrl; }
 
@@ -44,12 +45,12 @@ namespace GGS {
 
 			const QMap<QString, QString>* commandParameters() const;
 
-			virtual bool resultCallback( CommandResults commandResultCode, QString response );
-			bool errorResultParse( CommandResults commandResultCode, QString response );
-
+			bool resultCallback( CommandResults commandResultCode, QString response );
+      bool errorResultParse( CommandResults commandResultCode, QDomDocument response );
+      virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
 			void setRestapiUrl( const QString& url );
 
-			virtual CommandResults resultCode();
+			virtual CommandResults resultCode(); 
 
 		protected:
 			CommandResults _resultCode;

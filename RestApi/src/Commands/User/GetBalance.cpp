@@ -24,14 +24,9 @@ namespace GGS {
         GetBalance::~GetBalance() {
         }
 
-        bool GetBalance::resultCallback( CommandResults commandResultCode, QString response )
+        bool GetBalance::callMethod( CommandResults commandResultCode, QDomDocument response )
         {
-          if (errorResultParse(commandResultCode, response)){
-            emit this->result(0);
-            return true;
-          }
-          QDomDocument doc; doc.setContent(response);
-          QDomElement balanceElement  = doc.documentElement()
+          QDomElement balanceElement  = response.documentElement()
             .firstChildElement("speedyInfo")
             .firstChildElement("balance");
 

@@ -27,14 +27,9 @@ namespace GGS {
         SetUserActivity::~SetUserActivity(){
         }
 
-        bool SetUserActivity::resultCallback( CommandResults commandResultCode, QString response )
+        bool SetUserActivity::callMethod( CommandResults commandResultCode, QDomDocument response )
         {
-          if (errorResultParse(commandResultCode, response)){
-            emit this->result(0);
-            return true;
-          }
-          QDomDocument doc; doc.setContent(response);
-          QDomElement responseElement = doc.documentElement();
+          QDomElement responseElement = response.documentElement();
 
           if(responseElement.isNull()) {
             this->_resultCode = XmlError;

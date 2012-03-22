@@ -26,13 +26,8 @@ namespace GGS {
         SetGnaInstallStep::~SetGnaInstallStep(){
         }
 
-        bool SetGnaInstallStep::resultCallback( CommandResults commandResultCode, QString response ){
-          if (errorResultParse(commandResultCode, response)){
-            emit this->result(0);
-            return true;
-          }
-          QDomDocument doc; doc.setContent(response);
-          QDomElement el = doc.documentElement().firstChildElement("status");
+        bool SetGnaInstallStep::callMethod( CommandResults commandResultCode, QDomDocument response ){
+          QDomElement el = response.documentElement().firstChildElement("status");
 
           if(!el.isNull()) {
             emit this->result(el.text() == "ok");

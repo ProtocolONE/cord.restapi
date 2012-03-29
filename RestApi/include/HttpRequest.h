@@ -13,8 +13,9 @@
 
 #include "restapi_global.h"
 #include "HttpRequestInterface.h"
-#include "curl/curl.h"
-#include "curl/easy.h"
+
+#include <curl/curl.h>
+#include <curl/easy.h>
 
 #include <QtCore/QString>
 #include <QtCore/QDebug>

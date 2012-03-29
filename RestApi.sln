@@ -13,6 +13,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestQml", "TestQml\TestQml.
 		{D41A08DF-6411-4BBF-BE34-E554ABFE0FD1} = {D41A08DF-6411-4BBF-BE34-E554ABFE0FD1}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1E108567-57D4-41AA-B51A-C3F43FAF3318}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy.props = Deploy.props
+		Readme.txt = Readme.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32

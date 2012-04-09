@@ -29,6 +29,7 @@ namespace GGS {
 
     void HttpCommandRequest::execute(CommandBaseArgumentWraper &arguments)
     {
+
       QString request("");
       CommandBaseInterface *command = arguments.command();
       const QMap<QString, QString> *params = command->commandParameters();
@@ -41,9 +42,10 @@ namespace GGS {
         request.append('&');
       }
 
-      QString response;
-      if (this->_cache->tryGet(request, response)) {
-        arguments.command()->resultCallback(CommandBaseInterface::NoError, response);
+      QString response = QString();
+      if (this->_cache->tryGet(request, response) ) {
+          if (response.size())
+            arguments.command()->resultCallback(CommandBaseInterface::NoError, response);
         return;
       }
 
@@ -51,12 +53,15 @@ namespace GGS {
       HttpRequest http;
       HttpRequestInterface::ResultCodes result;
       response = http.execute(restApiurl, request, result);
-      
-      arguments.command()->resultCallback(
-        result == HttpRequestInterface::NoError 
-          ? CommandBaseInterface::NoError 
-          : CommandBaseInterface::NetworkError
-        , response);
+  
+      if (response.size() && result == HttpRequestInterface::NoError) // todo обсудить, правильно ли НЕ вызывать callback если ответ пустой, т.к в этом случае 
+      {
+        arguments.command()->resultCallback(       // происходит вероятность вызова resultCallback() у абстрактного класса. 
+          result == HttpRequestInterface::NoError 
+            ? CommandBaseInterface::NoError 
+            : CommandBaseInterface::NetworkError
+          , response);
+      }
     }
   }
 }

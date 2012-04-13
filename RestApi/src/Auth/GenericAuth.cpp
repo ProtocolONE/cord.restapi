@@ -19,7 +19,6 @@ namespace GGS {
         this->_methodType = "generic";
         // UNDONE: ’от€... если считать этот класс в единственном экземпл€ре, то вызвать можно и тут.
         // 19.03.2012  igor.bugaev - инициализаци€ курла остаетс€ здесь до написани€ врапера.
-
         curl_global_init(CURL_GLOBAL_ALL);
         this->_resultCallback = 0;
       }
@@ -103,7 +102,7 @@ namespace GGS {
           this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
           return;
         }
-        this->_cridential.setCookie(cookieElement.text());
+        this->_cridential.setCookie(QUrl::toPercentEncoding(cookieElement.text()));
         
         this->_resultCallback->authResult(this->_cridential);
       }

@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "FakeCache.h"
+#include "RestApi/FakeCache.h"
 
 namespace GGS {
   namespace RestApi {

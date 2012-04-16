@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "CommandBaseArgumentWraper.h"
+#include "RestApi/CommandBaseArgumentWraper.h"
 
 namespace GGS {
   namespace RestApi {

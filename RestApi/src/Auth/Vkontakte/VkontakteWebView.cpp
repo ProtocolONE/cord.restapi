@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Auth/Vkontakte/VkontakteWebView.h"
+#include "RestApi/Auth/Vkontakte/VkontakteWebView.h"
 
 namespace GGS {
   namespace RestApi {

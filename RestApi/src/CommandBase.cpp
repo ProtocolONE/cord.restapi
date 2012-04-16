@@ -8,7 +8,8 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "CommandBase.h"
+#include "RestApi/CommandBase.h"
+
 #include <iostream>
 #include <qdebug.h>
 #include <qdom.h>

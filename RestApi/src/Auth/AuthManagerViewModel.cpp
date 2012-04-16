@@ -8,8 +8,9 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Auth/AuthManagerViewModel.h"
+#include "RestApi/Auth/AuthManagerViewModel.h"
 #include <QtCore/QDebug>
+
 namespace GGS {
   namespace RestApi {
     namespace Auth {

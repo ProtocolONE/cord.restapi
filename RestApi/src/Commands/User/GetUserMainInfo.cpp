@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Commands/User/GetUserMainInfo.h"
+#include "RestApi/Commands/User/GetUserMainInfo.h"
 
 namespace GGS {
   namespace RestApi {

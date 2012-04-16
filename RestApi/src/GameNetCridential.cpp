@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "GameNetCredential.h"
+#include "RestApi/GameNetCredential.h"
 
 namespace GGS {
   namespace RestApi {

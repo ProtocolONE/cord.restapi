@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Commands/User/GetBalance.h"
+#include "RestApi/Commands/User/GetBalance.h"
 
 namespace GGS {
   namespace RestApi {

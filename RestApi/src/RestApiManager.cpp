@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "RestApiManager.h"
+#include "RestApi/RestApiManager.h"
 
 namespace GGS {
   namespace RestApi {

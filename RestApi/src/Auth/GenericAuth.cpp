@@ -8,7 +8,9 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Auth/GenericAuth.h"
+#include <RestApi/Auth/GenericAuth.h>
+
+#include <curl/curl.h>
 
 namespace GGS {
   namespace RestApi {

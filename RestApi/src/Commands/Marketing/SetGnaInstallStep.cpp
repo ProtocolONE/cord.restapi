@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Commands\Marketing\SetGnaInstallStep.h"
+#include "RestApi/Commands/Marketing/SetGnaInstallStep.h"
 #include <qdebug.h>
 
 namespace GGS {

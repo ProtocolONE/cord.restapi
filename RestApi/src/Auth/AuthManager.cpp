@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Auth/AuthManager.h"
+#include "RestApi/Auth/AuthManager.h"
 #include <QtCore/qdebug.h>
 
 namespace GGS {

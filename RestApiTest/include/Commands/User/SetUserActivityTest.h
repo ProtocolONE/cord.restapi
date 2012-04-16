@@ -2,7 +2,7 @@
 #define _GGS_RESTAPI_SET_USER_ACTIVITY_TEST_H_
 
 #include "gtest/gtest.h"
-#include "Commands\User\SetUserActivity.h"
+#include <RestApi/Commands/User/SetUserActivity.h>
 
 class SetUserActivityTest : public GGS::RestApi::Commands::User::SetUserActivity, public ::testing::Test
 {
@@ -13,8 +13,8 @@ public:
 	GGS::RestApi::Commands::User::SetUserActivity command;
 };
 
-#include "Commands\User\GetUserServiceAccount.h"
-#include "Commands\User\Response\UserServiceAccountResponse.h"
+#include <RestApi/Commands/User/GetUserServiceAccount.h>
+#include <RestApi/Commands/User/Response/UserServiceAccountResponse.h>
 
 class GetUserServiceAccount : public GGS::RestApi::Commands::User::GetUserServiceAccount, public ::testing::Test
 {

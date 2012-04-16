@@ -2,7 +2,7 @@
 
 #include "MemoryLeaksChecker.h"
 
-#include "CommandBase.h"
+#include <RestApi/CommandBase.h>
 
 class CommandbaseTest : public ::testing::Test{
 public:

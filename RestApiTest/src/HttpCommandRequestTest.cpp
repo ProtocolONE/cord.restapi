@@ -2,13 +2,14 @@
 #include "MemoryLeaksChecker.h"
 
 #include "CommandResultGetter.h"
-#include "HttpCommandRequest.h"
-#include "Commands/Service/GetDetailedServices.h"
-#include "Commands/Service/Response/DetailedServiceInfo.h"
-#include "Commands/Service/Response/DetailedServicesResponse.h"
-#include "CommandBaseArgumentWraper.h"
-#include "RestApiManager.h"
-#include "FakeCache.h"
+
+#include <RestApi/HttpCommandRequest.h>
+#include <RestApi/Commands/Service/GetDetailedServices.h>
+#include <RestApi/Commands/Service/Response/DetailedServiceInfo.h>
+#include <RestApi/Commands/Service/Response/DetailedServicesResponse.h>
+#include <RestApi/CommandBaseArgumentWraper.h>
+#include <RestApi/RestApiManager.h>
+#include <RestApi/FakeCache.h>
 
 #include <QtCore/QtConcurrentRun>
 #include <QtCore/QWaitCondition>

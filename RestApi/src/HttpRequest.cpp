@@ -8,8 +8,12 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "HttpRequest.h"
+#include "RestApi/HttpRequest.h"
+
 #include <qdatetime.h>
+
+#include <curl/curl.h>
+#include <curl/easy.h>
 
 namespace GGS {
   namespace RestApi {

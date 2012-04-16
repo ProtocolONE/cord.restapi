@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Commands/User/Response/UserMainInfoResponse.h"
+#include "RestApi/Commands/User/Response/UserMainInfoResponse.h"
 
 namespace GGS {
   namespace RestApi {

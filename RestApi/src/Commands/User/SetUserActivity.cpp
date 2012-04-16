@@ -8,7 +8,8 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Commands\User\SetUserActivity.h"
+#include "RestApi/Commands/User/SetUserActivity.h"
+
 #include <qdebug.h>
 #include <qdatetime>
 

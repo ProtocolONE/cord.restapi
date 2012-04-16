@@ -8,7 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "Auth/RegistryCredentialStorage.h"
+#include "RestApi/Auth/RegistryCredentialStorage.h"
 
 namespace GGS {
   namespace RestApi {

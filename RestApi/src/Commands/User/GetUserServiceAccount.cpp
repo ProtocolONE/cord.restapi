@@ -1,5 +1,5 @@
 
-#include "Commands/User/GetUserServiceAccount.h"
+#include "RestApi/Commands/User/GetUserServiceAccount.h"
 
 namespace GGS {
   namespace RestApi {
@@ -54,6 +54,11 @@ namespace GGS {
           this->_resultCode = NoError;
           emit this->result();
           return false;
+        }
+
+        void GetUserServiceAccount::setServiceId( const QString &id )
+        {
+          this->appendParameter("serviceId", id);
         }
       }
     }

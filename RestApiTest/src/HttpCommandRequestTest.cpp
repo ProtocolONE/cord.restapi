@@ -93,7 +93,6 @@ TEST_F(HttpRequestCommandTest, testSpeed)
   for (int i = 0; i < 2; ++i) {
     QFuture<void> f = QtConcurrent::run(&request, &HttpCommandRequest::execute, wraper);
     f.waitForFinished();
-    delete cmd.response();
   }
 
   int elapsed = time.elapsed(); // sad - very sad 1700 ms

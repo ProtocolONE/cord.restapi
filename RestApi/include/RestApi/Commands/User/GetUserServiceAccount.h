@@ -23,7 +23,7 @@ namespace GGS {
     namespace Commands {
       namespace User {
 
-        class RESTAPI_EXPORT GetUserServiceAccount : public QObject,
+        class RESTAPI_EXPORT GetUserServiceAccount : 
           public CommandBase
         {
           Q_OBJECT
@@ -33,7 +33,7 @@ namespace GGS {
 
           inline void setServiceId(const QString &id);
 
-          virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
+          virtual bool callMethod( const QDomDocument& response );
 
           Response::UserServiceAccountResponse* response() { return this->_response; }
 

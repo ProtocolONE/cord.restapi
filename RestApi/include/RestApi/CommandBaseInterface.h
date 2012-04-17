@@ -23,6 +23,8 @@ namespace GGS {
 
     class RESTAPI_EXPORT CommandBaseInterface {
     public:
+      Q_ENUMS(GGS::RestApi::CommanBaseInterface::CommandResults);
+
       enum CommandResults{
         NoError = 0,
         NetworkError = 1,
@@ -63,16 +65,14 @@ namespace GGS {
       /// <param name="response">     The response.</param>
       /// <param name="return bool">  Is error.</param>
       virtual bool resultCallback(CommandResults commandResultCode, QString response) = 0;
-      virtual bool errorResultParse( CommandResults commandResultCode, QDomDocument response ) = 0;
-      virtual bool callMethod( CommandResults commandResultCode, QDomDocument response ) = 0;
+      virtual bool errorResultParse( const QDomDocument& response ) = 0;
+      virtual bool callMethod( const QDomDocument& response ) = 0;
 
       virtual void setRestapiUrl(const QString& url) = 0;
 
       virtual const bool isRestapiOverrided() const = 0;
 
       virtual const QString& restapiUrl() const = 0;
-
-      virtual CommandBaseInterface::CommandResults resultCode() = 0;
 
       virtual void appendParameter( const QString& name, const QString& value ) = 0;
     };

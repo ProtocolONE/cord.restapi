@@ -24,7 +24,7 @@ namespace GGS {
       this->_cacheTime = 0;
       this->genericErrorMessage = QString();
       this->genericErrorMessageCode = 0;
-	  this->_resultCode = NoError;
+      qRegisterMetaType<GGS::RestApi::CommandBaseInterface::CommandResults>("GGS::RestApi::CommandBaseInterface::CommandResults");
     }
 
     CommandBase::~CommandBase(){
@@ -49,26 +49,30 @@ namespace GGS {
 
     bool CommandBase::resultCallback( CommandResults commandResultCode, QString response ) {  
       if(commandResultCode != CommandBaseInterface::NoError) {
-        this->_resultCode = commandResultCode;
+        emit this->result(commandResultCode);
         return true;
       }
       QDomDocument doc;
       if (!doc.setContent(response)) {
-        this->_resultCode = CommandBaseInterface::XmlError;
+        emit this->result(CommandBaseInterface::XmlError);
         return true;
       }
 
-      if (errorResultParse(commandResultCode, doc))
+      if (errorResultParse(doc)){
+        emit this->result(CommandBaseInterface::GenericError);
         return true;
+      }
 
-      if (callMethod(commandResultCode, doc))
+      if (callMethod(doc)){
+        emit this->result(CommandBaseInterface::XmlError);
         return true;
+      }
 
-
+      emit this->result(CommandBaseInterface::NoError);
       return false;
     }
 
-    bool CommandBase::errorResultParse( CommandResults commandResultCode, QDomDocument response ){
+    bool CommandBase::errorResultParse( const QDomDocument& response ){
       QDomElement responseElement = response.documentElement();
       QDomElement errorElement = responseElement.firstChildElement("error");
       QDomElement errorMessage  = errorElement.firstChildElement("message");
@@ -82,7 +86,7 @@ namespace GGS {
       return false;
     }
 
-    bool CommandBase::callMethod( CommandResults commandResultCode, QDomDocument response ){
+    bool CommandBase::callMethod( const QDomDocument& response ){
       return true;
     }
 
@@ -106,10 +110,5 @@ namespace GGS {
       this->_restApiUrl = url;
       this->_isRestapiOverrided = true;
     }
-
-    CommandBaseInterface::CommandResults CommandBase::resultCode()  {
-      return this->_resultCode;
-    }
-
   }
 }

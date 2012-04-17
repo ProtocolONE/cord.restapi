@@ -39,7 +39,7 @@ namespace GGS {
 				40 - Первый вход в игру
 		*/
 
-        class RESTAPI_EXPORT SetGnaInstallStep : public QObject,
+        class RESTAPI_EXPORT SetGnaInstallStep :
           public CommandBase
         {
           Q_OBJECT
@@ -47,11 +47,15 @@ namespace GGS {
           SetGnaInstallStep();
           ~SetGnaInstallStep();
           
-          virtual bool SetGnaInstallStep::callMethod( CommandResults commandResultCode, QDomDocument response );
-        signals:
-          void result(int resultCode);
-		  // Возвращает 0 если данные не записались, 
-		  // если результат не 0, то данные успешно сохранены.
+          virtual bool SetGnaInstallStep::callMethod( const QDomDocument& response );
+          bool getIsOk() { return _ok; }
+
+          void setHwid( const QString& hwid );
+          void setServiceId( int serviceId );
+          void setMarketModuleTarget( int marketModuleTarget );
+
+        private:
+            bool _ok;
         };
       }
     }

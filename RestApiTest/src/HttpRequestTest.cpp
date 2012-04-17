@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "MemoryLeaksChecker.h"
 
-#include "HttpRequest.h"
+#include <RestApi/HttpRequest.h>
 
 #include <QtCore/QString>
 

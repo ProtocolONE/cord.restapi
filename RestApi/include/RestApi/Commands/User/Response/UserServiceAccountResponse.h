@@ -22,9 +22,9 @@ namespace GGS {
       namespace User {
         namespace Response {
 
-          class RESTAPI_EXPORT UserServiceAccountResponse
+          class RESTAPI_EXPORT UserServiceAccountResponse: public QObject
           {
-
+              Q_OBJECT
 		  public:
             void setLogin(const QString login) { this->_login = login; }
             const QString getLogin() { return this->_login; }

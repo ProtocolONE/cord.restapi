@@ -10,8 +10,9 @@ CommandResultGetter::~CommandResultGetter(void)
 {
 }
 
-void CommandResultGetter::commandResult( )
+void CommandResultGetter::commandResult( GGS::RestApi::CommandBaseInterface::CommandResults code )
 {
+  ASSERT_TRUE(code == GGS::RestApi::CommandBaseInterface::NoError);
   loop.exit();
 }
 
@@ -42,8 +43,7 @@ void CommandResultGetter::test2()
   GetDetailedServices cmd;
   cmd.appendParameter("someRusParam", QString::fromLocal8Bit("Привет, Мир!"));
   cmd.appendParameter("lang", "en");
-  ASSERT_TRUE(QObject::connect(&cmd, SIGNAL(result()), this, SLOT(commandResult())));
- // ASSERT_TRUE(QObject::connect(&cmd, SIGNAL(genericError(QString,int)), this, SLOT(genericError(QString,int))));
+  ASSERT_TRUE(QObject::connect(&cmd, SIGNAL(result(GGS::RestApi::CommandBaseInterface::CommandResults)), this, SLOT(commandResult(GGS::RestApi::CommandBaseInterface::CommandResults))));
 
   restapi.execute(&cmd);
   loop.exec();

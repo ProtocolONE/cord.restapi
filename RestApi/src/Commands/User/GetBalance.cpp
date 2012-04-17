@@ -19,33 +19,28 @@ namespace GGS {
           this->appendParameter("version", "1");
           this->appendParameter("lang", "ru");
           this->setAuthRequire(true);
+          this->_balance = -1;
         }
 
         GetBalance::~GetBalance() {
         }
 
-        bool GetBalance::callMethod( CommandResults commandResultCode, QDomDocument response )
+        bool GetBalance::callMethod( const QDomDocument& response )
         {
           QDomElement balanceElement  = response.documentElement()
             .firstChildElement("speedyInfo")
             .firstChildElement("balance");
 
-          if (balanceElement.isNull()) {
-            this->_resultCode = XmlError;
-            emit this->result(0);
+          if (balanceElement.isNull())
             return true;
-          }
 
           QString balanceString = balanceElement.text();
           bool res;
           int balance = balanceString.toInt(&res);
-          if(!res){
-            this->_resultCode = XmlError;
-            emit this->result(0);
+          if(!res)
             return true;
-          }
 
-          emit this->result(balance);
+          this->_balance = balance;
           return false;
         }
       }

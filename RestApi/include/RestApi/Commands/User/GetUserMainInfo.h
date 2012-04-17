@@ -23,7 +23,7 @@ namespace GGS {
     namespace Commands {
       namespace User {
 
-        class RESTAPI_EXPORT GetUserMainInfo : public QObject,
+        class RESTAPI_EXPORT GetUserMainInfo : 
           public CommandBase
         {
           Q_OBJECT
@@ -31,12 +31,9 @@ namespace GGS {
           GetUserMainInfo();
           ~GetUserMainInfo();
 
-          virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
+          virtual bool callMethod( const QDomDocument& response );
 
           Response::UserMainInfoResponse* response() { return this->_response; }
-
-        signals:
-          void result();
 
         private:
           QPointer<Response::UserMainInfoResponse> _response;

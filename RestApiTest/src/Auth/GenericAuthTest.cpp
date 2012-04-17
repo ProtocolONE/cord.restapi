@@ -2,9 +2,9 @@
 #include "gtest/gtest.h"
 #include "MemoryLeaksChecker.h"
 
-#include "Auth/GenericAuth.h"
-#include "Auth/GameNetAuthResultInterface.h"
-#include "GameNetCredential.h"
+#include <RestApi/Auth/GenericAuth.h>
+#include <RestApi/Auth/GameNetAuthResultInterface.h>
+#include <RestApi/GameNetCredential.h>
 
 #include <QtCore/QWaitCondition>
 

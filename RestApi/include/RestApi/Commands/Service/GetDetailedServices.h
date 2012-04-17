@@ -24,7 +24,7 @@ namespace GGS {
   namespace RestApi {
     namespace Commands {
       namespace Service {
-        class RESTAPI_EXPORT GetDetailedServices : public QObject,
+        class RESTAPI_EXPORT GetDetailedServices : 
           public CommandBase
         {
           Q_OBJECT
@@ -32,12 +32,12 @@ namespace GGS {
           GetDetailedServices();
           ~GetDetailedServices();
 
-          virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
+          virtual bool callMethod( const QDomDocument& response );
 
           Response::DetailedServicesResponse* response() { return this->_response; }
 
-        signals:
-          void result();
+          void setGroupId(int groudId);
+
         private:
           QPointer<Response::DetailedServicesResponse> _response;
         };

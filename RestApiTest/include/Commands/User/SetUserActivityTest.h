@@ -8,7 +8,7 @@ class SetUserActivityTest : public GGS::RestApi::Commands::User::SetUserActivity
 {
   Q_OBJECT
 public slots:
-  void SetUserActivityResult( int timeout );
+    void SetUserActivityResult( GGS::RestApi::CommandBaseInterface::CommandResults code );
 public:
 	GGS::RestApi::Commands::User::SetUserActivity command;
 };
@@ -20,7 +20,7 @@ class GetUserServiceAccount : public GGS::RestApi::Commands::User::GetUserServic
 {
   Q_OBJECT
 public slots:
-	void GetUserServiceAccountResult( );
+	void GetUserServiceAccountResult( GGS::RestApi::CommandBaseInterface::CommandResults code );
 public:
 	GGS::RestApi::Commands::User::GetUserServiceAccount command;
 };

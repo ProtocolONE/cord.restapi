@@ -1,35 +1,34 @@
 #include "gtest/gtest.h"
 #include "MemoryLeaksChecker.h"
 
-#include "GameNetCredential.h"
-#include "CommandBaseInterface.h"
-#include "RestApiManager.h"
-#include "Commands/User/GetUserMainInfo.h"
-#include "Commands/User/SetUserActivity.h"
+#include <RestApi/GameNetCredential.h>
+#include <RestApi/CommandBaseInterface.h>
+#include <RestApi/RestApiManager.h>
+#include <RestApi/Commands/User/GetUserMainInfo.h>
+#include <RestApi/Commands/User/SetUserActivity.h>
 #include "Commands/User/SetUserActivityTest.h"
-#include "Commands/User/Response/UserMainInfoResponse.h"
-#include "FakeCache.h"
+#include <RestApi/Commands/User/Response/UserMainInfoResponse.h>
+#include <RestApi/FakeCache.h>
 #include <QtCore/QEventLoop>
 #include <QtCore/QTimer>
-#include <qdebug>
+#include <QtCore/QDebug>
 
 
-void SetUserActivityTest::SetUserActivityResult( int timeout )
+void SetUserActivityTest::SetUserActivityResult( GGS::RestApi::CommandBaseInterface::CommandResults code )
 {
-	if (!command.getGenericErrorMessageCode())
-		ASSERT_TRUE(timeout);
-	else
-		ASSERT_TRUE(command.getGenericErrorMessage().size());
+    ASSERT_TRUE(code == GGS::RestApi::CommandBaseInterface::NoError);
+    if (code == GGS::RestApi::CommandBaseInterface::NoError)
+     ASSERT_TRUE(command.getTimeout() > 0);
 }
 
-void GetUserServiceAccount::GetUserServiceAccountResult( )
+void GetUserServiceAccount::GetUserServiceAccountResult( GGS::RestApi::CommandBaseInterface::CommandResults code )
 {
-	if (!command.getGenericErrorMessageCode()){
+	if (code == GGS::RestApi::CommandBaseInterface::NoError){
 		ASSERT_TRUE(command.response()->getLogin().size());
 		ASSERT_TRUE(command.response()->getToken().size());
 		ASSERT_TRUE(command.response()->getStatus().size());
 		ASSERT_TRUE(command.response()->getPassword().size());
-	} else
+    } else if (code == GGS::RestApi::CommandBaseInterface::GenericError)
 		ASSERT_TRUE(command.getGenericErrorMessage().size());
 }
 
@@ -55,8 +54,10 @@ TEST_F(SetUserActivityTest, setUserActivityTestTest)
   restapi.setCridential(auth);
   restapi.setRequest(&request);
 
-  ASSERT_TRUE(connect(&command, SIGNAL(result(int)),this,SLOT(SetUserActivityResult(int))));
-  command.appendParameter("gameId","71");
+  ASSERT_TRUE(connect(&command, SIGNAL(result(GGS::RestApi::CommandBaseInterface::CommandResults)),
+      this,SLOT(SetUserActivityResult(GGS::RestApi::CommandBaseInterface::CommandResults))));
+  command.setGameId(71);
+
   QEventLoop loop;
 
   // даем 5 секунд на выполнение теста. потом убиваем евент улп
@@ -86,10 +87,10 @@ TEST_F(GetUserServiceAccount, getUserServiceAccountTest)
   restapi.setCridential(auth);
   restapi.setRequest(&request);
 
-  connect(&command, SIGNAL(result()),
-		  this,SLOT(GetUserServiceAccountResult()));
+  connect(&command, SIGNAL(result(GGS::RestApi::CommandBaseInterface::CommandResults)),
+		  this,SLOT(GetUserServiceAccountResult(GGS::RestApi::CommandBaseInterface::CommandResults)));
+  command.setServiceId("300002010000000000");
 
-  command.appendParameter("serviceId","300002010000000000");
   QEventLoop loop;
 
   // даем 5 секунд на выполнение теста. потом убиваем евент улп

@@ -24,16 +24,15 @@ class CommandResultGetter : public QObject
 {
   Q_OBJECT
 public:
-  CommandResultGetter(void);
-  ~CommandResultGetter(void);
+  CommandResultGetter();
+  ~CommandResultGetter();
 
   QEventLoop loop;
   void test2();
 
 public slots:
-  void commandResult();
+  void commandResult(GGS::RestApi::CommandBaseInterface::CommandResults code);
   void genericError(const QString& message, int messageId );
-
 };
 
 #endif // _GGS_RESTAPI_TEST_COMMAND_RESULT_GETTER_H_

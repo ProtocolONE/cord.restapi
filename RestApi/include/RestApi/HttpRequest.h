@@ -23,7 +23,6 @@ namespace GGS {
     class RESTAPI_EXPORT HttpRequest : public HttpRequestInterface
     {
     public:
-
       HttpRequest();
       ~HttpRequest();
 

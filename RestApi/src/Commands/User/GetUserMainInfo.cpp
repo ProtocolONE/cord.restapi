@@ -21,83 +21,68 @@ namespace GGS {
           this->appendParameter("lang", "ru");
           this->setAuthRequire(true);
 
-          _response = NULL;
+          this->_response = new Response::UserMainInfoResponse();
         }
 
 
         GetUserMainInfo::~GetUserMainInfo() {
            delete this->_response;
         }
-
-        bool GetUserMainInfo::callMethod( CommandResults commandResultCode, QDomDocument response )
+          
+        bool GetUserMainInfo::callMethod( const QDomDocument& response )
         {
-          this->_response = new Response::UserMainInfoResponse();
+
           QDomElement responseElement = response.documentElement();
           QDomElement mainInfoElement = responseElement.firstChildElement("mainInfo");
 
-          if(mainInfoElement.isNull()) {
-            this->_resultCode = XmlError;
-            emit this->result();
+          if(mainInfoElement.isNull())
             return true;
-          }
 
           QDomElement el = mainInfoElement.firstChildElement("mmid");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setMarketingId(el.text());
-          }
 
           el = mainInfoElement.firstChildElement("nickname");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setNickname(el.text());
-          }
 
           el = mainInfoElement.firstChildElement("nametech");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setNametech(el.text());
-          }
 
           el = mainInfoElement.firstChildElement("profile");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setProfileUrl(el.text());
-          }
           
           el = mainInfoElement.firstChildElement("profile");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setProfileUrl(el.text());
-          }
 
           el = mainInfoElement.firstChildElement("avatarSmall");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setSmallAvatarUrl(el.text());
-          }
 
           el = mainInfoElement.firstChildElement("avatarMedium");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setMediumAvatarUrl(el.text());
-          }
 
           el = mainInfoElement.firstChildElement("avatarLarge");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setLargeAvatarUrl(el.text());
-          }
 
           el = mainInfoElement.firstChildElement("steamId");
-          if(!el.isNull()) {
+          if(!el.isNull())
             this->_response->setSteamId(el.text());
-          }
 
           el = mainInfoElement.firstChildElement("sex");
           if(!el.isNull()) {
             bool res;
             int id = el.text().toInt(&res);
-            if(res){
+            if(res)
                this->_response->setSex(id);
-            }
           }
 
-          this->_resultCode = NoError;
-          emit this->result();
-		     return false;
+         return false;
         }
       }
     }

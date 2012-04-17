@@ -1,7 +1,7 @@
-#include "Auth/Vkontakte/VkontakteAuth.h"
-#include "Auth/GenericAuth.h"
-#include "Auth/AuthManager.h"
-#include "Auth/AuthManagerViewModel.h"
+#include <RestApi/Auth/Vkontakte/VkontakteAuth.h>
+#include <RestApi/Auth/GenericAuth.h>
+#include <RestApi/Auth/AuthManager.h>
+#include <RestApi/Auth/AuthManagerViewModel.h>
 
 #include <QtCore/QDebug>
 #include <QtCore/QObject>

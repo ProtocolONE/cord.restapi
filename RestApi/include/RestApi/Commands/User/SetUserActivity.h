@@ -18,26 +18,31 @@
 #include <QtXml/QDomDocument>
 
 namespace GGS {
-	namespace RestApi {
-		namespace Commands {
-			namespace User {
+    namespace RestApi {
+        namespace Commands {
+            namespace User {
 
-				class RESTAPI_EXPORT SetUserActivity : public QObject,
-					public CommandBase
-				{
-					Q_OBJECT
-				public:
-					SetUserActivity();
-					~SetUserActivity();
+                class RESTAPI_EXPORT SetUserActivity : 
+                    public CommandBase
+                {
+                    Q_OBJECT
+                public:
+                    SetUserActivity();
+                    ~SetUserActivity();
 
-					virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
+                    virtual bool callMethod( const QDomDocument& response );
 
-				signals:
-					void result(int timeout);
-				};
+                    int getTimeout();
 
-			}
-		}
-	}
+                    void setGameId( int gameId );
+                    void setLogout( int logout );
+
+                private:
+                    int _timeout;
+                };
+
+            }
+        }
+    }
 }
 #endif

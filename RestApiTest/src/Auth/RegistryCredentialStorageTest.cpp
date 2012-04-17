@@ -1,8 +1,8 @@
 
 #include "gtest/gtest.h"
 #include "MemoryLeaksChecker.h"
-#include "Auth/RegistryCredentialStorage.h"
-#include "GameNetCredential.h"
+#include <RestApi/Auth/RegistryCredentialStorage.h>
+#include <RestApi/GameNetCredential.h>
 
 class RegistryCredentialStorageTest : public ::testing::Test
 {

@@ -1,8 +1,8 @@
 #include "gtest/gtest.h"
 #include "MemoryLeaksChecker.h"
 
-#include "CommandBaseInterface.h"
-#include "Commands/Service/GetDetailedServices.h"
+#include <RestApi/CommandBaseInterface.h>
+#include <RestApi/Commands/Service/GetDetailedServices.h>
 
 class GetDetailedServicesTest : public ::testing::Test{
 public:

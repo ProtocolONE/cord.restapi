@@ -19,7 +19,7 @@ namespace GGS {
           this->appendParameter("method", "service.getDetailedServices");
           this->appendParameter("version", "1");
           this->appendParameter("lang", "ru");
-		      this->_response = 0;
+          this->_response = new Response::DetailedServicesResponse();
         }
 
         GetDetailedServices::~GetDetailedServices()
@@ -27,9 +27,13 @@ namespace GGS {
             delete this->_response;
         }
 
-        bool GetDetailedServices::callMethod( CommandResults commandResultCode, QDomDocument response )
+        void GetDetailedServices::setGroupId(int groudId)
         {
-          this->_response = new Response::DetailedServicesResponse();
+            this->appendParameter("groudId", QString::number(groudId));
+        }
+
+        bool GetDetailedServices::callMethod( const QDomDocument& response )
+        {
           QDomElement responseElement = response.documentElement();
           QDomElement serviceListElement = responseElement.firstChildElement("serviceList");
 
@@ -44,11 +48,8 @@ namespace GGS {
           }
 
           QDomElement serviceDetailElement = responseElement.firstChildElement("serviceDetail");
-          if(serviceDetailElement.isNull()) {
-            this->_resultCode = CommandBaseInterface::NoError;
-            emit this->result();
+          if(serviceDetailElement.isNull())
             return true;
-          }
 
           for(QDomElement row = serviceDetailElement.firstChildElement("row"); !row.isNull(); row = row.nextSiblingElement("row")) {
             QDomElement serviceIdElement = row.firstChildElement("servinfo_serv_id");
@@ -71,8 +72,6 @@ namespace GGS {
             this->_response->setDetailedInfo(id, refCodeElement.text(), servinfoValueElement.text());
           }
 
-          this->_resultCode = CommandBaseInterface::NoError;
-          emit this->result();
           return false;
         }
       }

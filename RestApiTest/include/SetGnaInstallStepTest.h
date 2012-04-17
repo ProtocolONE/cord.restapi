@@ -9,8 +9,8 @@ class SetGnaInstallStepTest : public GGS::RestApi::Commands::Marketing::SetGnaIn
   Q_OBJECT
 
 public slots:
-  void SetGnaInstallStepResult( int resultCode );
-  void SetGnaInstallStepResultError( int resultCode );
+  void SetGnaInstallStepResult( GGS::RestApi::CommandBaseInterface::CommandResults resultCode );
+  void SetGnaInstallStepResultError( GGS::RestApi::CommandBaseInterface::CommandResults resultCode );
 };
 
 #endif

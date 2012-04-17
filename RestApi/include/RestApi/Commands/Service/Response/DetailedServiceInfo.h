@@ -28,8 +28,8 @@ namespace GGS {
           {
             Q_OBJECT
           public:
-            DetailedServiceInfo(void);
-            ~DetailedServiceInfo(void);
+            DetailedServiceInfo();
+            ~DetailedServiceInfo();
 
             void setId(quint64 id) { this->_id = id; }
             quint64 id() { return this->_id; }

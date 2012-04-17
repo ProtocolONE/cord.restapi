@@ -18,57 +18,127 @@
 #include <qdom.h>
 
 namespace GGS {
-	namespace RestApi {
+    namespace RestApi {
 
-		class RESTAPI_EXPORT CommandBase : public CommandBaseInterface 
-		{
-		public:
-			CommandBase();
-			~CommandBase();
+        class RESTAPI_EXPORT CommandBase : public QObject, public CommandBaseInterface
+        {
+            Q_OBJECT
+        public:
+            CommandBase();
+            ~CommandBase();
 
-			void setAuthRequire(bool isAuthRequire);
-			void setCacheable(bool isCacheable);
-			void setCacheTime(int cacheTime);
-			void appendParameter(const QString& name, const QString& value);
+            void setAuthRequire(bool isAuthRequire);
+            void setCacheable(bool isCacheable);
+            void setCacheTime(int cacheTime);
+            void appendParameter(const QString& name, const QString& value);
 
-			const QString& getGenericErrorMessage() { return this->genericErrorMessage; }
-			const int getGenericErrorMessageCode() { return this->genericErrorMessageCode; }
+            const QString& getGenericErrorMessage() { return this->genericErrorMessage; }
+            const int getGenericErrorMessageCode() { return this->genericErrorMessageCode; }
 
-      bool isGenericError() const { return this->genericErrorMessageCode != 0; };
+            virtual const bool isRestapiOverrided() const { return this->_isRestapiOverrided; }
 
-			virtual const bool isRestapiOverrided() const { return this->_isRestapiOverrided; }
+            virtual const QString& restapiUrl() const { return this->_restApiUrl; }
 
-			virtual const QString& restapiUrl() const { return this->_restApiUrl; }
+            bool isAuthRequire();
+            bool isCacheable();
 
-			bool isAuthRequire();
-			bool isCacheable();
+            int cacheTime();
 
-			int cacheTime();
+            const QMap<QString, QString>* commandParameters() const;
 
-			const QMap<QString, QString>* commandParameters() const;
+            bool resultCallback( CommandResults commandResultCode, QString response );
+            bool errorResultParse( const QDomDocument& response );
+            virtual bool callMethod( const QDomDocument& response );
+            void setRestapiUrl( const QString& url );
 
-			bool resultCallback( CommandResults commandResultCode, QString response );
-      bool errorResultParse( CommandResults commandResultCode, QDomDocument response );
-      virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
-			void setRestapiUrl( const QString& url );
+        protected:
+            QString genericErrorMessage;
+            int genericErrorMessageCode;
 
-			virtual CommandResults resultCode(); 
+        private:
+            bool _isAuthRequire;
+            bool _isCacheable;
+            int _cacheTime;
 
-		protected:
-			CommandResults _resultCode;
-			QString genericErrorMessage;
-			int genericErrorMessageCode;
+            QString _restApiUrl;
+            bool _isRestapiOverrided;
 
-		private:
-			bool _isAuthRequire;
-			bool _isCacheable;
-			int _cacheTime;
+            QMap<QString, QString> _commandParameters;
 
-			QString _restApiUrl;
-			bool _isRestapiOverrided;
+        signals:
+            void result(GGS::RestApi::CommandBaseInterface::CommandResults);
 
-			QMap<QString, QString> _commandParameters;
-		};
-	}
+            /* Всегда пля подключения к этому сигналу, в параметрах необходимо
+               указывать полный путь! Например
+                 connect( abc, SIGNAL( result(GGS::RestApi::CommandBaseInterface::CommandResults ), ... ); // ПРАВИЛЬНО
+
+                 connect( abc, SIGNAL( result(CommandResults ), ... ); // НЕПРАВИЛЬНО, даже если CommandResults находится в области видимости
+
+                Пример использования команд:
+
+                  GameNetCredential auth;   // Класс для хранения авторизации
+                  auth.setAppKey(QString("92da94c6a632951c8d588f596826bfd1470843f0"));
+                  auth.setUserId("400001000000172890");
+
+                  HttpCommandRequest request;
+                  FakeCache cache;
+                  request.setCache(&cache); // Подключаем кэш
+
+                  RestApiManager restapi;
+
+                  restapi.setUri(QString("http://api.gamenet.dev/restapi"));
+                  restapi.setCridential(auth);
+                  restapi.setRequest(&request);
+
+                  // Подключаемся к сигналу результата. Данный сигнал будет вызван в любом случае, даже если
+                  // произошла какая-либо ошибка. В параметрах сигнала передается код выполнения команды.
+
+                  connect(&command, SIGNAL(result(GGS::RestApi::CommandBaseInterface::CommandResults)),
+                          this,     SLOT(SetUserActivityResult(GGS::RestApi::CommandBaseInterface::CommandResults)));
+
+                  
+                  // Задаем нужные нам параметры к команде
+                  command.setGameId(71);
+
+                  // Выполняем команду, после выполнения будет вызван сигнал result(GGS::RestApi::CommandBaseInterface::CommandResults)
+                  // с соответствующим кодом.
+                  restapi.execute(&command);
+
+                  // После выполнения, для получения ответа от сервера, необходимо использовать геттер, для каждой команды свой.
+                  Например команда GetBalance, имеет один единственный геттер getBalance(), которым можно будет воспользоватся после
+                  выполнения команды.
+
+                  Например:
+
+                  restapi.execute(&command);
+
+                  ...
+
+                  void result(GGS::RestApi::CommandBaseInterface::CommandResults code)
+                  {
+                     if (code == GGS::RestApi::CommandBaseInterface::NoError)
+                        command.getBlance(); // возвратит баланс
+                  }
+
+                  Если у команды возвращаемых параметров много, то для этого случая мы их оборачиваем в т.н класс Response
+                  где групируем все данные. Например:
+
+                    void GetUserServiceAccount::GetUserServiceAccountResult( GGS::RestApi::CommandBaseInterface::CommandResults code )
+                    {
+	                    if (code == GGS::RestApi::CommandBaseInterface::NoError){
+		                    command.response()->getLogin(); // работаем с данными
+		                    command.response()->getToken();
+		                    command.response()->getStatus();
+		                    command.response()->getPassword();
+                        } else if (code == GGS::RestApi::CommandBaseInterface::GenericError)
+		                    // реакция на ошибку
+                    }
+
+
+
+              */
+
+        };
+    }
 }
 #endif // _GGS_RESTAPI_COMMAND_BASE_H_

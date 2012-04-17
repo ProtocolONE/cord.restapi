@@ -21,7 +21,7 @@ namespace GGS {
     namespace Commands {
       namespace User {
 
-        class RESTAPI_EXPORT GetBalance : public QObject,
+        class RESTAPI_EXPORT GetBalance : 
           public CommandBase
         {
           Q_OBJECT
@@ -29,9 +29,11 @@ namespace GGS {
           GetBalance();
           ~GetBalance();
           
-          virtual bool callMethod( CommandResults commandResultCode, QDomDocument response );
-        signals:
-          void result(int balance);
+          virtual bool callMethod( const QDomDocument& response );
+
+          int getBalance() { return this->_balance; }
+        private:
+            int _balance;
         };
       }
     }

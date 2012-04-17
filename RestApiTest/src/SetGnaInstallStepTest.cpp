@@ -1,32 +1,33 @@
 #include "gtest/gtest.h"
 #include "MemoryLeaksChecker.h"
 
-#include "Commands\Marketing\SetGnaInstallStep.h"
+#include <RestApi/Commands/Marketing/SetGnaInstallStep.h>
 #include "SetGnaInstallStepTest.h"
-#include "GameNetCredential.h"
+#include <RestApi/GameNetCredential.h>
 
 #include <QtCore/QWaitCondition>
 
-#include <qdebug>
+#include <QtCore/QDebug>
 
 QString okResponse = "<response><status>ok</status></response>";
 QString errorResponse = "<respsegsegesgnse>";
 QString errorMessageResponce = "<response><error><message>Неверно указан логин или пароль</message><code>100</code></error></response>";
 
-void SetGnaInstallStepTest::SetGnaInstallStepResult( int resultCode ) 
+void SetGnaInstallStepTest::SetGnaInstallStepResult( GGS::RestApi::CommandBaseInterface::CommandResults resultCode ) 
 {
-  ASSERT_TRUE(resultCode);
+    ASSERT_TRUE(resultCode == GGS::RestApi::CommandBaseInterface::NoError);
 }
 
-void SetGnaInstallStepTest::SetGnaInstallStepResultError( int resultCode ) 
+void SetGnaInstallStepTest::SetGnaInstallStepResultError( GGS::RestApi::CommandBaseInterface::CommandResults resultCode ) 
 {
-  ASSERT_TRUE(resultCode);
+    ASSERT_TRUE(resultCode != GGS::RestApi::CommandBaseInterface::NoError);
 }
 
 TEST_F(SetGnaInstallStepTest, setGnaInstallTest)
 {
   GGS::RestApi::Commands::Marketing::SetGnaInstallStep gnaInstallStep;
-  ASSERT_TRUE( QObject::connect(&gnaInstallStep, SIGNAL(result(int)), this, SLOT(SetGnaInstallStepResult(int))) );
+  ASSERT_TRUE( QObject::connect(&gnaInstallStep, SIGNAL(result(GGS::RestApi::CommandBaseInterface::CommandResults)), 
+      this, SLOT(SetGnaInstallStepResult(GGS::RestApi::CommandBaseInterface::CommandResults))) );
 
   gnaInstallStep.resultCallback(CommandBaseInterface::NoError, okResponse);
 

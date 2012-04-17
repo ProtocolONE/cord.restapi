@@ -1,7 +1,7 @@
 #include "gtest/gtest.h"
 #include "MemoryLeaksChecker.h"
 
-#include "Commands/Service/Response/DetailedServiceInfo.h"
+#include <RestApi/Commands/Service/Response/DetailedServiceInfo.h>
 
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>

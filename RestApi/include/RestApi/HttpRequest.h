@@ -30,6 +30,11 @@ namespace GGS {
     private:
       static int curlReadCallback(char *buf, int size, int nmemb, QByteArray *extraData);
       static int curlFileDownloadProgress(void* ptr, double TotalToDownload, double NowDownloaded, double TotalToUpload, double NowUploaded);
+
+      typedef struct timeOutInfo {
+        qint64 lastModifiedTime;
+        qint64 downloadSize;
+      } TimeOutInfo;
     };
 
   }

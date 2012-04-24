@@ -28,9 +28,7 @@ namespace GGS {
     int HttpRequest::curlReadCallback( char *buf, int size, int nmemb, QByteArray *extraData )
     {
       if (extraData == 0)
-      {
         return 0;
-      }
 
       int nBytes = size * nmemb;
       extraData->append(buf, nBytes);
@@ -39,21 +37,19 @@ namespace GGS {
 
     int HttpRequest::curlFileDownloadProgress(void* ptr, double TotalToDownload, double NowDownloaded, double TotalToUpload, double NowUploaded)
     {
-      static double _lastDownloadSize = 0.0f;
-      static qint64 _lastCallbackTime = QDateTime::currentMSecsSinceEpoch();
+      TimeOutInfo *info = reinterpret_cast<TimeOutInfo*>(ptr);
+      if (!info)
+        return 0;
 
-      if ( abs(_lastDownloadSize - NowDownloaded) > 0.1)
-      {
-        _lastDownloadSize = NowDownloaded;
-        _lastCallbackTime = QDateTime::currentMSecsSinceEpoch();
-      }
-      else
-      {
-        if ( QDateTime::currentMSecsSinceEpoch() - _lastCallbackTime > 30000)
-        {
+      if (abs(info->downloadSize - NowDownloaded) > 0.1) {
+        info->downloadSize = NowDownloaded;
+        info->lastModifiedTime = QDateTime::currentMSecsSinceEpoch();
+      } else {
+        if (QDateTime::currentMSecsSinceEpoch() - info->lastModifiedTime > 30000)
           return 1;
-        }
+
       }
+
       return 0;
     }
 
@@ -111,6 +107,15 @@ namespace GGS {
       }
 
       result = curl_easy_setopt(pointerCurl, CURLOPT_PROGRESSFUNCTION, curlFileDownloadProgress);
+      if(result != CURLE_OK) {
+        resultCode = HttpRequestInterface::CurlError;
+        return QString();
+      }
+
+      TimeOutInfo timeoutInfo;
+      timeoutInfo.lastModifiedTime = QDateTime::currentMSecsSinceEpoch();
+      timeoutInfo.downloadSize = 0;
+      result = curl_easy_setopt(pointerCurl, CURLOPT_PROGRESSDATA, &timeoutInfo);
       if(result != CURLE_OK) {
         resultCode = HttpRequestInterface::CurlError;
         return QString();

@@ -17,7 +17,8 @@
   #pragma comment(lib, "RestApiX86d.lib")
 #else
   #pragma comment(lib, "RestApiX86.lib")
-#endif 
+#endif
+
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);

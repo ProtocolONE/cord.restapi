@@ -2,6 +2,7 @@
 #include "MemoryLeaksChecker.h"
 
 #include <RestApi/GameNetCredential.h>
+#include <RestApi/HttpCommandRequest.h>
 #include <RestApi/CommandBaseInterface.h>
 #include <RestApi/RestApiManager.h>
 #include <RestApi/Commands/User/GetUserMainInfo.h>

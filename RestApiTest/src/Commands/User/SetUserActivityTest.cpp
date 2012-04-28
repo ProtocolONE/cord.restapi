@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 #include "MemoryLeaksChecker.h"
 
+
+#include <RestApi/HttpCommandRequest.h>
 #include <RestApi/GameNetCredential.h>
 #include <RestApi/CommandBaseInterface.h>
 #include <RestApi/RestApiManager.h>

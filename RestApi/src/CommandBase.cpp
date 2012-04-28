@@ -110,5 +110,26 @@ namespace GGS {
       this->_restApiUrl = url;
       this->_isRestapiOverrided = true;
     }
+
+    const QString& CommandBase::getGenericErrorMessage()
+    {
+      return this->genericErrorMessage;
+    }
+
+    const int CommandBase::getGenericErrorMessageCode()
+    {
+      return this->genericErrorMessageCode;
+    }
+
+    const bool CommandBase::isRestapiOverrided() const
+    {
+      return this->_isRestapiOverrided;
+    }
+
+    const QString& CommandBase::restapiUrl() const
+    {
+      return this->_restApiUrl;
+    }
+
   }
 }

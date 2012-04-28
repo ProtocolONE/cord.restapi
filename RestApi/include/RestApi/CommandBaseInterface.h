@@ -16,7 +16,8 @@
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QMap>
-#include <QDomDocument>
+
+class QDomDocument;
 
 namespace GGS {
   namespace RestApi {
@@ -65,8 +66,8 @@ namespace GGS {
       /// <param name="response">     The response.</param>
       /// <param name="return bool">  Is error.</param>
       virtual bool resultCallback(CommandResults commandResultCode, QString response) = 0;
-      virtual bool errorResultParse( const QDomDocument& response ) = 0;
-      virtual bool callMethod( const QDomDocument& response ) = 0;
+      virtual bool errorResultParse(const QDomDocument& response) = 0;
+      virtual bool callMethod(const QDomDocument& response) = 0;
 
       virtual void setRestapiUrl(const QString& url) = 0;
 
@@ -74,7 +75,7 @@ namespace GGS {
 
       virtual const QString& restapiUrl() const = 0;
 
-      virtual void appendParameter( const QString& name, const QString& value ) = 0;
+      virtual void appendParameter(const QString& name, const QString& value) = 0;
     };
   }
 }

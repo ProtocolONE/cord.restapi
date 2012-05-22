@@ -10,8 +10,9 @@ namespace GGS {
         {
           this->appendParameter("method", "service.getLicense");
           this->appendParameter("version", "1");
-          this->appendParameter("lang", "ru");
+          this->appendParameter("lang", "qgna_ru");
           this->appendParameter("serviceId", serviceId);
+          this->_serviceId = serviceId;
         }
 
         GetLicense::~GetLicense()
@@ -32,12 +33,12 @@ namespace GGS {
           QDomElement isNewDom = licenseElement.firstChildElement("isnew");
           QDomElement hashDom = licenseElement.firstChildElement("hash");
           if (textDom.isNull() || isNewDom.isNull() || hashDom.isNull())
-            return false;
+            return true;
 
           this->_licenseText = textDom.text();
           this->_responseHash = hashDom.text();
           this->_isLicenseNew = isNewDom.text() == "1";
-          return true;
+          return false;
         }
 
         const QString& GetLicense::responseHash()
@@ -53,6 +54,11 @@ namespace GGS {
         bool GetLicense::isLicenseNew()
         {
           return this->_isLicenseNew;
+        }
+
+        const QString& GetLicense::serviceId() const
+        {
+          return this->_serviceId;
         }
 
       }

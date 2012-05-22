@@ -17,18 +17,20 @@ namespace GGS {
           GetLicense(const QString& serviceId);
           ~GetLicense();
 
+          const QString& serviceId() const;
           void setHash(const QString& hash);
 
           virtual bool callMethod(const QDomDocument& response);
 
           const QString& responseHash();
-          const QString& licenseText();
+          const QString& licenseText();          
           bool isLicenseNew();
 
         private:
            QString _responseHash;
            QString _licenseText;
            bool _isLicenseNew;
+           QString _serviceId;
         };
 
       }

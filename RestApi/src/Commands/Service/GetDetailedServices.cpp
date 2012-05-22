@@ -39,7 +39,7 @@ namespace GGS {
 
           for(QDomElement row = serviceListElement.firstChildElement("row"); !row.isNull(); row = row.nextSiblingElement("row")) {
             Response::DetailedServiceInfo *info = new Response::DetailedServiceInfo();
-            if(!info->deserializeMainInfo(row)) {
+            if (!info->deserializeMainInfo(row)) {
               delete info;
               continue;
             }

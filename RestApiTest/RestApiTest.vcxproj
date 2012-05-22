@@ -91,6 +91,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_csserverlisttest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ServicegetLicenseTest.cpp" />
     <ClCompile Include="src\CommandBaseTest.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_SetGnaInstallStepTest.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

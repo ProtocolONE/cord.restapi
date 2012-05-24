@@ -28,7 +28,7 @@ namespace GGS {
       Q_OBJECT
     public:
       CommandBaseArgumentWraper(QObject *parrent = 0);
-      ~CommandBaseArgumentWraper(void);
+      virtual ~CommandBaseArgumentWraper(void);
 
       CommandBaseArgumentWraper(const CommandBaseArgumentWraper& p);
 

@@ -28,7 +28,7 @@ namespace GGS {
         Q_OBJECT
       public:
         RegistryCredentialStorage(void);
-        ~RegistryCredentialStorage(void);
+        virtual ~RegistryCredentialStorage(void);
 
         virtual void save( const GameNetCredential& credential );
 

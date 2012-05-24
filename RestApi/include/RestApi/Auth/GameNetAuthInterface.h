@@ -22,7 +22,8 @@ namespace GGS {
       class RESTAPI_EXPORT GameNetAuthInterface
       {
       public:
-        ~GameNetAuthInterface() {}
+        virtual ~GameNetAuthInterface() {}
+
         virtual const QString& type() = 0;
         virtual void login() = 0;
         virtual void setResultCallback(GameNetAuthResultInterface *result) = 0;

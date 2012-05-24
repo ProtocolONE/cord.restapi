@@ -36,7 +36,7 @@ namespace GGS {
       Q_OBJECT
     public:
       explicit HttpCommandRequest(QObject *parent = 0);
-      ~HttpCommandRequest(void);
+      virtual ~HttpCommandRequest(void);
 
 
       /// <summary>Executes.</summary>

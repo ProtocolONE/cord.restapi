@@ -92,7 +92,7 @@ namespace GGS {
             Q_OBJECT
         public:
             CommandBase();
-            ~CommandBase();
+            virtual ~CommandBase();
 
             void setAuthRequire(bool isAuthRequire);
             void setCacheable(bool isCacheable);

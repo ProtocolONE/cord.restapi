@@ -30,7 +30,7 @@ namespace GGS {
           UnknownAuthMethod = 5,
         };
 
-        ~GameNetAuthResultInterface() {}
+        virtual ~GameNetAuthResultInterface() {}
 
         virtual void authResult(const GameNetCredential& cridential) = 0;
         virtual void authFailed(AuthResultCodes resultCode) = 0;

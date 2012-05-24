@@ -22,7 +22,7 @@ namespace GGS {
     {
     public:
       FakeCache();
-      ~FakeCache();
+      virtual ~FakeCache();
 
       virtual bool tryGet( const QString& key, QString& value );
 

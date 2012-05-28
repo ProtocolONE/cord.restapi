@@ -30,16 +30,15 @@ namespace GGS {
         RegistryCredentialStorage(void);
         virtual ~RegistryCredentialStorage(void);
 
-        virtual void save( const GameNetCredential& credential );
+        virtual void save(const GameNetCredential& credential);
 
-        virtual bool tryLoad( GameNetCredential& credential );
+        virtual bool tryLoad(GameNetCredential& credential);
 
         virtual void reset();
-
       private:
+        const QString calcHash(const GameNetCredential& credential);
         QSettings *_settings;
       };
-
     }
   }
 }

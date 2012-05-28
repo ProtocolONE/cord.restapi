@@ -9,6 +9,7 @@
 ****************************************************************************/
 
 #include "RestApi/Auth/RegistryCredentialStorage.h"
+#include <QtCore/QCryptographicHash>
 
 namespace GGS {
   namespace RestApi {
@@ -16,7 +17,7 @@ namespace GGS {
 
       RegistryCredentialStorage::RegistryCredentialStorage(void)
       {
-        this->_settings = new QSettings("HKEY_CURRENT_USER\\Software\\GGS\\GNA\\", QSettings::NativeFormat);
+        this->_settings = new QSettings("HKEY_CURRENT_USER\\Software\\GGS\\QGNA\\", QSettings::NativeFormat);
       }
 
 
@@ -24,25 +25,47 @@ namespace GGS {
       {
       }
 
-      void RegistryCredentialStorage::save( const GameNetCredential& credential )
+      const QString RegistryCredentialStorage::calcHash(const GameNetCredential& credential)
+      {
+        QCryptographicHash hash(QCryptographicHash::Sha1);
+        hash.addData(credential.userId().toAscii());
+        hash.addData(credential.appKey().toAscii());
+        hash.addData(credential.cookie().toAscii());
+
+        return QString(hash.result().toHex());
+      }
+
+      void RegistryCredentialStorage::save(const GameNetCredential& credential)
       {
         this->_settings->setValue("userId", credential.userId());
         this->_settings->setValue("appKey", credential.appKey());
         this->_settings->setValue("cookie", credential.cookie());
+        this->_settings->setValue("crc", this->calcHash(credential));
       }
 
-      bool RegistryCredentialStorage::tryLoad( GameNetCredential& credential )
+      bool RegistryCredentialStorage::tryLoad(GameNetCredential& credential)
       {
         if (!this->_settings->contains("userId")
           || !this->_settings->contains("appKey")
-          || !this->_settings->contains("cookie"))
+          || !this->_settings->contains("cookie")
+          || !this->_settings->contains("crc"))
         {
+           this->reset();
            return false;
         }
 
-        credential.setUserId( this->_settings->value("userId").toString() );
-        credential.setAppKey( this->_settings->value("appKey").toString() );
-        credential.setCookie( this->_settings->value("cookie").toString() );
+        GameNetCredential savedCredential;
+        savedCredential.setUserId(this->_settings->value("userId").toString());
+        savedCredential.setAppKey(this->_settings->value("appKey").toString());
+        savedCredential.setCookie(this->_settings->value("cookie").toString());
+
+        QString savedCrc = this->_settings->value("crc").toString();
+        if (savedCrc != this->calcHash(savedCredential)) {
+          this->reset();
+          return false;
+        }
+       
+        credential = savedCredential;
         return true;
       }
 
@@ -51,6 +74,7 @@ namespace GGS {
         this->_settings->remove("userId");
         this->_settings->remove("appKey");
         this->_settings->remove("cookie");
+        this->_settings->remove("crc");
       }
 
     }

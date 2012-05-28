@@ -15,13 +15,13 @@ namespace GGS {
   namespace RestApi {
     namespace Auth {
 
-      AuthManager::AuthManager(void)
+      AuthManager::AuthManager()
       {
         this->_credentialStorage = 0;
       }
 
 
-      AuthManager::~AuthManager(void)
+      AuthManager::~AuthManager()
       {
       }
 
@@ -31,7 +31,7 @@ namespace GGS {
         this->_registeredMethods[method->type()] = method;
       }
 
-      void AuthManager::login( const QString& type )
+      void AuthManager::login(const QString& type )
       {
         if(!this->_registeredMethods.contains(type)) {
           emit this->error(GameNetAuthResultInterface::UnknownAuthMethod);
@@ -44,7 +44,7 @@ namespace GGS {
         method->login();
       }
 
-      void AuthManager::authResult( const GameNetCredential& credential )
+      void AuthManager::authResult(const GameNetCredential& credential)
       {
         this->_credential = credential;
         if (this->_authSaveCredential && this->_credentialStorage != 0) {
@@ -61,9 +61,8 @@ namespace GGS {
 
       void AuthManager::autoLogin()
       {
-        if (this->_credentialStorage != 0 && this->_credentialStorage->tryLoad(this->_credential)) {
+        if (this->_credentialStorage != 0 && this->_credentialStorage->tryLoad(this->_credential))
           emit this->finishedSuccessfully();
-        }
       }
 
       void AuthManager::logout()

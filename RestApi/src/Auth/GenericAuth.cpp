@@ -56,7 +56,7 @@ namespace GGS {
         QString response = http.execute(this->_authUrl, query, result);
 
         if(result != HttpRequestInterface::NoError) {
-          this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
+          this->_resultCallback->authFailed(GameNetAuthResultInterface::NetworkError);
           return;
         }
 
@@ -64,13 +64,13 @@ namespace GGS {
         document.setContent(response);
 
         if (!document.setContent(response)) {
-          this->_resultCallback->authFailed(GameNetAuthResultInterface::UnknownError);
+          this->_resultCallback->authFailed(GameNetAuthResultInterface::NetworkError);
           return;
         }
 
         QDomElement responseElement = document.documentElement();
         QDomElement errorElement = responseElement.firstChildElement("error");
-        QDomElement errorMessage  = errorElement.firstChildElement("message");
+        QDomElement errorMessage = errorElement.firstChildElement("message");
         QDomElement errorCode  = errorElement.firstChildElement("code");
 
         if (!errorMessage.isNull() || !errorCode.isNull()){

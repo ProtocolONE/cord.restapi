@@ -50,15 +50,15 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtTest;$(ProjectDir)include;$(ProjectDir)..\RestApi\include;.\;$(QGNACOMMONDIR)\Google\gtest\1.6.0\include;$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include;$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include;$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include\RestApi;.\include\Commands\Games;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtTest;$(ProjectDir)include;$(ProjectDir)..\RestApi\include;.\;$(QGNACOMMONDIR)\Google\gtest\1.6.0\include;$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include;$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include;$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include\RestApi;.\include\Commands\Games;$(VLDDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(TargetPath)</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(ProjectDir)lib;$(SolutionDir)!build\RestApi\$(Configuration)\;$(QGNACOMMONDIR)\Google\gtest\1.6.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(ProjectDir)lib;$(SolutionDir)!build\RestApi\$(Configuration)\;$(QGNACOMMONDIR)\Google\gtest\1.6.0\lib;$(VLDDIR)\lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtXmld4.lib;QtNetworkd4.lib;QtTestd4.lib;gtestd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtXmld4.lib;QtNetworkd4.lib;QtTestd4.lib;gtestd.lib;RestApiX86d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y /I /R $(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll $(TargetDir)</Command>
@@ -70,103 +70,56 @@
       <DebugInformationFormat>
       </DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtTest;$(ProjectDir)include;$(ProjectDir)..\RestApi\include;.\;$(QGNACOMMONDIR)\Google\gtest\1.6.0\include;$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include;.\include\Commands\Games;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtTest;$(ProjectDir)include;$(ProjectDir)..\RestApi\include;.\;$(QGNACOMMONDIR)\Google\gtest\1.6.0\include;$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include;.\include\Commands\Games;$(VLDDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(TargetPath)</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(ProjectDir)lib;$(SolutionDir)!build\RestApi\$(Configuration)\;$(QGNACOMMONDIR)\Google\gtest\1.6.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;$(ProjectDir)lib;$(SolutionDir)!build\RestApi\$(Configuration)\;$(QGNACOMMONDIR)\Google\gtest\1.6.0\lib;$(VLDDIR)\lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtXml4.lib;QtNetwork4.lib;QtTest4.lib;gtest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtXml4.lib;QtNetwork4.lib;QtTest4.lib;gtest.lib;RestApiX86.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y /I /R $(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll $(TargetDir)</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Debug\moc_csserverlisttest.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_TestEventLoopFinisher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_csserverlisttest.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_TestEventLoopFinisher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ServicegetLicenseTest.cpp" />
+    <ClCompile Include="src\RestApiManagerTest.cpp" />
+    <ClCompile Include="src\Commands\User\GetUserServiceAccountTest.cpp" />
+    <ClCompile Include="src\CommandTest.cpp" />
+    <ClCompile Include="src\Commands\Service\ServicegetLicenseTest.cpp" />
     <ClCompile Include="src\CommandBaseTest.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_SetGnaInstallStepTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SetUserActivityTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SetGnaInstallStepTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SetUserActivityTest.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="src\Commands\Games\csserverlisttest.cpp" />
-    <ClCompile Include="src\SetGnaInstallStepTest.cpp" />
+    <ClCompile Include="src\Commands\Marketing\SetGnaInstallStepTest.cpp" />
     <ClCompile Include="src\Auth\GenericAuthTest.cpp" />
     <ClCompile Include="src\Auth\RegistryCredentialStorageTest.cpp" />
-    <ClCompile Include="src\CommandResultGetter.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_CommandResultGetter.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CommandResultGetter.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Commands\Service\DetailedServiceInfoTest.cpp" />
     <ClCompile Include="src\Commands\Service\GetDetailedServicesTest.cpp" />
     <ClCompile Include="src\Commands\User\GetUserMainInfoTest.cpp" />
     <ClCompile Include="src\Commands\User\SetUserActivityTest.cpp" />
     <ClCompile Include="src\HttpCommandRequestTest.cpp" />
-    <ClCompile Include="src\HttpRequestTest.cpp" />
-    <ClCompile Include="src\MemoryLeaksChecker.cpp" />
+    <ClCompile Include="src\TestEventLoopFinisher.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="include\SetGnaInstallStepTest.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SetGnaInstallStepTest.h...</Message>
+    <CustomBuild Include="include\TestEventLoopFinisher.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing TestEventLoopFinisher.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include\RestApi" "-I.\include\Commands\Games" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SetGnaInstallStepTest.h...</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include\RestApi" "-I.\include\Commands\Games" "-I$(VLDDIR)\include" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing TestEventLoopFinisher.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I.\include\Commands\Games" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I.\include\Commands\Games" "-I$(VLDDIR)\include" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
     </CustomBuild>
-    <CustomBuild Include="include\CommandResultGetter.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing CommandResultGetter.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include\RestApi" "-I.\include\Commands\Games" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing CommandResultGetter.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I.\include\Commands\Games" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
-    </CustomBuild>
-    <CustomBuild Include="include\Commands\User\SetUserActivityTest.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SetUserActivityTest.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include\RestApi" "-I.\include\Commands\Games" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SetUserActivityTest.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I.\include\Commands\Games" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
-    </CustomBuild>
-    <CustomBuild Include="include\Commands\Games\csserverlisttest.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing csserverlisttest.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include" "-I$(QGNACOMMONDIR)\GGS\RestApi\$(RestApiArea)\include\RestApi" "-I.\include\Commands\Games" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing csserverlisttest.h...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"   -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtTest" "-I$(ProjectDir)include" "-I$(ProjectDir)..\RestApi\include" "-I." "-I$(QGNACOMMONDIR)\Google\gtest\1.6.0\include" "-I$(QGNACOMMONDIR)\Haxx\Curl\7.24.0\include" "-I.\include\Commands\Games" "-I." "-I." "-I." "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"</Command>
-    </CustomBuild>
-    <ClInclude Include="include\MemoryLeaksChecker.h" />
+    <ClInclude Include="include\CommandTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

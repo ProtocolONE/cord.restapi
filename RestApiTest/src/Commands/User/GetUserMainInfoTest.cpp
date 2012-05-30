@@ -1,28 +1,16 @@
-#include "gtest/gtest.h"
-#include "MemoryLeaksChecker.h"
+#include <CommandTest.h>
 
-#include <RestApi/GameNetCredential.h>
-#include <RestApi/HttpCommandRequest.h>
-#include <RestApi/CommandBaseInterface.h>
-#include <RestApi/RestApiManager.h>
+#include <RestApi/CommandBase.h>
 #include <RestApi/Commands/User/GetUserMainInfo.h>
 #include <RestApi/Commands/User/Response/UserMainInfoResponse.h>
-#include <RestApi/FakeCache.h>
-#include "Commands\User\SetUserActivityTest.h"
-#include <QtCore/QEventLoop>
-#include <QtCore/QTimer>
 
-class GetUserMainInfoTest : public ::testing::Test{
+using GGS::RestApi::CommandBase;
+using GGS::RestApi::Commands::User::GetUserMainInfo;
+using GGS::RestApi::Commands::User::Response::UserMainInfoResponse;
+
+class GetUserMainInfoTest : public CommandTest
+{
 public:
-  GetUserMainInfoTest() {
-    this->leakChecker.start();
-  }
-
-  ~GetUserMainInfoTest() {
-    this->leakChecker.finish();
-    if(this->leakChecker.isMemoryLeaks())
-      failTest("Memory leak detected!"); 
-  }
   QString getNormalResponse() {
    return QString("<?xml version=\"1.0\" encoding=\"utf-8\"?>" \
     "<response>                                                " \
@@ -83,66 +71,39 @@ public:
     "	</mainInfo>" \
     "</response>");
   }
-
-private:
-  void failTest(const char* message) 
-  { 
-    FAIL() << message; 
-  }
-
-  MemoryLeaksChecker leakChecker;
 };
 
 TEST_F(GetUserMainInfoTest, normalParseTest)
 {
-  using GGS::RestApi::Commands::User::GetUserMainInfo;
-  using GGS::RestApi::CommandBaseInterface;
-  using GGS::RestApi::Commands::User::Response::UserMainInfoResponse;
   GetUserMainInfo command;
 
-  command.resultCallback(CommandBaseInterface::NoError, this->getNormalResponse());
+  command.resultCallback(CommandBase::NoError, this->getNormalResponse());
   UserMainInfoResponse *answer = command.response();
-  ASSERT_EQ(0, answer->marketingId().compare(QString("12356")));
-  ASSERT_EQ(0, answer->nickname().compare(QString("unittest")));
-  ASSERT_EQ(0, answer->nametech().compare(QString("TestTechNick4101728")));
-  ASSERT_EQ(0, answer->profileUrl().compare(QString("http://www.gamenet.dev/users/TestTechNick4101728")));
-  ASSERT_EQ(0, answer->smallAvatarUrl().compare(QString("http://images.gamenet.dev/pics/user/avatar/small/empty2.jpg")));
-  ASSERT_EQ(0, answer->mediumAvatarUrl().compare(QString("http://images.gamenet.dev/pics/user/avatar/medium/empty2.jpg")));
-  ASSERT_EQ(0, answer->largeAvatarUrl().compare(QString("http://images.gamenet.dev/pics/user/avatar/large/empty2.jpg")));
-  ASSERT_EQ(0, answer->steamId().compare(QString("steam:0:123123")));
+  ASSERT_EQ("12356", answer->marketingId());
+  ASSERT_EQ("unittest", answer->nickname());
+  ASSERT_EQ("TestTechNick4101728", answer->nametech());
+  ASSERT_EQ("http://www.gamenet.dev/users/TestTechNick4101728", answer->profileUrl());
+  ASSERT_EQ("http://images.gamenet.dev/pics/user/avatar/small/empty2.jpg", answer->smallAvatarUrl());
+  ASSERT_EQ("http://images.gamenet.dev/pics/user/avatar/medium/empty2.jpg", answer->mediumAvatarUrl());
+  ASSERT_EQ("http://images.gamenet.dev/pics/user/avatar/large/empty2.jpg", answer->largeAvatarUrl());
+  ASSERT_EQ("steam:0:123123", answer->steamId());
   ASSERT_EQ(2, answer->sex());
 }
 
-TEST_F(GetUserMainInfoTest, restApiTest)
+TEST_F(GetUserMainInfoTest, successNetworkTest)
 {
-  using GGS::RestApi::Commands::User::GetUserMainInfo;
-  using GGS::RestApi::CommandBaseInterface;
-  using GGS::RestApi::Commands::User::Response::UserMainInfoResponse;
-  using GGS::RestApi::RestApiManager;
-  using GGS::RestApi::GameNetCredential;
-  using GGS::RestApi::HttpCommandRequest;
-  using GGS::RestApi::FakeCache;
+  GetUserMainInfo command;
+  
+  executeWithAuth(&command);
 
-  GameNetCredential auth;
-  auth.setAppKey(QString("92da94c6a632951c8d588f596826bfd1470843f0"));
-  auth.setUserId("400001000000172890");
-
-  HttpCommandRequest request;
-  FakeCache cache;
-  request.setCache(&cache);
-
-  RestApiManager restapi;
-
-  restapi.setUri(QString("http://api.gamenet.dev/restapi"));
-  restapi.setCridential(auth);
-  restapi.setRequest(&request);
-
-  //GetUserMainInfo command;
-  GGS::RestApi::Commands::User::SetUserActivity command;
-  QEventLoop loop;
-
-  // даем 5 секунд на выполнение теста. потом убиваем евент улп
-  QTimer::singleShot(10000, &loop, SLOT(quit()));
-  restapi.execute(&command);
-  loop.exec();
+  UserMainInfoResponse *response = command.response();
+  ASSERT_EQ("0", response->marketingId());
+  ASSERT_EQ("gnaunittest", response->nickname());
+  ASSERT_EQ("gnaunittest", response->nametech());
+  ASSERT_EQ("http://www.gamenet.ru/users/gnaunittest", response->profileUrl());
+  ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/small/60/48/63/400001000001634860.jpg", response->smallAvatarUrl());
+  ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/medium/60/48/63/400001000001634860.jpg", response->mediumAvatarUrl());
+  ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/large/60/48/63/400001000001634860.jpg", response->largeAvatarUrl());
+  ASSERT_EQ("", response->steamId());
+  ASSERT_EQ(2, response->sex());
 }

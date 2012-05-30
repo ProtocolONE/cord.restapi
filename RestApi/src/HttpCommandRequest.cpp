@@ -1,70 +1,81 @@
 /****************************************************************************
 ** This file is a part of Syncopate Limited GameNet Application or it parts.
 **
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** Copyright (В©) 2011 - 2012, Syncopate Limited and/or affiliates. 
 ** All rights reserved.
 **
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "RestApi/HttpCommandRequest.h"
+#include <RestApi/HttpCommandRequest.h>
+#include <RestApi/CommandBase.h>
 
-#include <curl/curl.h>
-#include <curl/easy.h>
+#include <QtCore/QDebug>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkReply>
 
 namespace GGS {
   namespace RestApi {
 
-    HttpCommandRequest::HttpCommandRequest(QObject *parent)
-      : QObject(parent)
+    HttpCommandRequest::HttpCommandRequest(QObject *parent) 
+      : RequestBase(parent),
+        _networkManager(new QNetworkAccessManager(this))
     {
-      // UNDONE: Хотя... если считать этот класс в единственном экземпляре, то вызвать можно и тут.     
-      // 19.03.2012 Igor.Bugaev - инициализация curl остается до написания враппера
-      
-      curl_global_init(CURL_GLOBAL_ALL);
-      this->_cache = 0;
+      connect(this->_networkManager, SIGNAL(sslErrors(QNetworkReply*, const QList<QSslError>&)), 
+        this, SLOT(sslErrors(QNetworkReply *, const QList<QSslError>&)));
     }
 
     HttpCommandRequest::~HttpCommandRequest(void)
     {
     }
 
-    void HttpCommandRequest::execute(CommandBaseArgumentWraper &arguments)
+    void HttpCommandRequest::execute(const QUrl &request)
     {
-
-      QString request("");
-      CommandBaseInterface *command = arguments.command();
-      const QMap<QString, QString> *params = command->commandParameters();
-      QMap<QString, QString>::const_iterator end = params->end();
-      for(QMap<QString, QString>::const_iterator it = params->begin(); it != end; ++it)
-      {
-        request.append(it.key());
-        request.append('=');
-        request.append(QUrl::toPercentEncoding(it.value()));
-        request.append('&');
+      QString response;
+      QString requestString = request.toString();
+      if (this->_cache && this->_cache->tryGet(requestString, response)) {
+          if (response.size()) {
+            emit finish(CommandBase::NoError, response);
+            return;
+          }
       }
 
-      QString response = QString();
-      if (this->_cache->tryGet(request, response) ) {
-          if (response.size())
-            arguments.command()->resultCallback(CommandBaseInterface::NoError, response);
-        return;
+      //http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.2.1
+      QNetworkReply *reply = (requestString.length() < 2048)
+        ? this->_networkManager->get(QNetworkRequest(request))
+        : this->_networkManager->post(QNetworkRequest(request), request.encodedQuery());
+
+      connect(reply, SIGNAL(finished()), this, SLOT(requestFinish()));
+    }
+
+    void HttpCommandRequest::requestFinish()
+    {
+      QNetworkReply *reply = qobject_cast<QNetworkReply*>(QObject::sender());
+      reply->deleteLater();
+
+      QString response(reply->readAll());
+      QNetworkReply::NetworkError error = reply->error();
+
+      CommandBase::CommandResults result;
+
+      if (response.size() && error == QNetworkReply::NoError) {
+        result = CommandBase::NoError;
+      } else {
+        WARNING_LOG << error;
+        result = CommandBase::NetworkError;
       }
 
-      QString restApiurl = command->isRestapiOverrided() ? command->restapiUrl() : arguments.uri();
-      HttpRequest http;
-      HttpRequestInterface::ResultCodes result;
-      response = http.execute(restApiurl, request, result);
-  
-      if (response.size() && result == HttpRequestInterface::NoError) // todo обсудить, правильно ли НЕ вызывать callback если ответ пустой, т.к в этом случае 
-      {
-        arguments.command()->resultCallback(       // происходит вероятность вызова resultCallback() у абстрактного класса. 
-          result == HttpRequestInterface::NoError 
-            ? CommandBaseInterface::NoError 
-            : CommandBaseInterface::NetworkError
-          , response);
+      emit this->finish(result, response);
+    }
+
+    void HttpCommandRequest::sslErrors(QNetworkReply *reply, const QList<QSslError> &errors)
+    {
+      Q_FOREACH(QSslError error, errors) {
+        WARNING_LOG << error;
       }
+
+      reply->ignoreSslErrors();
     }
   }
 }

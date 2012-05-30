@@ -16,13 +16,14 @@ namespace GGS {
     namespace Auth {
       namespace Vkontakte {
 
-        VkontakteAuth::VkontakteAuth(){
-          this->_resultCallback = 0;
-          this->_isAuthStarted = false;
-          this->_methodType = "vkontakte";
+        VkontakteAuth::VkontakteAuth()
+          : _methodType("vkontakte"),
+            _isAuthStarted(false)
+        {
         }
 
-        VkontakteAuth::~VkontakteAuth() {
+        VkontakteAuth::~VkontakteAuth() 
+        {
         }
 
         void VkontakteAuth::login()
@@ -63,11 +64,6 @@ namespace GGS {
           this->_view->show();
         }
 
-        void VkontakteAuth::setResultCallback( GameNetAuthResultInterface *result )
-        {
-          this->_resultCallback = result;
-        }
-
         void VkontakteAuth::setAuthResult( bool isSuccess )
         {
           this->_authStartedLock.lock();
@@ -76,11 +72,10 @@ namespace GGS {
             return;
           }
 
-          if(isSuccess) {
-            this->_resultCallback->authResult(this->_credential);
-          } else {
-            this->_resultCallback->authFailed(Auth::GameNetAuthResultInterface::Cancel);
-          }
+          if(isSuccess) 
+             emit this->authResult(this->_credential);
+          else
+             emit this->authFailed(Cancel);
 
           this->_isAuthStarted = false;
           this->_authStartedLock.unlock();
@@ -91,11 +86,15 @@ namespace GGS {
 
         void VkontakteAuth::sslErrors( QNetworkReply *reply, const QList<QSslError> &errors )
         {
+          Q_FOREACH(QSslError error, errors) {
+            WARNING_LOG << error;
+          }
+          
           // Так как сайт нам не подконтрольный подавляем все SSL ошибки.
           reply->ignoreSslErrors();
         }
 
-        void VkontakteAuth::webPageLoadFinished( bool ok )
+        void VkontakteAuth::webPageLoadFinished(bool ok)
         {
           if(!ok) {
             this->setAuthResult(false);
@@ -112,7 +111,7 @@ namespace GGS {
            }
         }
 
-        void VkontakteAuth::webPageTitleChanged( QString title )
+        void VkontakteAuth::webPageTitleChanged(QString title)
         {
           QUrl titleUrl(title);
           if (!titleUrl.isValid())

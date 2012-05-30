@@ -13,8 +13,7 @@
 
 #include <RestApi/restapi_global.h>
 #include <RestApi/GameNetCredential.h>
-#include <RestApi/Auth/GameNetAuthInterface.h>
-#include <RestApi/Auth/GameNetAuthResultInterface.h>
+#include <RestApi/Auth/GameNetAuthBase.h>
 #include <RestApi/Auth/Vkontakte/UserAgentWebPage.h>
 #include <RestApi/Auth/Vkontakte/VkontakteWebView.h>
 
@@ -30,7 +29,7 @@ namespace GGS {
     namespace Auth {
       namespace Vkontakte {
 
-        class RESTAPI_EXPORT VkontakteAuth : public QObject, public GameNetAuthInterface
+        class RESTAPI_EXPORT VkontakteAuth : public GameNetAuthBase
         {
           Q_OBJECT
 
@@ -41,7 +40,6 @@ namespace GGS {
           virtual const QString& type() { return this->_methodType; }
 
           virtual void login();
-          virtual void setResultCallback( GameNetAuthResultInterface *result );
 
           void setTitleUrlHost(const QString& titleUrlHost) { this->_titleUrlHost = titleUrlHost; }
           void setAuthReturnPath(const QString& authReturnPath) { this->_authReturnPath = authReturnPath; }
@@ -62,7 +60,6 @@ namespace GGS {
           UserAgentWebPage *_userPage;
 
           GameNetCredential _credential;
-          GameNetAuthResultInterface *_resultCallback;
 
           QString _titleUrlHost;
           QString _authReturnPath;

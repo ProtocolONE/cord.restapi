@@ -12,43 +12,40 @@
 #define _GGS_RESTAPI_HTTP_COMMAND_REQUEST_H_
 
 #include <RestApi/restapi_global.h>
-#include <RestApi/HttpRequest.h>
-#include <RestApi/CommandBaseInterface.h>
-#include <RestApi/RequestInterface.h>
-#include <RestApi/CommandBaseArgumentWraper.h>
-#include <RestApi/CacheInterface.h>
+#include <RestApi/RequestBase.h>
 
-#include <QtCore/QObject>
-#include <QtCore/QByteArray>
-#include <QtCore/QTime>
+#include <QtCore/QList>
+#include <QtCore/QPointer>
+#include <QtNetwork/QSslError>
 
-
-#include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkReply>
-
-#include <QtCore/QDebug>
+class QNetworkAccessManager;
+class QNetworkReply;
 
 namespace GGS {
   namespace RestApi {
-
-    class RESTAPI_EXPORT HttpCommandRequest : public QObject, public RequestInterface
+    class RESTAPI_EXPORT HttpCommandRequest : public RequestBase
     {
       Q_OBJECT
     public:
       explicit HttpCommandRequest(QObject *parent = 0);
       virtual ~HttpCommandRequest(void);
 
+      /*!
+        \fn void HttpCommandRequest::execute(const QUrl &request);
+      
+        \brief Executes.
+      
+        \param request The request.
+      */
+      void execute(const QUrl &request);
+    private slots:
+      void requestFinish();
+      void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
 
-      /// <summary>Executes.</summary>
-      /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
-      /// <param name="arguments">[in,out] The arguments.</param>
-      void execute(CommandBaseArgumentWraper &arguments);
-
-      void setCache(CacheInterface *cache) { this->_cache = cache; }
     private:
-      CacheInterface *_cache;
+      QPointer<QNetworkAccessManager> _networkManager;
     };
-
   }
 }
+
 #endif // _GGS_RESTAPI_HTTP_COMMAND_REQUEST_H_

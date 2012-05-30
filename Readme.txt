@@ -2,9 +2,7 @@
 
 Следующие QT библиотеки нужны для работы проекта:
 QtCore4.dll
+QtNetwork4.dll
 QtXml4.dll
 
-Для работы компонента нужны:
-libcurl
-zlib
 

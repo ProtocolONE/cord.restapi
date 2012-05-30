@@ -12,8 +12,8 @@
 #define _GGS_RESTAPI_AUTH_AUTHMANAGER_H_
 
 #include <RestApi/restapi_global.h>
-#include <RestApi/Auth/GameNetAuthResultInterface.h>
-#include <RestApi/Auth/GameNetAuthInterface.h>
+
+#include <RestApi/Auth/GameNetAuthBase.h>
 #include <RestApi/Auth/CredentialStorageInterface.h>
 
 #include <QtCore/QString>
@@ -23,24 +23,24 @@ namespace GGS {
   namespace RestApi {
     namespace Auth {
 
-      class RESTAPI_EXPORT AuthManager : public QObject,
-        public GameNetAuthResultInterface
+      class RESTAPI_EXPORT AuthManager : public QObject
       {
         Q_OBJECT
       public:
         AuthManager();
         ~AuthManager();
 
-        void registerMethod( GameNetAuthInterface *method );
+        void registerMethod(GameNetAuthBase *method);
 
-        virtual void authResult( const GameNetCredential& credential );
-        virtual void authFailed( GameNetAuthResultInterface::AuthResultCodes resultCode );
+        const GameNetCredential& credential() const;
 
-        const GameNetCredential& credential() const { return this->_credential; }
+        void setCredentialStorage(CredentialStorageInterface *credentialStorage);
 
-        void setCredentialStorage(CredentialStorageInterface *credentialStorage) { this->_credentialStorage = credentialStorage; }
+        bool autoSaveAuthSettings() const;
 
-        bool autoSaveAuthSettings() const { return this->_authSaveCredential; }
+      private slots:
+        void authResult(const GGS::RestApi::GameNetCredential credential);
+        void authFailed(GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes resultCode);
 
       public slots:
         void login(const QString& type);
@@ -50,13 +50,7 @@ namespace GGS {
         /// <summary>Sets an automatic save authorisation settings.</summary>
         /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
         /// <param name="isAutoSaved">true if is automatic saved.</param>
-        void setAutoSaveAuthSettings(bool isAutoSaved) { 
-          if (!isAutoSaved && this->_credentialStorage != 0){
-            this->_credentialStorage->reset();
-          }
-
-          this->_authSaveCredential = isAutoSaved; 
-        }
+        void setAutoSaveAuthSettings(bool isAutoSaved);
 
       signals:
         void started();
@@ -67,7 +61,7 @@ namespace GGS {
         bool _authSaveCredential;
         GameNetCredential _credential;
         CredentialStorageInterface *_credentialStorage;
-        QMap<QString, GameNetAuthInterface *> _registeredMethods;
+        QMap<QString, GameNetAuthBase *> _registeredMethods;
       };
 
     }

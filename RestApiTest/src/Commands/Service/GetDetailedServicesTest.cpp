@@ -1,21 +1,10 @@
-#include "gtest/gtest.h"
-#include "MemoryLeaksChecker.h"
-
-#include <RestApi/CommandBaseInterface.h>
+#include <RestApi/CommandBase.h>
 #include <RestApi/Commands/Service/GetDetailedServices.h>
+
+#include "gtest/gtest.h"
 
 class GetDetailedServicesTest : public ::testing::Test{
 public:
-  GetDetailedServicesTest() {
-    this->leakChecker.start();
-  }
-
-  ~GetDetailedServicesTest() {
-    this->leakChecker.finish();
-    if(this->leakChecker.isMemoryLeaks())
-      failTest("Memory leak detected!"); 
-  }
-
   QString getNormalServiceInfoExample() 
   {
     return QString::fromLocal8Bit("<?xml version=\"1.0\" encoding=\"utf-8\"?>																				" \
@@ -198,26 +187,18 @@ public:
       "</response>                                                                                                        ");
 
   }
-
-private:
-  void failTest(const char* message) 
-  { 
-    FAIL() << message; 
-  }
-
-  MemoryLeaksChecker leakChecker;
 };
 
 TEST_F(GetDetailedServicesTest, ParserTest)
 {
   using GGS::RestApi::Commands::Service::GetDetailedServices;
-  using GGS::RestApi::CommandBaseInterface;
+  using GGS::RestApi::CommandBase;
   using GGS::RestApi::Commands::Service::Response::DetailedServicesResponse;
   using GGS::RestApi::Commands::Service::Response::DetailedServiceInfo;
 
   GetDetailedServices *cmd = new GetDetailedServices();
 
-  cmd->resultCallback(CommandBaseInterface::NoError, this->getNormalServiceInfoExample());
+  cmd->resultCallback(CommandBase::NoError, this->getNormalServiceInfoExample());
   
   DetailedServicesResponse* response = cmd->response();
   QMap<quint64, DetailedServiceInfo *> serviceList = response->serviceList();

@@ -8,23 +8,26 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "RestApi/CommandBase.h"
+#include <RestApi/CommandBase.h>
 
-#include <iostream>
-#include <qdebug.h>
-#include <qdom.h>
+#include <QtCore/QDebug>
+#include <QtXml/QDomDocument>
 
 namespace GGS {
   namespace RestApi {
 
-    CommandBase::CommandBase() {
-      this->_isRestapiOverrided = false;
-      this->_isAuthRequire = false;
-      this->_isCacheable = false;
-      this->_cacheTime = 0;
+    CommandBase::CommandBase(QObject *parent/*=0*/) 
+      : QObject(parent),
+        _restApiUrl("https://api.gamenet.ru/restapi"),
+        _isRestapiOverrided(false),
+        _isAuthRequire(false),
+        _isCacheable(false),
+        _cacheTime(0)
+    {
       this->genericErrorMessage = QString();
       this->genericErrorMessageCode = 0;
-      qRegisterMetaType<GGS::RestApi::CommandBaseInterface::CommandResults>("GGS::RestApi::CommandBaseInterface::CommandResults");
+
+      qRegisterMetaType<GGS::RestApi::CommandBase::CommandResults>("GGS::RestApi::CommandBase::CommandResults");
     }
 
     CommandBase::~CommandBase(){
@@ -47,29 +50,31 @@ namespace GGS {
       return &this->_commandParameters;
     }
 
-    bool CommandBase::resultCallback( CommandResults commandResultCode, QString response ) {  
-      if(commandResultCode != CommandBaseInterface::NoError) {
+    void CommandBase::resultCallback(GGS::RestApi::CommandBase::CommandResults commandResultCode, QString response ) 
+    {  
+      QObject::sender()->deleteLater();
+
+      if(commandResultCode != NoError) {
         emit this->result(commandResultCode);
-        return true;
+        return;
       }
       QDomDocument doc;
       if (!doc.setContent(response)) {
-        emit this->result(CommandBaseInterface::XmlError);
-        return true;
+        emit this->result(XmlError);
+        return;
       }
 
-      if (errorResultParse(doc)){
-        emit this->result(CommandBaseInterface::GenericError);
-        return true;
+      if (this->errorResultParse(doc)){
+        emit this->result(GenericError);
+        return;
       }
 
-      if (callMethod(doc)){
-        emit this->result(CommandBaseInterface::XmlError);
-        return true;
+      if (this->callMethod(doc)){
+        emit this->result(XmlError);
+        return;
       }
 
-      emit this->result(CommandBaseInterface::NoError);
-      return false;
+      emit this->result(NoError);
     }
 
     bool CommandBase::errorResultParse( const QDomDocument& response ){
@@ -121,6 +126,16 @@ namespace GGS {
       return this->genericErrorMessageCode;
     }
 
+    const QString& CommandBase::errorMessage()
+    {
+      return this->genericErrorMessage;
+    }
+
+    const int CommandBase::errorCode()
+    {
+      return this->genericErrorMessageCode;
+    }
+
     const bool CommandBase::isRestapiOverrided() const
     {
       return this->_isRestapiOverrided;
@@ -130,6 +145,21 @@ namespace GGS {
     {
       return this->_restApiUrl;
     }
+
+    const QUrl CommandBase::url()
+    {
+      QUrl request(this->_restApiUrl);
+
+      QMap<QString, QString>::const_iterator it = this->_commandParameters.begin();
+      QMap<QString, QString>::const_iterator end = this->_commandParameters.end();
+
+      for(;it != end; ++it)
+        request.addQueryItem(it.key(), it.value());
+
+      return request;
+    }
+
+
 
   }
 }

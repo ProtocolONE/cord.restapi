@@ -14,14 +14,12 @@
 #include <RestApi/restapi_global.h>
 #include <RestApi/Auth/AuthManager.h>
 #include <RestApi/Auth/GenericAuth.h>
-#include <RestApi/Auth/GameNetAuthResultInterface.h>
 #include <RestApi/Auth/Vkontakte/VkontakteAuth.h>
 #include <RestApi/Auth/RegistryCredentialStorage.h>
 
+#include <QtCore/QDebug>
 #include <QtCore/QPointer>
 #include <QtDeclarative/QDeclarativeItem>
-#include <QtCore/QDebug>
-
 
 namespace GGS {
   namespace RestApi {
@@ -94,9 +92,9 @@ namespace GGS {
         AuthManager _manager;
         Vkontakte::VkontakteAuth _vkauth;
         GenericAuth _genericAuth;
+
         RegistryCredentialStorage _credentialStorage;
       };
-
     }
   }
 }

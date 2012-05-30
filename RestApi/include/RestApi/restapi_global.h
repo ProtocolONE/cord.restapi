@@ -19,4 +19,6 @@
 # define RESTAPI_EXPORT Q_DECL_IMPORT
 #endif
 
+#define WARNING_LOG qWarning() << __FILE__ << __LINE__ << __FUNCTION__
+
 #endif // RESTAPI_GLOBAL_H

@@ -1,23 +1,13 @@
 #include "gtest/gtest.h"
-#include "MemoryLeaksChecker.h"
 
 #include <RestApi/Commands/Service/Response/DetailedServiceInfo.h>
 
 #include <QtXml/QDomDocument>
 #include <QtXml/QDomElement>
 
-class DetailedServiceInfoTest : public ::testing::Test{
+class DetailedServiceInfoTest : public ::testing::Test
+{
 public:
-  DetailedServiceInfoTest() {
-    this->leakChecker.start();
-  }
-
-  ~DetailedServiceInfoTest() {
-    this->leakChecker.finish();
-    if(this->leakChecker.isMemoryLeaks())
-      failTest("Memory leak detected!"); 
-  }
-
   QString getNormalServiceInfoExample() 
   {
     return QString::fromLocal8Bit("<?xml version=\"1.0\" encoding=\"utf-8\"?>																				" \
@@ -207,14 +197,6 @@ public:
       "</response>                                                                                                        ");
 
   }
-
-private:
-  void failTest(const char* message) 
-  { 
-    FAIL() << message; 
-  }
-
-  MemoryLeaksChecker leakChecker;
 };
 
 TEST_F(DetailedServiceInfoTest, deserializeMainInfoTest)

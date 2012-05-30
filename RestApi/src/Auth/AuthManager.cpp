@@ -11,6 +11,7 @@
 #include "RestApi/Auth/AuthManager.h"
 #include <QtCore/qdebug.h>
 
+
 namespace GGS {
   namespace RestApi {
     namespace Auth {
@@ -19,32 +20,40 @@ namespace GGS {
       {
         this->_credentialStorage = 0;
       }
-
-
+      
       AuthManager::~AuthManager()
       {
       }
 
-      void AuthManager::registerMethod( GameNetAuthInterface *method )
+      void AuthManager::registerMethod(GameNetAuthBase *method)
       {
-        method->setResultCallback(this);
+        Q_CHECK_PTR(method);
+
+        connect(method, SIGNAL(authFailed(GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes)), 
+          this, SLOT(authFailed(GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes)), 
+          Qt::QueuedConnection);
+
+        connect(method, SIGNAL(authResult(GGS::RestApi::GameNetCredential)),
+          this, SLOT(authResult(GGS::RestApi::GameNetCredential)), 
+          Qt::QueuedConnection);
+                
         this->_registeredMethods[method->type()] = method;
       }
 
       void AuthManager::login(const QString& type )
       {
         if(!this->_registeredMethods.contains(type)) {
-          emit this->error(GameNetAuthResultInterface::UnknownAuthMethod);
+          emit this->error(GameNetAuthBase::UnknownAuthMethod);
           qDebug() << " attempt to execute an unknown authentication method (" << type << ")";
           return;
         }
 
         emit this->started();
-        GameNetAuthInterface *method = this->_registeredMethods[type];
+        GameNetAuthBase *method = this->_registeredMethods[type];
         method->login();
       }
 
-      void AuthManager::authResult(const GameNetCredential& credential)
+      void AuthManager::authResult( const GGS::RestApi::GameNetCredential credential )
       {
         this->_credential = credential;
         if (this->_authSaveCredential && this->_credentialStorage != 0) {
@@ -54,7 +63,7 @@ namespace GGS {
         emit this->finishedSuccessfully();
       }
 
-      void AuthManager::authFailed(GameNetAuthResultInterface::AuthResultCodes resultCode)
+      void AuthManager::authFailed( GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes resultCode )
       {
         emit this->error(static_cast<int>(resultCode));
       }
@@ -73,6 +82,30 @@ namespace GGS {
 
         if (this->_credentialStorage != 0)
           this->_credentialStorage->reset();
+      }
+
+      const GameNetCredential& AuthManager::credential() const
+      {
+        return this->_credential;
+      }
+
+      void AuthManager::setCredentialStorage( CredentialStorageInterface *credentialStorage )
+      {
+        this->_credentialStorage = credentialStorage;
+      }
+
+      bool AuthManager::autoSaveAuthSettings() const
+      {
+        return this->_authSaveCredential;
+      }
+
+      void AuthManager::setAutoSaveAuthSettings( bool isAutoSaved )
+      {
+        if (!isAutoSaved && this->_credentialStorage != 0){
+          this->_credentialStorage->reset();
+        }
+
+        this->_authSaveCredential = isAutoSaved;
       }
 
     }

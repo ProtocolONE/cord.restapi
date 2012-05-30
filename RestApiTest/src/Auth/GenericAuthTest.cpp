@@ -1,77 +1,54 @@
-
-#include "gtest/gtest.h"
-#include "MemoryLeaksChecker.h"
+#include <gtest/gtest.h>
+#include <TestEventLoopFinisher.h>
 
 #include <RestApi/Auth/GenericAuth.h>
-#include <RestApi/Auth/GameNetAuthResultInterface.h>
 #include <RestApi/GameNetCredential.h>
 
 #include <QtCore/QWaitCondition>
+#include <QtCore/QEventLoop>
+#include <QSignalSpy>
 
-class GenericAuthTest : public ::testing::Test, public GGS::RestApi::Auth::GameNetAuthResultInterface
+using GGS::RestApi::Auth::GenericAuth;
+
+class GenericAuthTest : public ::testing::Test
 {
 public:
-  GenericAuthTest() {
-    this->leakChecker.start();
+
+  void DoCheck(GGS::RestApi::Auth::GenericAuth &genericAuth, int successCount, int failedCount) {
+    QSignalSpy succesSpy(&genericAuth, SIGNAL(authResult(const GGS::RestApi::GameNetCredential)));
+    QSignalSpy failedSpy(&genericAuth, SIGNAL(authFailed(GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes)));
+
+    genericAuth.login();
+
+    QEventLoop loop;
+    TestEventLoopFinisher loopKiller(&loop, 10000);
+    QObject::connect(&genericAuth, SIGNAL(authResult(const GGS::RestApi::GameNetCredential)), &loopKiller, SLOT(terminateLoop()));
+    QObject::connect(&genericAuth, SIGNAL(authFailed(GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes)), &loopKiller, SLOT(terminateLoop()));
+
+    loop.exec();
+    ASSERT_FALSE(loopKiller.isKilledByTimeout());
+
+    ASSERT_EQ(successCount, succesSpy.count());
+    ASSERT_EQ(failedCount, failedSpy.count());
   }
-
-  ~GenericAuthTest() {
-    this->leakChecker.finish();
-    if(this->leakChecker.isMemoryLeaks())
-      failTest("Memory leak detected!"); 
-  }
-
-  bool _failCalled;
-  bool _resultCalled;
-
-private:
-  void failTest(const char* message) 
-  { 
-    FAIL() << message; 
-  }
-
-  virtual void authResult( const GGS::RestApi::GameNetCredential& cridential ) 
-  {
-    this->_resultCalled = true;
-  }
-
-  virtual void authFailed( GGS::RestApi::Auth::GameNetAuthResultInterface::AuthResultCodes resultCode ) 
-  {
-    this->_failCalled = true;
-  }
-
-  MemoryLeaksChecker leakChecker;
 };
 
-TEST_F(GenericAuthTest, authTest)
+TEST_F(GenericAuthTest, successAuthTest)
 {
-  // UNDONE : тест не написан
-  using GGS::RestApi::Auth::GenericAuth;
   GenericAuth genericAuth;
-  QString login("gna@unit.test");
-  QString password("123456");
-  QString authUrl("https://gnlogin.gamenet.dev/");
-  genericAuth.setAuthUrl(authUrl);
-  genericAuth.setLogin(login);
-  genericAuth.setPassword(password);
-  genericAuth.setResultCallback(this);
+  genericAuth.setAuthUrl(QString("https://gnlogin.gamenet.dev/"));
+  genericAuth.setLogin(QString("gna@unit.test"));
+  genericAuth.setPassword(QString("123456"));
 
-  this->_failCalled = false;
-  this->_resultCalled = false;
+  DoCheck(genericAuth, 1, 0);
+}
 
-  genericAuth.login();
+TEST_F(GenericAuthTest, failedAuthTest)
+{
+  GenericAuth genericAuth;
+  genericAuth.setAuthUrl(QString("https://gnlogin.gamenet.dev/"));
+  genericAuth.setLogin(QString("gna@unit.test"));
+  genericAuth.setPassword(QString("123456789"));
 
-  QMutex mutex;
-  QWaitCondition waiter;
-  int i = 0;
-  while (!(this->_failCalled || this->_resultCalled) && i < 30) {
-    waiter.wait(&mutex, 1000);
-    i++;
-  }
-
-  ASSERT_TRUE(this->_resultCalled);
-  ASSERT_FALSE(this->_failCalled);
-  
-
-  //genericAuth.
+  DoCheck(genericAuth, 0, 1);
 }

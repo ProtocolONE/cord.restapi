@@ -8,27 +8,27 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#ifndef _GGS_RESTAPI_AUTH_GAMENET_AUTHINTERFACE_H_
-#define _GGS_RESTAPI_AUTH_GAMENET_AUTHINTERFACE_H_
+#ifndef _GGS_RESTAPI_REQUESTFACTORY_H_
+#define _GGS_RESTAPI_REQUESTFACTORY_H_
 
 #include <RestApi/restapi_global.h>
-#include <RestApi/Auth/GameNetAuthResultInterface.h>
-
-#include <QtCore/QString>
 
 namespace GGS {
   namespace RestApi {
-    namespace Auth {
-      class RESTAPI_EXPORT GameNetAuthInterface
-      {
-      public:
-        virtual ~GameNetAuthInterface() {}
+    class RequestBase;
 
-        virtual const QString& type() = 0;
-        virtual void login() = 0;
-        virtual void setResultCallback(GameNetAuthResultInterface *result) = 0;
+    class RESTAPI_EXPORT RequestFactory
+    {
+    public:
+      enum RequestType {
+        Http,
       };
-    }
+
+      RequestFactory(void);
+      virtual ~RequestFactory(void);
+
+      RequestBase *create(RequestFactory::RequestType type);
+    };
   }
 }
-#endif // _GGS_RESTAPI_AUTH_GAMENET_AUTHINTERFACE_H_
+#endif //_GGS_RESTAPI_REQUESTFACTORY_H_

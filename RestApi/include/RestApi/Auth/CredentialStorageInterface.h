@@ -17,8 +17,8 @@
 namespace GGS {
   namespace RestApi {
     namespace Auth {
-
-      class RESTAPI_EXPORT CredentialStorageInterface {
+      class RESTAPI_EXPORT CredentialStorageInterface
+      {
       public:
         virtual ~CredentialStorageInterface() {};
         virtual void save(const GameNetCredential& credential) = 0;

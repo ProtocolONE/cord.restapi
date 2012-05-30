@@ -1,107 +1,60 @@
-#include "gtest/gtest.h"
-#include "MemoryLeaksChecker.h"
-
-#include "CommandResultGetter.h"
+#include <gtest/gtest.h>
+#include <TestEventLoopFinisher.h>
 
 #include <RestApi/HttpCommandRequest.h>
-#include <RestApi/Commands/Service/GetDetailedServices.h>
-#include <RestApi/Commands/Service/Response/DetailedServiceInfo.h>
-#include <RestApi/Commands/Service/Response/DetailedServicesResponse.h>
-#include <RestApi/CommandBaseArgumentWraper.h>
-#include <RestApi/RestApiManager.h>
-#include <RestApi/FakeCache.h>
 
-#include <QtCore/QtConcurrentRun>
-#include <QtCore/QWaitCondition>
+#include <QtCore/QObject>
 #include <QtCore/QEventLoop>
+#include <QtCore/QList>
+#include <QtCore/QVariant>
 
-class HttpRequestCommandTest : public ::testing::Test{
+#include <QtTest/QSignalSpy>
+
+using GGS::RestApi::CommandBase;
+using GGS::RestApi::HttpCommandRequest;
+
+class HttpRequestCommandTest : public ::testing::Test
+{
 public:
-  HttpRequestCommandTest() {
-    this->leakChecker.start();
+  void execute(HttpCommandRequest &request, QUrl &url) 
+  {
+    QEventLoop loop;
+    TestEventLoopFinisher loopKiller(&loop, 10000);
+
+    QObject::connect(&request, SIGNAL(finish(GGS::RestApi::CommandBase::CommandResults, QString)), 
+      &loopKiller, SLOT(terminateLoop()));
+
+    request.execute(url);
+    loop.exec();
+
+    ASSERT_FALSE(loopKiller.isKilledByTimeout());
   }
-
-  ~HttpRequestCommandTest() {
-    this->leakChecker.finish();
-    if(this->leakChecker.isMemoryLeaks())
-      failTest("Memory leak detected!"); 
-  }
-
-
-
-private:
-  void failTest(const char* message) 
-  { 
-    FAIL() << message; 
-  }
-
-  MemoryLeaksChecker leakChecker;
 };
 
-TEST_F(HttpRequestCommandTest, test1)
+TEST_F(HttpRequestCommandTest, successExecuteTest)
 {
-  using GGS::RestApi::Commands::Service::GetDetailedServices;
-  using GGS::RestApi::CommandBaseInterface;
-  using GGS::RestApi::Commands::Service::Response::DetailedServicesResponse;
-  using GGS::RestApi::Commands::Service::Response::DetailedServiceInfo;
-  using GGS::RestApi::CommandBaseArgumentWraper;
-  using GGS::RestApi::HttpCommandRequest;
-  using GGS::RestApi::FakeCache;
-  
-  FakeCache cache;
-     
   HttpCommandRequest request;
-  request.setCache(&cache);
+  QSignalSpy response(&request, SIGNAL(finish(GGS::RestApi::CommandBase::CommandResults, QString)));
 
-  GetDetailedServices cmd;
-  cmd.appendParameter("someRusParam", QString::fromLocal8Bit("Привет, Мир!"));
+  execute(request, QUrl("http://api.gamenet.dev/restapi"));
 
-  CommandBaseArgumentWraper wraper;
-  wraper.setCommand(&cmd);
-  wraper.setUri(QString("http://api.gamenet.dev/restapi"));
+  ASSERT_EQ(1, response.count());
 
-  QFuture<void> f = QtConcurrent::run(&request, &HttpCommandRequest::execute, wraper);
-  f.waitForFinished();
+  QList<QVariant> arguments = response.takeFirst();
+  ASSERT_EQ(CommandBase::NoError, arguments.at(0).value<GGS::RestApi::CommandBase::CommandResults>());
+  ASSERT_TRUE(arguments.at(1).toString().contains("<message>"));
 }
 
-TEST_F(HttpRequestCommandTest, testSpeed)
-{ 
-  using GGS::RestApi::Commands::Service::GetDetailedServices;
-  using GGS::RestApi::Commands::Service::Response::DetailedServicesResponse;
-  using GGS::RestApi::Commands::Service::Response::DetailedServiceInfo;
-  using GGS::RestApi::CommandBaseInterface;
-  using GGS::RestApi::CommandBaseArgumentWraper;
-  using GGS::RestApi::HttpCommandRequest;
-  using GGS::RestApi::FakeCache;
-
-  GetDetailedServices cmd;
-  cmd.appendParameter("someRusParam", QString::fromLocal8Bit("Привет, Мир!"));
-  cmd.appendParameter("lang", "en");
-
-  CommandBaseArgumentWraper wraper;
-  wraper.setCommand(&cmd);
-  wraper.setUri(QString("http://api.gamenet.dev/restapi"));
-
-  FakeCache cache;
-  HttpCommandRequest request;
-  request.setCache(&cache);
-
-  QTime time;
-  time.setHMS(0,0,0,0);
-  time.start();
-
-  for (int i = 0; i < 2; ++i) {
-    QFuture<void> f = QtConcurrent::run(&request, &HttpCommandRequest::execute, wraper);
-    f.waitForFinished();
-  }
-
-  int elapsed = time.elapsed(); // sad - very sad 1700 ms
-  qDebug() << elapsed;
-}
-
-TEST_F(HttpRequestCommandTest, testEvent)
+TEST_F(HttpRequestCommandTest, failedExecuteTest)
 {
-  CommandResultGetter res;
-  QFuture<void> f = QtConcurrent::run(&res, &CommandResultGetter::test2);
-  f.waitForFinished();
+  HttpCommandRequest request;
+  QSignalSpy response(&request, SIGNAL(finish(GGS::RestApi::CommandBase::CommandResults, QString)));
+
+  execute(request, QUrl("http://someVeryStrange.Host"));
+
+  ASSERT_EQ(1, response.count());
+
+  QList<QVariant> arguments = response.takeFirst();
+  ASSERT_EQ(CommandBase::NetworkError, arguments.at(0).value<GGS::RestApi::CommandBase::CommandResults>());
+  ASSERT_EQ("", arguments.at(1).toString());
 }

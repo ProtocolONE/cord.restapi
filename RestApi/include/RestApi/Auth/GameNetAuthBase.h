@@ -8,19 +8,25 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#ifndef _GGS_RESTAPI_AUTH_GAMENET_AUTHRESULTINTERFACE_H_
-#define _GGS_RESTAPI_AUTH_GAMENET_AUTHRESULTINTERFACE_H_
+#ifndef _GGS_RESTAPI_AUTH_GAMENET_AUTHINTERFACE_H_
+#define _GGS_RESTAPI_AUTH_GAMENET_AUTHINTERFACE_H_
 
 #include <RestApi/restapi_global.h>
 #include <RestApi/GameNetCredential.h>
 
+#include <QtCore/QString>
+#include <QtCore/QObject>
+#include <QtCore/QMetaType>
+
 namespace GGS {
   namespace RestApi {
     namespace Auth {
-      class RESTAPI_EXPORT GameNetAuthResultInterface
-      {
-      public:
 
+      class RESTAPI_EXPORT GameNetAuthBase : public QObject
+      {
+        Q_OBJECT
+        Q_ENUMS(GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes);
+      public:
         enum AuthResultCodes {
           Success = 0, // Без ошибок прошла
           UnknownError = 1,
@@ -30,12 +36,20 @@ namespace GGS {
           UnknownAuthMethod = 5,
         };
 
-        virtual ~GameNetAuthResultInterface() {}
+        GameNetAuthBase(QObject *parent = 0);
+        virtual ~GameNetAuthBase();
 
-        virtual void authResult(const GameNetCredential& cridential) = 0;
-        virtual void authFailed(AuthResultCodes resultCode) = 0;
+        virtual const QString& type() = 0;
+        virtual void login() = 0;
+
+      signals:
+        void authResult(const GGS::RestApi::GameNetCredential cridential);
+        void authFailed(GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes resultCode);
       };
     }
   }
 }
-#endif // _GGS_RESTAPI_AUTH_GAMENET_AUTHRESULTINTERFACE_H_
+
+Q_DECLARE_METATYPE(GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes);
+
+#endif // _GGS_RESTAPI_AUTH_GAMENET_AUTHINTERFACE_H_

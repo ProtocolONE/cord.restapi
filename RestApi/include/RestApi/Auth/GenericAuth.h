@@ -12,43 +12,40 @@
 #define _GGS_RESTAPI_AUTH_GENERICAUTH_H_
 
 #include <RestApi/restapi_global.h>
-#include <RestApi/Auth/GameNetAuthInterface.h>
-#include <RestApi/Auth/GameNetAuthResultInterface.h>
-#include <RestApi/GameNetCredential.h>
-#include <RestApi/HttpRequest.h>
+#include <RestApi/Auth/GameNetAuthBase.h>
 
-#include <QtCore/QtConcurrentRun>
-#include <QtCore/QUrl>
-#include <QtCore/QCryptographicHash>
-#include <QtXml/QDomDocument>
+#include <QtCore/QString>
+#include <QtCore/QPointer>
+#include <QtCore/QList>
+#include <QtNetwork/QSslError>
+
+class QNetworkAccessManager;
+class QNetworkReply;
 
 namespace GGS {
   namespace RestApi {
     namespace Auth {
-      class RESTAPI_EXPORT GenericAuth : public QObject,
-        public GameNetAuthInterface
+      class RESTAPI_EXPORT GenericAuth : public GameNetAuthBase
       {
         Q_OBJECT
       public:
         GenericAuth();
         ~GenericAuth();
 
-        const QString& type() { return this->_methodType; }
+        const QString& type();
         void login();
-        void setResultCallback( GameNetAuthResultInterface *result );
-
-        void setAuthUrl(const QString& authUrl) { this->_authUrl = authUrl; } 
+        void setAuthUrl(const QString& authUrl); 
 
       public slots:
-        void setLogin(const QString& loginName) { this->_login = loginName; }
-        void setPassword(const QString& password) { this->_password = password; }
+        void setLogin(const QString& loginName);
+        void setPassword(const QString& password);
+      
+      private slots:
+        void requestFinish();
+        void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
 
       private:
-        void loginSync();
-        QString passwordHash(const QString& password);
-
-        GameNetAuthResultInterface *_resultCallback;
-        GameNetCredential _cridential;
+        QPointer<QNetworkAccessManager> _networkManager;
 
         QString _methodType;
         QString _authUrl;

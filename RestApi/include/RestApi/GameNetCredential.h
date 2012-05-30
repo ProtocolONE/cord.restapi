@@ -44,5 +44,4 @@ namespace GGS {
     };
   }
 }
-
 #endif // _GGS_RESTAPI_GAMENETCREDENTIAL_H_

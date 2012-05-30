@@ -1,29 +1,10 @@
-
-#include "gtest/gtest.h"
-#include "MemoryLeaksChecker.h"
 #include <RestApi/Auth/RegistryCredentialStorage.h>
 #include <RestApi/GameNetCredential.h>
 
+#include <gtest/gtest.h>
+
 class RegistryCredentialStorageTest : public ::testing::Test
 {
-public:
-  RegistryCredentialStorageTest() {
-    this->leakChecker.start();
-  }
-
-  ~RegistryCredentialStorageTest() {
-    this->leakChecker.finish();
-    if(this->leakChecker.isMemoryLeaks())
-      failTest("Memory leak detected!"); 
-  }
-
-private:
-  void failTest(const char* message) 
-  { 
-    FAIL() << message; 
-  }
-
-  MemoryLeaksChecker leakChecker;
 };
 
 TEST_F(RegistryCredentialStorageTest, saveLoad)

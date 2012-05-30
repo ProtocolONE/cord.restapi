@@ -12,18 +12,22 @@
 
 #include <RestApi/restapi_global.h>
 #include <RestApi/GameNetCredential.h>
+#include <RestApi/RequestFactory.h>
 
-#include <QtCore/QtConcurrentRun>
+#include <QtCore/QObject>
+#include <QtCore/QUrl>
+#include <QtCore/QPointer>
 
 namespace GGS {
   namespace RestApi {
-    class RequestInterface;
-    class CommandBaseInterface;
-    
-    class RESTAPI_EXPORT RestApiManager
+    class CommandBase;
+    class CacheInterface;
+
+    class RESTAPI_EXPORT RestApiManager : public QObject
     {
+      Q_OBJECT
     public:
-      RestApiManager();
+      RestApiManager(QObject *parent = 0);
       ~RestApiManager();
 
       /// <summary>Задает адрес рестапи сервера.</summary>
@@ -34,28 +38,32 @@ namespace GGS {
       /// <summary>Устанавливает класс, через который выполняются рестапишные комманды.</summary>
       /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
       /// <param name="request">[in] If non-null, the request.</param>
-      void setRequest(RequestInterface *request);
+      void setRequest(RequestFactory::RequestType type);
 
       /// <summary>Выполняет комманду.</summary>
       /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
       /// <param name="command">[in] If non-null, the command.</param>
-      void execute(CommandBaseInterface *command);
+      Q_INVOKABLE void execute(CommandBase *command);
 
       /// <summary>Задает авторизацию для все комманд.</summary>
       /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
       /// <param name="credential">The credential.</param>
       void setCridential(const GameNetCredential &credential);
 
+      void setCache(CacheInterface *cache);
+
       /*!
         \fn credential
         \brief Возвращает текущий объект с данными авторизациию.
       */
       const GameNetCredential &credential();
-    private:
-      RequestInterface *_request;
-      QString _uri;
 
+    private:
+      RequestFactory _factory;
+      RequestFactory::RequestType _type;
+      QString _uri;
       GameNetCredential _credential;
+      CacheInterface *_cache;
     };
   }
 }

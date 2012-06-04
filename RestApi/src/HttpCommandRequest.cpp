@@ -54,7 +54,7 @@ namespace GGS {
       QNetworkReply *reply = qobject_cast<QNetworkReply*>(QObject::sender());
       reply->deleteLater();
 
-      QString response(reply->readAll());
+      QString response = QString::fromUtf8(reply->readAll());
       QNetworkReply::NetworkError error = reply->error();
 
       CommandBase::CommandResults result;

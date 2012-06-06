@@ -15,14 +15,22 @@ namespace GGS {
   namespace RestApi {
     namespace Auth {
 
-      RegistryCredentialStorage::RegistryCredentialStorage(void)
+      RegistryCredentialStorage::RegistryCredentialStorage()
+        : _path("HKEY_CURRENT_USER\\Software\\GGS\\QGNA\\")
       {
-        this->_settings = new QSettings("HKEY_CURRENT_USER\\Software\\GGS\\QGNA\\", QSettings::NativeFormat);
+        this->_settings = new QSettings(this->_path, QSettings::NativeFormat);
       }
 
-
-      RegistryCredentialStorage::~RegistryCredentialStorage(void)
+      RegistryCredentialStorage::RegistryCredentialStorage(const QString &path)
       {
+        this->_path = path;
+        this->_settings = new QSettings(this->_path, QSettings::NativeFormat);
+      }
+      
+      RegistryCredentialStorage::~RegistryCredentialStorage()
+      {
+        if (this->_settings) 
+          delete this->_settings;
       }
 
       const QString RegistryCredentialStorage::calcHash(const GameNetCredential& credential)
@@ -76,7 +84,6 @@ namespace GGS {
         this->_settings->remove("cookie");
         this->_settings->remove("crc");
       }
-
     }
   }
 }

@@ -8,20 +8,21 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "RestApi/Auth/AuthManagerViewModel.h"
+#include <RestApi/Auth/CredentialStorageInterface.h>
+#include <RestApi/Auth/AuthManagerViewModel.h>
+
 #include <QtCore/QDebug>
 
 namespace GGS {
   namespace RestApi {
     namespace Auth {
 
-      AuthManagerViewModel::AuthManagerViewModel(void)
+      AuthManagerViewModel::AuthManagerViewModel()
       {
         this->_vkauth.setApplicationId("2452628");
         this->_vkauth.setAuthReturnPath("http://www.gamenet.ru/virality/auth");
         this->_vkauth.setTitleUrlHost("gnlogin.ru");
 
-        this->_manager.setCredentialStorage(&_credentialStorage);
         this->_manager.registerMethod(&_vkauth);
         
         this->_genericAuth.setAuthUrl("https://gnlogin.ru/");
@@ -32,7 +33,7 @@ namespace GGS {
         qDebug() << QObject::connect(&this->_manager, SIGNAL(error(int)), this, SLOT(managerAuthError(int)));
       }
 
-      AuthManagerViewModel::~AuthManagerViewModel(void)
+      AuthManagerViewModel::~AuthManagerViewModel()
       {
       }
 
@@ -127,6 +128,11 @@ namespace GGS {
         this->_manager.logout();
       }
 
+      void AuthManagerViewModel::setCredentialStorage(CredentialStorageInterface *val)
+      {
+         Q_CHECK_PTR(val);
+         this->_manager.setCredentialStorage(val);
+      }
     }
   }
 }

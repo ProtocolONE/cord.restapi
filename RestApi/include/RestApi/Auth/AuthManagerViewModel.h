@@ -15,7 +15,6 @@
 #include <RestApi/Auth/AuthManager.h>
 #include <RestApi/Auth/GenericAuth.h>
 #include <RestApi/Auth/Vkontakte/VkontakteAuth.h>
-#include <RestApi/Auth/RegistryCredentialStorage.h>
 
 #include <QtCore/QDebug>
 #include <QtCore/QPointer>
@@ -24,6 +23,8 @@
 namespace GGS {
   namespace RestApi {
     namespace Auth {
+      class CredentialStorageInterface;
+
       class RESTAPI_EXPORT AuthManagerViewModel : public QDeclarativeItem
       {
         Q_OBJECT
@@ -37,25 +38,23 @@ namespace GGS {
         Q_PROPERTY(bool autoSaveAuth READ autoSaveAuth WRITE setAutoSaveAuth NOTIFY autoSaveAuthChanged)
       public:
 
-        AuthManagerViewModel(void);
-        ~AuthManagerViewModel(void);
+        AuthManagerViewModel();
+        ~AuthManagerViewModel();
 
         const QString& accountName() const { return this->_accountName; }
-        void setAccountName(const QString& accountName);
-
         const QString& password() const { return this->_password; }
-        void setPassword(const QString& password);
-
         const QString& appKey() const { return this->_appKey; }
-        void setAppKey(const QString& appKey);
-
         const QString& userId() { return this->_userId; }
-        void setUserId(const QString& userId);
-
         const QString& cookie() { return this->_cookie; }
-        void setCookie(const QString& cookie);
-
         bool autoSaveAuth() { return this->_autoSaveAuthSettings; }
+
+        void setCredentialStorage(CredentialStorageInterface *val);
+      public slots:
+        void setAccountName(const QString& accountName);
+        void setPassword(const QString& password);
+        void setAppKey(const QString& appKey);
+        void setUserId(const QString& userId);
+        void setCookie(const QString& cookie);
         void setAutoSaveAuth(bool autoSaveAuthSettings);
 
       public slots:
@@ -92,8 +91,6 @@ namespace GGS {
         AuthManager _manager;
         Vkontakte::VkontakteAuth _vkauth;
         GenericAuth _genericAuth;
-
-        RegistryCredentialStorage _credentialStorage;
       };
     }
   }

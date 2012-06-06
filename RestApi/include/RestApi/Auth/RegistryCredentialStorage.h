@@ -15,7 +15,10 @@
 #include <RestApi/GameNetCredential.h>
 #include <RestApi/Auth/CredentialStorageInterface.h>
 
+#include <QtCore/QString>
 #include <QtCore/QSettings>
+#include <QtCore/QPointer>
+
 
 namespace GGS {
   namespace RestApi {
@@ -27,8 +30,9 @@ namespace GGS {
       {
         Q_OBJECT
       public:
-        RegistryCredentialStorage(void);
-        virtual ~RegistryCredentialStorage(void);
+        RegistryCredentialStorage();
+        RegistryCredentialStorage(const QString &path);
+        virtual ~RegistryCredentialStorage();
 
         virtual void save(const GameNetCredential& credential);
 
@@ -37,7 +41,8 @@ namespace GGS {
         virtual void reset();
       private:
         const QString calcHash(const GameNetCredential& credential);
-        QSettings *_settings;
+        QString _path;
+        QPointer<QSettings> _settings;
       };
     }
   }

@@ -18,6 +18,7 @@ namespace GGS {
         {
 
         }
+
         bool GetCSServerList::callMethod( const QDomDocument& response )
         {
           QDomElement serverListElement  = response.documentElement()

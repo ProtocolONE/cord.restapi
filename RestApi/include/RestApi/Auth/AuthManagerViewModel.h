@@ -74,6 +74,7 @@ namespace GGS {
         void authSuccess();
         void authError(int resultCode);
 
+        void logoutSuccess();
       private slots:
         void managerAuthStarted();
         void managerAuthFinished();

@@ -126,6 +126,7 @@ namespace GGS {
       void AuthManagerViewModel::logout()
       {
         this->_manager.logout();
+        emit this->logoutSuccess();
       }
 
       void AuthManagerViewModel::setCredentialStorage(CredentialStorageInterface *val)

@@ -147,6 +147,9 @@ EXIT /B 1
     <ClCompile Include="GeneratedFiles\Debug\moc_RestApiManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_SaveMainInfo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_SetGnaInstallStep.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -154,6 +157,9 @@ EXIT /B 1
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_UserServiceAccountResponse.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ValidateMainInfo.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_CommandBase.cpp">
@@ -186,6 +192,9 @@ EXIT /B 1
     <ClCompile Include="GeneratedFiles\Release\moc_RestApiManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_SaveMainInfo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_SetGnaInstallStep.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -195,6 +204,10 @@ EXIT /B 1
     <ClCompile Include="GeneratedFiles\Release\moc_UserServiceAccountResponse.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ValidateMainInfo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Commands\User\SaveMainInfo.cpp" />
     <ClCompile Include="src\Commands\Games\Response\Mw2ServerListResponse.cpp" />
     <ClCompile Include="src\Commands\Games\GetMw2ServerList.cpp" />
     <ClCompile Include="src\RequestFactory.cpp" />
@@ -309,6 +322,7 @@ EXIT /B 1
     <ClCompile Include="src\Auth\Vkontakte\VkontakteAuth.cpp" />
     <ClCompile Include="src\Auth\Vkontakte\VkontakteWebView.cpp" />
     <ClCompile Include="src\Auth\Vkontakte\UserAgentWebPage.cpp" />
+    <ClCompile Include="src\Commands\User\ValidateMainInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="include\RestApi\Commands\Games\getcsserverlist.h">
@@ -389,6 +403,26 @@ EXIT /B 1
       </Command>
     </CustomBuild>
     <ClInclude Include="resource.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\ValidateMainInfo.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing ValidateMainInfo.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DRESTAPI_LIB -DQT_DLL -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtWebKit" "-I$(QTDIR)\include\QtGui" "-I.\include\Commands\User\Response" "-I.\include\Commands\User" "-I.\include\RestApi\Commands\Service" "-I.\include\RestApi" "-I.\include\RestApi\Auth"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing ValidateMainInfo.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DRESTAPI_LIB -DQT_DLL -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I." "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWebKit" "-I$(ProjectDir)include" "-I.\include\Commands\User\Response" "-I.\include\Commands\User" "-I.\include\RestApi\Commands\Service" "-I.\include\RestApi" "-I.\include\RestApi\Auth"</Command>
+    </CustomBuild>
+    <CustomBuild Include="include\RestApi\Commands\User\SaveMainInfo.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing SaveMainInfo.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DRESTAPI_LIB -DQT_DLL -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtWebKit" "-I$(QTDIR)\include\QtGui" "-I.\include\Commands\User\Response" "-I.\include\Commands\User" "-I.\include\RestApi\Commands\Service" "-I.\include\RestApi" "-I.\include\RestApi\Auth"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing SaveMainInfo.h...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_XML_LIB -DQT_NETWORK_LIB -DRESTAPI_LIB -DQT_DLL -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtNetwork" "-I." "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtWebKit" "-I$(ProjectDir)include" "-I.\include\Commands\User\Response" "-I.\include\Commands\User" "-I.\include\RestApi\Commands\Service" "-I.\include\RestApi" "-I.\include\RestApi\Auth"</Command>
+    </CustomBuild>
     <ClInclude Include="version.h" />
     <CustomBuild Include="include\RestApi\Auth\RegistryCredentialStorage.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** This file is a part of Syncopate Limited GameNet Application or it parts.
 **
-** Copyright (�) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
 ** All rights reserved.
 **
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
@@ -45,6 +45,9 @@ namespace GGS {
 
       void RegistryCredentialStorage::save(const GameNetCredential& credential)
       {
+        //ВАЖНО! Код сохраняющий данные в реестр и вычисляющий CRC нельзя
+        //менять не исправляя синхронно код gnalogin/getCredential который нужен
+        //для работы фичи "авторизация из инсталлятора" 
         this->_settings->setValue("userId", credential.userId());
         this->_settings->setValue("appKey", credential.appKey());
         this->_settings->setValue("cookie", credential.cookie());

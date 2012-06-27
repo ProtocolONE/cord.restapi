@@ -1,4 +1,4 @@
-#include <Commands/User/ValidateMainInfo.h>
+#include <RestApi/Commands/User/ValidateMainInfo.h>
 
 namespace GGS {
   namespace RestApi {

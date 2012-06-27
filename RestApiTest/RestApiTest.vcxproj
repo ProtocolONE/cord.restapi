@@ -63,6 +63,10 @@
     <PreBuildEvent>
       <Command>xcopy /Y /I /R $(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll $(TargetDir)</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -83,6 +87,10 @@
     <PreBuildEvent>
       <Command>xcopy /Y /I /R $(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll $(TargetDir)</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_TestEventLoopFinisher.cpp">
@@ -92,7 +100,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Commands\Games\GetMw2ServerListTest.cpp" />
+    <ClCompile Include="src\Commands\Social\GetFriendsByGameTest.cpp" />
     <ClCompile Include="src\Commands\User\SaveMainInfoTest.cpp" />
+    <ClCompile Include="src\Commands\User\UserGetProfileTest.cpp" />
     <ClCompile Include="src\Commands\User\ValidateMainInfoTest.cpp" />
     <ClCompile Include="src\RestApiManagerTest.cpp" />
     <ClCompile Include="src\Commands\User\GetUserServiceAccountTest.cpp" />

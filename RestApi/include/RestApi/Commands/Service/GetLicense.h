@@ -24,7 +24,7 @@ namespace GGS {
         {
           Q_OBJECT
         public:
-          GetLicense(const QString& serviceId);
+          explicit GetLicense(const QString& serviceId);
           ~GetLicense();
 
           const QString& serviceId() const;
@@ -42,7 +42,6 @@ namespace GGS {
            bool _isLicenseNew;
            QString _serviceId;
         };
-
       }
     }
   }

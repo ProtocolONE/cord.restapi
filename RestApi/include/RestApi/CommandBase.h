@@ -94,13 +94,82 @@ namespace GGS {
     {
       Q_OBJECT
       Q_ENUMS(GGS::RestApi::CommandBase::CommandResults);
+      Q_ENUMS(GGS::RestApi::CommandBase::Error);
+      Q_FLAGS(RestApiErrors);
+
     public:
-      enum CommandResults{
+      enum CommandResults {
         NoError = 0,
         NetworkError = 1,
         GenericError = 2,
         XmlError = 3
       };
+
+      enum Error {
+        Unknown = 1,
+        ToManyRequests = 2,
+        InvalidRequest = 3,
+        EulaNotAccepted = 10,
+        IncorrectCaptcha = 11,
+        CaptchaNotSpecified = 12, 
+        AuthorizationFailed = 100,
+        AccountNotExists = 101,
+        ServiceAccountBlocked = 102,
+        AuthorizationLimitExceed = 103,
+        UnknownAccountStatus = 104,
+        IncorrectAccountPassword = 105,
+        IncorrectEmailFormat = 110,
+        EmailAlreadyExists = 111,
+        IncorrectPasswordFormat = 112,
+        IncorrectPasswordRepeat = 113,
+        IncorrectNicknameformat = 114,
+        NicknameAlreadyExists = 115,
+        IncorrectTechnameFormat = 116,
+        TechnameAlreadyExists = 117,
+        UnableChangeTechname = 118,
+        UnableChangeNickname = 119,
+        UnableChangeEmail = 220,
+        NicknameNotSpecified = 121,
+        TechnameNotSpecified = 122,
+        NicknameForbidden = 123,
+        TechnameForbidden = 124,
+        ServiceAuthorizationImpossible = 125,
+        PhoneIncorrectCode = 126,
+        PhoneAlreadyInUse = 127,
+        PhoneUnableDeliverSms = 128,
+        PhonePhoneFormat = 129,
+        PhoneBlocked = 130,
+        RequestParameterMissing = 200,
+        RequestWrongAuthType = 201,
+        RequestWrongServiceId = 202,
+        RequestWorngAuthId = 203,
+        RequestUnknownMethod = 204,
+        SellingTransactionWrongNumber = 230,
+        SellingTransactionPersonalAccount = 231,
+        SellingWrongItemCost = 250,
+        SellingItemNotForSelling = 251,
+        SellingNoEnoughMoney = 252,
+        SellingRejectedByService = 253,
+        SellingItemNotFound = 254,
+        SellingAccountNotFound = 255,
+        ImageNotExists = 300,
+        ImageUnknownFileType = 301,
+        ImageWrongType = 302,
+        ImageResizeFailed = 303,
+        PromoKeyWrong = 400,
+        PromoKeyExpired = 401,
+        PromoAlreadyHaveSubscribtion = 402,
+        FriendToThemselfDenied = 500,
+        FriendshipAlreadyExists = 501,
+        FriendRequestAlreadyExists = 502,
+        FriendRequestDailyLimit = 503,
+        PakkanenPermissionDenied = 601,
+        PakkanenVkVerification = 602,
+        PakkanenPhoneVerification = 603,
+        PakkanenVkPhoneVerification = 604,
+      };
+
+      Q_DECLARE_FLAGS(RestApiErrors, Error)
 
       explicit CommandBase(QObject *parent = 0);
       virtual ~CommandBase();
@@ -113,6 +182,8 @@ namespace GGS {
 
       void setCacheTime(int cacheTime);
       virtual int cacheTime();
+
+      void setVersion(const QString &version);
 
       virtual void setRestapiUrl(const QString& url);
       virtual const QString& restapiUrl() const;
@@ -145,9 +216,11 @@ namespace GGS {
       const int getGenericErrorMessageCode();
 
       const QString& errorMessage();
+
       const int errorCode();
       
       virtual bool errorResultParse(const QDomDocument& response);
+
       virtual bool callMethod(const QDomDocument& response);
       
       const QUrl url();
@@ -155,8 +228,8 @@ namespace GGS {
       void resultCallback(GGS::RestApi::CommandBase::CommandResults commandResultCode, QString response);
 
     protected:
-      QString genericErrorMessage;
-      int genericErrorMessageCode;
+      QString _errorMessage;
+      int _errorCode;
 
     private:
       bool _isAuthRequire;

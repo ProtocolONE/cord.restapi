@@ -24,8 +24,8 @@ namespace GGS {
         _isCacheable(false),
         _cacheTime(0)
     {
-      this->genericErrorMessage = QString();
-      this->genericErrorMessageCode = 0;
+      this->_errorMessage = QString();
+      this->_errorCode = 0;
 
       qRegisterMetaType<GGS::RestApi::CommandBase::CommandResults>("GGS::RestApi::CommandBase::CommandResults");
     }
@@ -84,8 +84,8 @@ namespace GGS {
       QDomElement errorCode  = errorElement.firstChildElement("code");
 
       if (!errorMessage.isNull() || !errorCode.isNull()){
-        genericErrorMessage = errorMessage.text();
-        genericErrorMessageCode = errorCode.text().toInt();
+        _errorMessage = errorMessage.text();
+        _errorCode = errorCode.text().toInt();
         return true;
       }
       return false;
@@ -118,22 +118,22 @@ namespace GGS {
 
     const QString& CommandBase::getGenericErrorMessage()
     {
-      return this->genericErrorMessage;
+      return this->_errorMessage;
     }
 
     const int CommandBase::getGenericErrorMessageCode()
     {
-      return this->genericErrorMessageCode;
+      return this->_errorCode;
     }
 
     const QString& CommandBase::errorMessage()
     {
-      return this->genericErrorMessage;
+      return this->_errorMessage;
     }
 
     const int CommandBase::errorCode()
     {
-      return this->genericErrorMessageCode;
+      return this->_errorCode;
     }
 
     const bool CommandBase::isRestapiOverrided() const
@@ -159,7 +159,9 @@ namespace GGS {
       return request;
     }
 
-
-
+    void CommandBase::setVersion( const QString &version )
+    {
+      this->appendParameter("version", version);
+    }
   }
 }

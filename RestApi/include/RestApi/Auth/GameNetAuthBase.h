@@ -34,6 +34,7 @@ namespace GGS {
           NetworkError = 3,
           WrongLoginOrPassword = 4, 
           UnknownAuthMethod = 5,
+          ServiceAccountBlocked = 6,
         };
 
         GameNetAuthBase(QObject *parent = 0);

@@ -102,11 +102,18 @@ namespace GGS {
         if (!errorMessage.isNull() || !errorCode.isNull()) {
           int genericErrorMessageCode = errorCode.text().toInt();   
           
-          if (genericErrorMessageCode == 100 || genericErrorMessageCode == 110)
+          switch (genericErrorMessageCode) {
+          case 102:
+            emit this->authFailed(ServiceAccountBlocked); 
+            break;
+          case 100:
+          case 110:
             emit this->authFailed(WrongLoginOrPassword); 
-          else 
+            break;
+          default:
             emit this->authFailed(UnknownError);   
-          
+          }
+
           return;
         }
 

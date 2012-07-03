@@ -52,7 +52,7 @@ namespace GGS {
           void webPageClosed();
 
         private:
-          void setAuthResult( bool isSuccess );
+          void setAuthResult(AuthResultCodes result);
 
           QString _methodType;
 

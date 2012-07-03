@@ -64,7 +64,7 @@ namespace GGS {
           this->_view->show();
         }
 
-        void VkontakteAuth::setAuthResult( bool isSuccess )
+        void VkontakteAuth::setAuthResult(AuthResultCodes result)
         {
           this->_authStartedLock.lock();
           if (!this->_isAuthStarted) {
@@ -72,10 +72,10 @@ namespace GGS {
             return;
           }
 
-          if(isSuccess) 
+          if(result == Success) 
              emit this->authResult(this->_credential);
           else
-             emit this->authFailed(Cancel);
+             emit this->authFailed(result);
 
           this->_isAuthStarted = false;
           this->_authStartedLock.unlock();
@@ -97,7 +97,7 @@ namespace GGS {
         void VkontakteAuth::webPageLoadFinished(bool ok)
         {
           if(!ok) {
-            this->setAuthResult(false);
+            this->setAuthResult(Cancel);
             return;
           }
 
@@ -105,7 +105,7 @@ namespace GGS {
 
            if(url.host().compare("oauth.vkontakte.ru") == 0) {
              if(url.queryItemValue("cancel").compare("1") == 0) {
-               this->setAuthResult(false);
+               this->setAuthResult(Cancel);
                return;
              }
            }
@@ -123,10 +123,16 @@ namespace GGS {
           QUrl currentUrl = this->_view->url();
           if (currentUrl.hasQueryItem("error")
             && currentUrl.queryItemValue("error").compare("access_denied") == 0) {
-              this->setAuthResult(false);;
+              this->setAuthResult(Cancel);
               return;
           }
 
+          if (titleUrl.hasQueryItem("isBlocked")
+            && titleUrl.queryItemValue("isBlocked").compare("1") == 0) {
+              this->setAuthResult(ServiceAccountBlocked);
+              return;
+          }
+          
           QString userIdString;
           QString appKey;
           QString ga;
@@ -142,7 +148,7 @@ namespace GGS {
           if (userIdString.isEmpty()
             || appKey.isEmpty()
             || ga.isEmpty()) {
-              this->setAuthResult(false);
+              this->setAuthResult(Cancel);
               return;
           }
 
@@ -150,14 +156,13 @@ namespace GGS {
           this->_credential.setAppKey(appKey);
           this->_credential.setCookie(ga);
 
-          this->setAuthResult(true);
+          this->setAuthResult(Success);
         }
 
         void VkontakteAuth::webPageClosed()
         {
-          this->setAuthResult(false);
+          this->setAuthResult(Cancel);
         }
-
       }
     }
   }

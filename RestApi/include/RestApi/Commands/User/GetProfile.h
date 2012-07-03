@@ -26,6 +26,8 @@ namespace GGS {
 
         using namespace GGS::RestApi::Commands::User::Response;
 
+        typedef QMap<QString, GGS::RestApi::Commands::User::UserGetProfileResponse> GetProfileMap;
+
         class RESTAPI_EXPORT GetProfile : public CommandBase
         {
           Q_OBJECT
@@ -42,12 +44,12 @@ namespace GGS {
           const QStringList& profileId() const;       
           bool hasShortInfo() const;
 
-          const QMap<QString, UserGetProfileResponse>& response();
+          const GetProfileMap& response();
 
         private:
           QStringList _profileId;
           bool _shortInfo;
-          QMap<QString, UserGetProfileResponse> _userProfiles;
+          GetProfileMap _userProfiles;
         };
       }
     }

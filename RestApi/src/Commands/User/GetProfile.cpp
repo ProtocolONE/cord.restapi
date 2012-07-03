@@ -102,7 +102,7 @@ namespace GGS {
           return this->_shortInfo;
         }
 
-        const QMap<QString, UserGetProfileResponse>& GetProfile::response()
+        const GetProfileMap& GetProfile::response()
         {
           return this->_userProfiles;
         }

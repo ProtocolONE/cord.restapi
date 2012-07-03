@@ -81,7 +81,7 @@ TEST_F(UserGetProfileTest, responseTest)
   GetProfile command;
   command.resultCallback(GGS::RestApi::CommandBase::NoError, userGetProfileTestQueryResponse);
   
-  QMap<QString, UserGetProfileResponse> response = command.response();
+  GGS::RestApi::Commands::User::GetProfileMap response = command.response();
   ASSERT_EQ(response.count(), 2);
   
   Q_FOREACH(UserGetProfileResponse userProfile, response.values()){

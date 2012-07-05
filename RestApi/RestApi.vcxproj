@@ -65,8 +65,9 @@
       <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtXmld4.lib;QtNetworkd4.lib;QtGuid4.lib;QtWebKitd4.lib;QtScriptd4.lib;QtXmlPatternsd4.lib;QtDeclaratived4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName)_ru.ts"
+$(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName)_en.ts"
+</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>IF NOT "$(QGNACOMMONDIR)"=="" (
@@ -75,6 +76,7 @@ xcopy /Y /I /R "$(TargetDir)*.lib" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(Commo
 xcopy /Y /I /R "$(TargetDir)*.pdb" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(CommonArea)\pdb"
 xcopy /Y /I /R /E "$(ProjectDir)include\*.h" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(CommonArea)\include\"
 xcopy /Y /I /R /E "$(ProjectDir)include\*" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(CommonArea)\include\"
+xcopy /Y /I /R /E "$(ProjectDir)i18n\*" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(CommonArea)\i18n"
 ) else (
 ECHO QGNACOMMONDIR not defined!
 EXIT /B 1
@@ -100,8 +102,9 @@ EXIT /B 1
       <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtXml4.lib;QtNetwork4.lib;QtGui4.lib;QtWebKit4.lib;QtScript4.lib;QtXmlPatterns4.lib;QtDeclarative4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>$(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName)_ru.ts"
+$(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName)_en.ts"
+</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>IF NOT "$(QGNACOMMONDIR)"=="" (
@@ -110,6 +113,7 @@ xcopy /Y /I /R "$(TargetDir)*.lib" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(Commo
 xcopy /Y /I /R "$(TargetDir)*.pdb" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(CommonArea)\pdb"
 xcopy /Y /I /R /E "$(ProjectDir)include\*.h" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(CommonArea)\include\"
 xcopy /Y /I /R /E "$(ProjectDir)include\*" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(CommonArea)\include\"
+xcopy /Y /I /R /E "$(ProjectDir)i18n\*" "$(QGNACOMMONDIR)\GGS\$(SolutionName)\$(CommonArea)\i18n"
 ) else (
 ECHO QGNACOMMONDIR not defined!
 EXIT /B 1
@@ -707,6 +711,10 @@ EXIT /B 1
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RestApi.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="i18n\RestApi_en.ts" />
+    <None Include="i18n\RestApi_ru.ts" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

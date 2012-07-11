@@ -35,6 +35,7 @@ namespace GGS {
       }
 
       Q_ASSERT(0);
+      return 0;
     }
   }
 }

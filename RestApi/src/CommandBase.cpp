@@ -9,6 +9,7 @@
 ****************************************************************************/
 
 #include <RestApi/CommandBase.h>
+#include <RestApi/RestApiManager>
 
 #include <QtCore/QDebug>
 #include <QtXml/QDomDocument>
@@ -77,7 +78,7 @@ namespace GGS {
       emit this->result(NoError);
     }
 
-    bool CommandBase::errorResultParse( const QDomDocument& response ){
+    bool CommandBase::errorResultParse(const QDomDocument& response){
       QDomElement responseElement = response.documentElement();
       QDomElement errorElement = responseElement.firstChildElement("error");
       QDomElement errorMessage  = errorElement.firstChildElement("message");
@@ -86,32 +87,33 @@ namespace GGS {
       if (!errorMessage.isNull() || !errorCode.isNull()){
         _errorMessage = errorMessage.text();
         _errorCode = errorCode.text().toInt();
+        emit this->genericError(static_cast<Error>(_errorCode), _errorMessage);
         return true;
       }
       return false;
     }
 
-    bool CommandBase::callMethod( const QDomDocument& response ){
+    bool CommandBase::callMethod(const QDomDocument& response){
       return true;
     }
 
-    void CommandBase::setAuthRequire( bool isAuthRequire ) {
+    void CommandBase::setAuthRequire(bool isAuthRequire) {
       this->_isAuthRequire = isAuthRequire;
     }
 
-    void CommandBase::setCacheable( bool isCacheable ) {
+    void CommandBase::setCacheable(bool isCacheable) {
       this->_isCacheable = isCacheable;
     }
 
-    void CommandBase::setCacheTime( int cacheTime ) {
+    void CommandBase::setCacheTime(int cacheTime) {
       this->_cacheTime = cacheTime;
     }
 
-    void CommandBase::appendParameter( const QString& name, const QString& value ) {
+    void CommandBase::appendParameter(const QString& name, const QString& value) {
       this->_commandParameters.insert(name, value);
     }
 
-    void CommandBase::setRestapiUrl( const QString& url )  {
+    void CommandBase::setRestapiUrl(const QString& url)  {
       this->_restApiUrl = url;
       this->_isRestapiOverrided = true;
     }
@@ -159,9 +161,22 @@ namespace GGS {
       return request;
     }
 
-    void CommandBase::setVersion( const QString &version )
+    void CommandBase::setVersion(const QString &version)
     {
       this->appendParameter("version", version);
     }
+
+    void CommandBase::execute()
+    {
+      RestApiManager *manager = RestApiManager::commonInstance();
+      Q_CHECK_PTR(manager);
+      this->execute(manager);
+    }
+
+    void CommandBase::execute(RestApiManager *manager)
+    {
+      manager->execute(this);
+    }
+
   }
 }

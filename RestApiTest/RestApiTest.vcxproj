@@ -99,6 +99,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_TestEventLoopFinisher.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="src\CommandExecuteTest.cpp" />
     <ClCompile Include="src\Commands\Games\GetMw2ServerListTest.cpp" />
     <ClCompile Include="src\Commands\Social\GetFriendsByGameTest.cpp" />
     <ClCompile Include="src\Commands\User\SaveMainInfoTest.cpp" />

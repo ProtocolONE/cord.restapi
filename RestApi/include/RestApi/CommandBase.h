@@ -23,7 +23,7 @@ class QDomDocument;
 
 namespace GGS {
   namespace RestApi {
-
+    class RestApiManager;
     /* Всегда пля подключения к этому сигналу, в параметрах необходимо
     указывать полный путь! Например
     connect( abc, SIGNAL( result(GGS::RestApi::CommandBase::CommandResults ), ... ); // ПРАВИЛЬНО
@@ -224,8 +224,12 @@ namespace GGS {
       virtual bool callMethod(const QDomDocument& response);
       
       const QUrl url();
+
     public slots:
       void resultCallback(GGS::RestApi::CommandBase::CommandResults commandResultCode, QString response);
+
+      void execute();
+      void execute(RestApiManager *manager);
 
     protected:
       QString _errorMessage;
@@ -243,10 +247,12 @@ namespace GGS {
 
     signals:
       void result(GGS::RestApi::CommandBase::CommandResults);
+      void genericError(GGS::RestApi::CommandBase::Error error, QString message);
     };
   }
 }
 
 Q_DECLARE_METATYPE(GGS::RestApi::CommandBase::CommandResults);
+Q_DECLARE_METATYPE(GGS::RestApi::CommandBase::Error);
 
 #endif // _GGS_RESTAPI_COMMAND_BASE_H_

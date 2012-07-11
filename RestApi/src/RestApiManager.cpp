@@ -17,6 +17,8 @@
 namespace GGS {
   namespace RestApi {
 
+    RestApiManager* RestApiManager::_commonInstance;
+
     RestApiManager::RestApiManager(QObject *parent /*= 0*/) 
       : QObject(parent),
         _cache(0),
@@ -46,6 +48,8 @@ namespace GGS {
       connect(request, SIGNAL(finish(GGS::RestApi::CommandBase::CommandResults, QString)),
         command, SLOT(resultCallback(GGS::RestApi::CommandBase::CommandResults, QString)));
 
+      QObject::connect(command, SIGNAL(genericError(GGS::RestApi::CommandBase::Error, QString)), 
+        this, SIGNAL(genericError(GGS::RestApi::CommandBase::Error, QString)), Qt::UniqueConnection);
       QMetaObject::invokeMethod(request, 
                                 "execute", 
                                 Qt::QueuedConnection, 
@@ -77,5 +81,18 @@ namespace GGS {
       Q_CHECK_PTR(cache);
       this->_cache = cache;
     }
+
+    void RestApiManager::setCommonInstance(RestApiManager *instance)
+    {
+      Q_CHECK_PTR(instance);
+      RestApiManager::_commonInstance = instance;
+    }
+
+    RestApiManager* RestApiManager::commonInstance()
+    {
+      return RestApiManager::_commonInstance;
+    }
+
+
   }
 }

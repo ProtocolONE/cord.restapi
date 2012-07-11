@@ -13,6 +13,7 @@
 #include <RestApi/restapi_global.h>
 #include <RestApi/GameNetCredential.h>
 #include <RestApi/RequestFactory.h>
+#include <RestApi/CommandBase>
 
 #include <QtCore/QObject>
 #include <QtCore/QUrl>
@@ -20,7 +21,6 @@
 
 namespace GGS {
   namespace RestApi {
-    class CommandBase;
     class CacheInterface;
 
     class RESTAPI_EXPORT RestApiManager : public QObject
@@ -58,12 +58,21 @@ namespace GGS {
       */
       const GameNetCredential &credential();
 
+      static void setCommonInstance(RestApiManager *instance);
+      static RestApiManager* commonInstance();
+
+    signals:
+      void genericError(GGS::RestApi::CommandBase::Error, QString message);
+
     private:
       RequestFactory _factory;
       RequestFactory::RequestType _type;
       QString _uri;
       GameNetCredential _credential;
       CacheInterface *_cache;
+
+      static RestApiManager* _commonInstance;
+
     };
   }
 }

@@ -109,7 +109,7 @@ namespace GGS {
         }
       }
 
-      void AuthManagerViewModel::setAutoSaveAuth( bool autoSaveAuthSettings )
+      void AuthManagerViewModel::setAutoSaveAuth(bool autoSaveAuthSettings)
       {       
         if (this->_autoSaveAuthSettings != autoSaveAuthSettings) {
           this->_autoSaveAuthSettings = autoSaveAuthSettings; 

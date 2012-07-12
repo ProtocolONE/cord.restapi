@@ -229,6 +229,7 @@ EXIT /B 1
     <ClCompile Include="GeneratedFiles\Release\moc_ValidateMainInfo.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Commands\Social\GetFriendsByGame.cpp" />
     <ClCompile Include="src\Commands\User\GetProfile.cpp" />
     <ClCompile Include="src\Commands\User\Response\UserGetProfileResponse.cpp" />

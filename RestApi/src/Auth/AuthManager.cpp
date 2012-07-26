@@ -8,9 +8,10 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#include "RestApi/Auth/AuthManager.h"
-#include <QtCore/qdebug.h>
+#include <RestApi/Auth/AuthManager.h>
 
+#include <QtCore/qdebug.h>
+#include <QtCore/QSettings>
 
 namespace GGS {
   namespace RestApi {
@@ -19,6 +20,13 @@ namespace GGS {
       AuthManager::AuthManager()
       {
         this->_credentialStorage = 0;
+
+        QSettings settings("HKEY_CURRENT_USER\\Software\\GGS\\QGNA", QSettings::NativeFormat);
+        if (settings.contains("SaveCredential")) {
+          this->_authSaveCredential = settings.value("SaveCredential", 1).toBool();
+        } else {
+          this->setAutoSaveAuthSettings(true);
+        }
       }
       
       AuthManager::~AuthManager()
@@ -99,15 +107,17 @@ namespace GGS {
         return this->_authSaveCredential;
       }
 
-      void AuthManager::setAutoSaveAuthSettings( bool isAutoSaved )
+      void AuthManager::setAutoSaveAuthSettings(bool isAutoSaved)
       {
         if (!isAutoSaved && this->_credentialStorage != 0){
           this->_credentialStorage->reset();
         }
 
         this->_authSaveCredential = isAutoSaved;
-      }
 
+        QSettings settings("HKEY_CURRENT_USER\\Software\\GGS\\QGNA", QSettings::NativeFormat);
+        settings.setValue("SaveCredential", this->_authSaveCredential ? 1 : 0);
+      }
     }
   }
 }

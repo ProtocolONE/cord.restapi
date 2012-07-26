@@ -46,7 +46,7 @@ namespace GGS {
         const QString& appKey() const { return this->_appKey; }
         const QString& userId() { return this->_userId; }
         const QString& cookie() { return this->_cookie; }
-        bool autoSaveAuth() { return this->_autoSaveAuthSettings; }
+        bool autoSaveAuth() { return this->_manager.autoSaveAuthSettings(); }
 
         void setCredentialStorage(CredentialStorageInterface *val);
       public slots:
@@ -81,7 +81,6 @@ namespace GGS {
         void managerAuthError(int resultCode);
 
       private:
-        bool _autoSaveAuthSettings;
         QString _accountName;
         QString _password;
         

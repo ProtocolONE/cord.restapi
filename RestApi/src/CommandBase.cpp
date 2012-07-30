@@ -31,7 +31,8 @@ namespace GGS {
       qRegisterMetaType<GGS::RestApi::CommandBase::CommandResults>("GGS::RestApi::CommandBase::CommandResults");
     }
 
-    CommandBase::~CommandBase(){
+    CommandBase::~CommandBase()
+    {
     }
 
     bool CommandBase::isAuthRequire()
@@ -39,38 +40,42 @@ namespace GGS {
       return this->_isAuthRequire;
     }
 
-    bool CommandBase::isCacheable(){
+    bool CommandBase::isCacheable()
+    {
       return this->_isCacheable;
     }
 
-    int CommandBase::cacheTime() {
+    int CommandBase::cacheTime() 
+    {
       return this->_cacheTime;
     }
 
-    const QMap<QString, QString>* CommandBase::commandParameters() const {
+    const QMap<QString, QString>* CommandBase::commandParameters() const 
+    {
       return &this->_commandParameters;
     }
 
-    void CommandBase::resultCallback(GGS::RestApi::CommandBase::CommandResults commandResultCode, QString response ) 
+    void CommandBase::resultCallback(GGS::RestApi::CommandBase::CommandResults commandResultCode, QString response) 
     {  
       QObject::sender()->deleteLater();
 
-      if(commandResultCode != NoError) {
+      if (commandResultCode != NoError) {
         emit this->result(commandResultCode);
         return;
       }
+
       QDomDocument doc;
       if (!doc.setContent(response)) {
         emit this->result(XmlError);
         return;
       }
 
-      if (this->errorResultParse(doc)){
+      if (this->errorResultParse(doc)) {
         emit this->result(GenericError);
         return;
       }
 
-      if (this->callMethod(doc)){
+      if (this->callMethod(doc)) {
         emit this->result(XmlError);
         return;
       }
@@ -78,42 +83,50 @@ namespace GGS {
       emit this->result(NoError);
     }
 
-    bool CommandBase::errorResultParse(const QDomDocument& response){
+    bool CommandBase::errorResultParse(const QDomDocument& response)
+    {
       QDomElement responseElement = response.documentElement();
       QDomElement errorElement = responseElement.firstChildElement("error");
       QDomElement errorMessage  = errorElement.firstChildElement("message");
       QDomElement errorCode  = errorElement.firstChildElement("code");
 
-      if (!errorMessage.isNull() || !errorCode.isNull()){
-        _errorMessage = errorMessage.text();
-        _errorCode = errorCode.text().toInt();
+      if (!errorMessage.isNull() || !errorCode.isNull()) {
+        this->_errorMessage = errorMessage.text();
+        this->_errorCode = errorCode.text().toInt();
         emit this->genericError(static_cast<Error>(_errorCode), _errorMessage);
         return true;
       }
+
       return false;
     }
 
-    bool CommandBase::callMethod(const QDomDocument& response){
+    bool CommandBase::callMethod(const QDomDocument& response)
+    {
       return true;
     }
 
-    void CommandBase::setAuthRequire(bool isAuthRequire) {
+    void CommandBase::setAuthRequire(bool isAuthRequire)
+    {
       this->_isAuthRequire = isAuthRequire;
     }
 
-    void CommandBase::setCacheable(bool isCacheable) {
+    void CommandBase::setCacheable(bool isCacheable)
+    {
       this->_isCacheable = isCacheable;
     }
 
-    void CommandBase::setCacheTime(int cacheTime) {
+    void CommandBase::setCacheTime(int cacheTime)
+    {
       this->_cacheTime = cacheTime;
     }
 
-    void CommandBase::appendParameter(const QString& name, const QString& value) {
+    void CommandBase::appendParameter(const QString& name, const QString& value)
+    {
       this->_commandParameters.insert(name, value);
     }
 
-    void CommandBase::setRestapiUrl(const QString& url)  {
+    void CommandBase::setRestapiUrl(const QString& url)
+    {
       this->_restApiUrl = url;
       this->_isRestapiOverrided = true;
     }
@@ -177,6 +190,5 @@ namespace GGS {
     {
       manager->execute(this);
     }
-
   }
 }

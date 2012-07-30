@@ -33,7 +33,7 @@ namespace GGS {
     {
       Q_CHECK_PTR(command);
 
-      if(command->isAuthRequire()) {
+      if (command->isAuthRequire()) {
         command->appendParameter("userId", this->_credential.userId());
         command->appendParameter("appKey", this->_credential.appKey());
       }

@@ -26,7 +26,7 @@ namespace GGS {
         this, SLOT(sslErrors(QNetworkReply *, const QList<QSslError>&)));
     }
 
-    HttpCommandRequest::~HttpCommandRequest(void)
+    HttpCommandRequest::~HttpCommandRequest()
     {
     }
 

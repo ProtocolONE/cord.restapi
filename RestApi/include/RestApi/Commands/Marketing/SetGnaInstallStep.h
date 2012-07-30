@@ -1,7 +1,7 @@
 /****************************************************************************
 ** This file is a part of Syncopate Limited GameNet Application or it parts.
 **
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** Copyright (В©) 2011 - 2012, Syncopate Limited and/or affiliates. 
 ** All rights reserved.
 **
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
@@ -13,6 +13,10 @@
 
 #include <RestApi/restapi_global.h>
 #include <RestApi/CommandBase.h>
+#include <RestApi/GameNetCredential>
+
+#include <QtCore/QVariantMap>
+#include <QtCore/QMetaType>
 
 #include <QtXml/QDomDocument>
 
@@ -21,45 +25,52 @@ namespace GGS {
     namespace Commands {
       namespace Marketing {
 
-		  // Метод сохраняет данные об инсталляции и запуске игр из ГНА
+		  // РњРµС‚РѕРґ СЃРѕС…СЂР°РЅСЏРµС‚ РґР°РЅРЅС‹Рµ РѕР± РёРЅСЃС‚Р°Р»Р»СЏС†РёРё Рё Р·Р°РїСѓСЃРєРµ РёРіСЂ РёР· Р“РќРђ
 		  /*
-		  Параметры
-				string userId 				 Идентификатор пользователя в GameNet
-				string appKey 				 Персональный ключ пользователя для работы с внешними приложениями.
+		  РџР°СЂР°РјРµС‚СЂС‹
+				string userId 				 РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ GameNet
+				string appKey 				 РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Р№ РєР»СЋС‡ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РІРЅРµС€РЅРёРјРё РїСЂРёР»РѕР¶РµРЅРёСЏРјРё.
 				string hwid 				 HWID
-				string serviceId			 ID сервиса. Не нужен, если считаем первый запуск ГНА
-				integer marketModuleTarget 	 ID выполняемой цели (см ниже)
+				string serviceId			 ID СЃРµСЂРІРёСЃР°. РќРµ РЅСѓР¶РµРЅ, РµСЃР»Рё СЃС‡РёС‚Р°РµРј РїРµСЂРІС‹Р№ Р·Р°РїСѓСЃРє Р“РќРђ
+				integer marketModuleTarget 	 ID РІС‹РїРѕР»РЅСЏРµРјРѕР№ С†РµР»Рё (СЃРј РЅРёР¶Рµ)
 
-				marketModuleTarget может принимать следующие значения
+				marketModuleTarget РјРѕР¶РµС‚ РїСЂРёРЅРёРјР°С‚СЊ СЃР»РµРґСѓСЋС‰РёРµ Р·РЅР°С‡РµРЅРёСЏ
 
-				36 - Первый запуск ГНА
-				37 - Начало загрузки игры
-				38 - Окончание загрузки игры
-				39 - Инсталляция игры
-				40 - Первый вход в игру
+				36 - РџРµСЂРІС‹Р№ Р·Р°РїСѓСЃРє Р“РќРђ
+				37 - РќР°С‡Р°Р»Рѕ Р·Р°РіСЂСѓР·РєРё РёРіСЂС‹
+				38 - РћРєРѕРЅС‡Р°РЅРёРµ Р·Р°РіСЂСѓР·РєРё РёРіСЂС‹
+				39 - РРЅСЃС‚Р°Р»Р»СЏС†РёСЏ РёРіСЂС‹
+				40 - РџРµСЂРІС‹Р№ РІС…РѕРґ РІ РёРіСЂСѓ
 		*/
 
-        class RESTAPI_EXPORT SetGnaInstallStep :
-          public CommandBase
+        class RESTAPI_EXPORT SetGnaInstallStep : public CommandBase
         {
           Q_OBJECT
         public:
           SetGnaInstallStep();
           ~SetGnaInstallStep();
           
-          virtual bool SetGnaInstallStep::callMethod( const QDomDocument& response );
-          bool getIsOk() { return _ok; }
+          virtual bool SetGnaInstallStep::callMethod(const QDomDocument& response);
+          bool isSuccess();
 
-          void setHwid( const QString& hwid );
-          void setServiceId( int serviceId );
-          void setMarketModuleTarget( int marketModuleTarget );
+          void setHwid(const QString& hwid);
+          void setServiceId(const QString& serviceId);
+          void setMarketingTarget(int marketingTarget);
 
+          void setMarketingId(const QString& mid);
+          void setParamsMap(const QVariantMap& params);
+
+          void setUserId(const QString& userId);
+          void setAppKey(const QString& appKey);
+          
         private:
             bool _ok;
+
         };
       }
     }
   }
 }
+
 
 #endif // _GGS_RESTAPI_COMMANDS_MARKETING_SETGNAINSTALLSTEP_H_

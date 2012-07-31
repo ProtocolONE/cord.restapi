@@ -25,7 +25,7 @@ void CommandTest::execute(GGS::RestApi::CommandBase *command)
 
 void CommandTest::executeWithAuth(GGS::RestApi::CommandBase *command)
 {
-  command->appendParameter("appKey", "7c4a8d09ca3762af61e59520943dc26494f8941b");
+  command->appendParameter("appKey", "c99ebc84714c0c316dd891602dc916d238ef73ed");
   command->appendParameter("userId", "400001000001634860");
 
   this->execute(command);

@@ -44,6 +44,10 @@ namespace GGS {
 
     private:
       QPointer<QNetworkAccessManager> _networkManager;
+
+
+      /*!< Используется для удобства отладки, чтобы было легко понять какая комманда упала. */
+      QString _requestString;
     };
   }
 }

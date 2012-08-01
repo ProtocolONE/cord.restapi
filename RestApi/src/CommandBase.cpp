@@ -27,8 +27,6 @@ namespace GGS {
     {
       this->_errorMessage = QString();
       this->_errorCode = 0;
-
-      qRegisterMetaType<GGS::RestApi::CommandBase::CommandResults>("GGS::RestApi::CommandBase::CommandResults");
     }
 
     CommandBase::~CommandBase()

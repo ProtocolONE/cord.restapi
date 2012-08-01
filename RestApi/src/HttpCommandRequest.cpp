@@ -33,8 +33,8 @@ namespace GGS {
     void HttpCommandRequest::execute(const QUrl &request)
     {
       QString response;
-      QString requestString = request.toString();
-      if (this->_cache && this->_cache->tryGet(requestString, response)) {
+      this->_requestString = request.toString();
+      if (this->_cache && this->_cache->tryGet(this->_requestString, response)) {
           if (response.size()) {
             emit finish(CommandBase::NoError, response);
             return;
@@ -42,7 +42,7 @@ namespace GGS {
       }
 
       //http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.2.1
-      QNetworkReply *reply = (requestString.length() < 2048)
+      QNetworkReply *reply = (this->_requestString.length() < 2048)
         ? this->_networkManager->get(QNetworkRequest(request))
         : this->_networkManager->post(QNetworkRequest(request), request.encodedQuery());
 

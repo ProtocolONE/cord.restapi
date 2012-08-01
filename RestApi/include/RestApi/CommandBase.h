@@ -242,7 +242,7 @@ namespace GGS {
 
       QString _restApiUrl;
       bool _isRestapiOverrided;
-
+      
       QMap<QString, QString> _commandParameters;
 
     signals:

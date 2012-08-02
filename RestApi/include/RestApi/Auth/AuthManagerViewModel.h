@@ -71,7 +71,7 @@ namespace GGS {
         void cookieChanged();
 
         void autoSaveAuthChanged();
-        void authSuccess();
+        void authSuccess(const QString& userId, const QString& appKey, const QString& cookie);
         void authError(int resultCode);
 
         void logoutSuccess();

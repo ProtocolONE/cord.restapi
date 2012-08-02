@@ -75,7 +75,8 @@ namespace GGS {
         this->setUserId(this->_manager.credential().userId());
         this->setAppKey(this->_manager.credential().appKey());
         this->setCookie(this->_manager.credential().cookie());
-        emit this->authSuccess();
+
+        emit this->authSuccess(this->_userId, this->_appKey, this->_cookie);
       }
 
       void AuthManagerViewModel::managerAuthError(int resultCode)

@@ -18,6 +18,7 @@
 
 #include <QtXml/QDomDocument>
 #include <QtCore/QStringList>
+#include <QtCore/QMap>
 
 namespace GGS {
   namespace RestApi {

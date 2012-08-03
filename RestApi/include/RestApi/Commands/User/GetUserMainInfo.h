@@ -28,7 +28,7 @@ namespace GGS {
         {
           Q_OBJECT
         public:
-          GetUserMainInfo();
+          explicit GetUserMainInfo(QObject *parent = 0);
           ~GetUserMainInfo();
 
           virtual bool callMethod( const QDomDocument& response );

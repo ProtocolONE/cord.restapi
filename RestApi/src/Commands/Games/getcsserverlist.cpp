@@ -28,19 +28,18 @@ namespace GGS {
 
         }
 
-        bool GetCSServerList::callMethod( const QDomDocument& response )
+        bool GetCSServerList::callMethod(const QDomDocument& response)
         {
-          QDomElement serverListElement  = response.documentElement()
-            .firstChildElement("result");
+          QDomElement serverListElement  = response.documentElement().firstChildElement("result");
 
           if (serverListElement.isNull())
             return true;
 
-           for(QDomElement row = serverListElement.firstChildElement("row"); !row.isNull(); row = row.nextSiblingElement("row")) {
+           for (QDomElement row = serverListElement.firstChildElement("row"); !row.isNull(); row = row.nextSiblingElement("row")) {
             QDomElement serverElement = row.firstChildElement("server");
             QDomElement usageElement = row.firstChildElement("usage");
             
-            if(serverElement.isNull() || usageElement.isNull())
+            if (serverElement.isNull() || usageElement.isNull())
               continue;
 
             ServerInfo server;

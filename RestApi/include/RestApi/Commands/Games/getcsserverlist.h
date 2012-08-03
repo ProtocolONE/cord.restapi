@@ -37,9 +37,9 @@ namespace GGS {
           GetCSServerList(QObject *parent = 0);
           ~GetCSServerList();
           
-          virtual bool callMethod( const QDomDocument& response );
+          virtual bool callMethod(const QDomDocument& response);
 
-          const QVector<ServerInfo>& getServers() const { return this->_serverList; }
+          QVector<ServerInfo>& getServers() { return this->_serverList; }
         private:
           QVector<ServerInfo> _serverList;
         };

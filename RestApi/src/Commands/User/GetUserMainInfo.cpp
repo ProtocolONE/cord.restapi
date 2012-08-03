@@ -15,7 +15,8 @@ namespace GGS {
     namespace Commands {
       namespace User {
 
-        GetUserMainInfo::GetUserMainInfo() {
+        GetUserMainInfo::GetUserMainInfo(QObject *parent) : CommandBase(parent)
+        {
           this->appendParameter("method", "user.getMainInfo");
           this->appendParameter("version", "1");
           this->appendParameter("lang", "ru");
@@ -24,14 +25,13 @@ namespace GGS {
           this->_response = new Response::UserMainInfoResponse();
         }
 
-
-        GetUserMainInfo::~GetUserMainInfo() {
+        GetUserMainInfo::~GetUserMainInfo() 
+        {
            delete this->_response;
         }
           
         bool GetUserMainInfo::callMethod( const QDomDocument& response )
         {
-
           QDomElement responseElement = response.documentElement();
           QDomElement mainInfoElement = responseElement.firstChildElement("mainInfo");
 

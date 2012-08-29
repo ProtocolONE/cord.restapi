@@ -104,6 +104,5 @@ TEST_F(GetUserMainInfoTest, successNetworkTest)
   ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/small/60/48/63/400001000001634860.jpg", response->smallAvatarUrl());
   ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/medium/60/48/63/400001000001634860.jpg", response->mediumAvatarUrl());
   ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/large/60/48/63/400001000001634860.jpg", response->largeAvatarUrl());
-  ASSERT_EQ("", response->steamId());
   ASSERT_EQ(2, response->sex());
 }

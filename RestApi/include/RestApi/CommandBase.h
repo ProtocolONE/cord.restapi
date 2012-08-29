@@ -139,6 +139,7 @@ namespace GGS {
         PhoneUnableDeliverSms = 128,
         PhonePhoneFormat = 129,
         PhoneBlocked = 130,
+        GuestExpired = 131,
         RequestParameterMissing = 200,
         RequestWrongAuthType = 201,
         RequestWrongServiceId = 202,

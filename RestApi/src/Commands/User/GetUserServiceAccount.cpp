@@ -6,7 +6,8 @@ namespace GGS {
     namespace Commands {
       namespace User {
 
-        GetUserServiceAccount::GetUserServiceAccount(){
+        GetUserServiceAccount::GetUserServiceAccount()
+        {
           this->appendParameter("method", "user.getServiceAccount");
           this->appendParameter("version", "1");
           this->appendParameter("lang", "ru");
@@ -14,11 +15,13 @@ namespace GGS {
           this->_response = new Response::UserServiceAccountResponse();
         }
 
-        GetUserServiceAccount::~GetUserServiceAccount(){
+        GetUserServiceAccount::~GetUserServiceAccount()
+        {
           delete _response;
         }
 
-        bool GetUserServiceAccount::callMethod( const QDomDocument& response ){   
+        bool GetUserServiceAccount::callMethod(const QDomDocument& response)
+        {   
           QDomElement responseElement = response.documentElement();
           QDomElement serviseAccountElement = responseElement.firstChildElement("serviceAccount");
 
@@ -44,7 +47,7 @@ namespace GGS {
           return false;
         }
 
-        void GetUserServiceAccount::setServiceId( const QString &id )
+        void GetUserServiceAccount::setServiceId(const QString &id)
         {
           this->appendParameter("serviceId", id);
         }

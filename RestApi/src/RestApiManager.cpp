@@ -22,7 +22,7 @@ namespace GGS {
     RestApiManager::RestApiManager(QObject *parent /*= 0*/) 
       : QObject(parent),
         _cache(0),
-        _uri("https://api.gamenet.ru/restapi") 
+        _uri("https://api.gamenet.ru:8443/restapi") 
     {
     }
 

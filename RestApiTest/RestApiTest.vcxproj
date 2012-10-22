@@ -61,7 +61,7 @@
       <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtXmld4.lib;QtNetworkd4.lib;QtTestd4.lib;gtestd.lib;RestApiX86d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /I /R $(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll $(TargetDir)</Command>
+      <Command>xcopy /Y /I /R "$(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll" "$(TargetDir)"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>
@@ -85,7 +85,7 @@
       <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtXml4.lib;QtNetwork4.lib;QtTest4.lib;gtest.lib;RestApiX86.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /I /R $(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll $(TargetDir)</Command>
+      <Command>xcopy /Y /I /R "$(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll" "$(TargetDir)"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>

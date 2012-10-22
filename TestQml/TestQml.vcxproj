@@ -61,8 +61,8 @@
       <AdditionalDependencies>qtmaind.lib;QtCored4.lib;QtGuid4.lib;QtXmld4.lib;QtNetworkd4.lib;QtScriptd4.lib;QtWebKitd4.lib;QtXmlPatternsd4.lib;QtDeclaratived4.lib;phonond4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /I /R $(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll $(TargetDir)
-xcopy /Y /I /R $(ProjectDir)qml\* $(TargetDir)qml\
+      <Command>xcopy /Y /I /R "$(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll" "$(TargetDir)"
+xcopy /Y /I /R "$(ProjectDir)qml\*" "$(TargetDir)qml\"
 </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
@@ -83,7 +83,7 @@ xcopy /Y /I /R $(ProjectDir)qml\* $(TargetDir)qml\
       <AdditionalDependencies>qtmain.lib;QtCore4.lib;QtGui4.lib;QtXml4.lib;QtNetwork4.lib;QtScript4.lib;QtWebKit4.lib;QtXmlPatterns4.lib;QtDeclarative4.lib;phonon4.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>xcopy /Y /I /R $(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll $(TargetDir)</Command>
+      <Command>xcopy /Y /I /R "$(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll" "$(TargetDir)"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

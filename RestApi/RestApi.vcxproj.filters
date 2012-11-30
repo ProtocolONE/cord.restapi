@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CommandBase.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameNetAuthBase.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_getcsserverlist.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetFriendsByGame.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetLicense.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetMw2ServerList.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetProfile.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_gettoken.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetUserServiceAccount.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_RegistryCredentialStorage.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_RequestBase.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_RestApiManager.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_SaveMainInfo.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_SetGnaInstallStep.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_setuseractivity.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_UserGetProfileResponse.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_UserServiceAccountResponse.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_ValidateMainInfo.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_CommandBase.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GameNetAuthBase.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_getcsserverlist.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GetFriendsByGame.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GetLicense.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GetMw2ServerList.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GetProfile.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_gettoken.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GetUserServiceAccount.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_RegistryCredentialStorage.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_RequestBase.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_RestApiManager.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_SaveMainInfo.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_SetGnaInstallStep.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_setuseractivity.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_UserGetProfileResponse.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_UserServiceAccountResponse.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_ValidateMainInfo.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Commands\Social\GetFriendsByGame.cpp" />
+    <ClCompile Include="src\Commands\User\GetProfile.cpp" />
+    <ClCompile Include="src\Commands\User\Response\UserGetProfileResponse.cpp" />
+    <ClCompile Include="src\Commands\User\SaveMainInfo.cpp" />
+    <ClCompile Include="src\Commands\Games\Response\Mw2ServerListResponse.cpp" />
+    <ClCompile Include="src\Commands\Games\GetMw2ServerList.cpp" />
+    <ClCompile Include="src\RequestFactory.cpp" />
+    <ClCompile Include="src\Auth\GameNetAuthBase.cpp" />
+    <ClCompile Include="src\Commands\Games\gettoken.cpp" />
+    <ClCompile Include="src\Commands\Games\getcsserverlist.cpp" />
+    <ClCompile Include="src\Auth\RegistryCredentialStorage.cpp" />
+    <ClCompile Include="src\Commands\Service\GetLicense.cpp" />
+    <ClCompile Include="src\Commands\User\GetUserServiceAccount.cpp" />
+    <ClCompile Include="src\Commands\User\Response\UserServiceAccountResponse.cpp" />
+    <ClCompile Include="src\Commands\User\SetUserActivity.cpp" />
+    <ClCompile Include="src\FakeCache.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_AuthManagerViewModel.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetBalance.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_AuthManagerViewModel.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GetBalance.cpp" />
+    <ClCompile Include="src\Commands\User\GetBalance.cpp" />
+    <ClCompile Include="src\Auth\AuthManagerViewModel.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_AuthManager.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GameNetCredential.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GenericAuth.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_HttpCommandRequest.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_UserAgentWebPage.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_VkontakteAuth.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_VkontakteWebView.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_AuthManager.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GameNetCredential.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GenericAuth.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_HttpCommandRequest.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_UserAgentWebPage.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_VkontakteAuth.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_VkontakteWebView.cpp" />
+    <ClCompile Include="src\Auth\AuthManager.cpp" />
+    <ClCompile Include="src\Auth\GenericAuth.cpp" />
+    <ClCompile Include="src\GameNetCridential.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetDetailedServices.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetUserMainInfo.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_UserMainInfoResponse.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GetDetailedServices.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_GetUserMainInfo.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_UserMainInfoResponse.cpp" />
+    <ClCompile Include="src\Commands\User\GetUserMainInfo.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_DetailedServiceInfo.cpp" />
+    <ClCompile Include="GeneratedFiles\Debug\moc_DetailedServicesResponse.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_DetailedServiceInfo.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_DetailedServicesResponse.cpp" />
+    <ClCompile Include="src\HttpCommandRequest.cpp" />
+    <ClCompile Include="src\Commands\Service\Response\DetailedServiceInfo.cpp" />
+    <ClCompile Include="src\Commands\Service\Response\DetailedServicesResponse.cpp" />
+    <ClCompile Include="src\Commands\Service\GetDetailedServices.cpp" />
+    <ClCompile Include="src\Commands\Marketing\SetGnaInstallStep.cpp" />
+    <ClCompile Include="src\RequestBase.cpp" />
+    <ClCompile Include="src\RestApiManager.cpp" />
+    <ClCompile Include="src\CommandBase.cpp" />
+    <ClCompile Include="src\Commands\User\Response\UserMainInfoResponse.cpp" />
+    <ClCompile Include="src\Auth\Vkontakte\VkontakteAuth.cpp" />
+    <ClCompile Include="src\Auth\Vkontakte\VkontakteWebView.cpp" />
+    <ClCompile Include="src\Auth\Vkontakte\UserAgentWebPage.cpp" />
+    <ClCompile Include="src\Commands\User\ValidateMainInfo.cpp" />
+    <ClCompile Include="src\Commands\Games\GetCAInGameBanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetCAInGameBanner.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GetCAInGameBanner.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\RestApi\RequestFactory.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="version.h" />
+    <ClInclude Include="include\RestApi\FakeCache.h" />
+    <ClInclude Include="include\RestApi\CacheInterface.h" />
+    <ClInclude Include="include\RestApi\restapi_global.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RestApi.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="include\RestApi\Commands\Games\getcsserverlist.h" />
+    <CustomBuild Include="include\RestApi\Commands\Games\gettoken.h" />
+    <CustomBuild Include="include\RestApi\Commands\Service\GetLicense.h" />
+    <CustomBuild Include="include\RestApi\RequestBase.h" />
+    <CustomBuild Include="include\RestApi\Auth\GameNetAuthBase.h" />
+    <CustomBuild Include="include\RestApi\Commands\Games\GetMw2ServerList.h" />
+    <CustomBuild Include="include\RestApi\Commands\Social\GetFriendsByGame.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\GetProfile.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\Response\UserGetProfileResponse.h" />
+    <CustomBuild Include="include\RestApi\Commands\Games\Response\Mw2ServerListResponse.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\ValidateMainInfo.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\SaveMainInfo.h" />
+    <CustomBuild Include="include\RestApi\Auth\RegistryCredentialStorage.h" />
+    <CustomBuild Include="include\RestApi\Auth\Vkontakte\UserAgentWebPage.h" />
+    <CustomBuild Include="include\RestApi\Auth\Vkontakte\VkontakteWebView.h" />
+    <CustomBuild Include="include\RestApi\Auth\Vkontakte\VkontakteAuth.h" />
+    <CustomBuild Include="include\RestApi\Auth\AuthManager.h" />
+    <CustomBuild Include="include\RestApi\Auth\AuthManagerViewModel.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\GetBalance.h" />
+    <CustomBuild Include="include\RestApi\Auth\CredentialStorageInterface.h" />
+    <CustomBuild Include="include\RestApi\Commands\Marketing\SetGnaInstallStep.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\setuseractivity.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\Response\UserServiceAccountResponse.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\GetUserServiceAccount.h" />
+    <CustomBuild Include="include\RestApi\Auth\GenericAuth.h" />
+    <CustomBuild Include="include\RestApi\GameNetCredential.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\Response\UserMainInfoResponse.h" />
+    <CustomBuild Include="include\RestApi\Commands\User\GetUserMainInfo.h" />
+    <CustomBuild Include="include\RestApi\HttpCommandRequest.h" />
+    <CustomBuild Include="include\RestApi\Commands\Service\Response\DetailedServiceInfo.h" />
+    <CustomBuild Include="include\RestApi\Commands\Service\Response\DetailedServicesResponse.h" />
+    <CustomBuild Include="include\RestApi\Commands\Service\GetDetailedServices.h" />
+    <CustomBuild Include="include\RestApi\CommandBase.h" />
+    <CustomBuild Include="include\RestApi\RestApiManager.h" />
+    <CustomBuild Include="include\RestApi\Commands\Games\GetCAInGameBanner.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="i18n\RestApi_en.ts" />
+    <None Include="i18n\RestApi_ru.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{5c878083-058c-47b1-af55-145c71b9532d}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{9b6edd15-1711-48e9-ae48-03852dae6ca4}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+  </ItemGroup>
+</Project>

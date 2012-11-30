@@ -49,7 +49,7 @@ TEST_F(GetFriendsByGameTest, successNetworkTest)
   //command.appendParameter("userId", "400007000008137700");
   //command.appendParameter("appKey", "a7996b41768fb5c34c4879245f0d537ea4069338");
   command.appendParameter("userId", "400001000001634860");
-  command.appendParameter("appKey", "c99ebc84714c0c316dd891602dc916d238ef73ed");
+  command.appendParameter("appKey", "4c2f65777d38eb07d32d111061005dcd5a119150");
   execute(&command);
 
   ASSERT_FALSE(command.errorCode());

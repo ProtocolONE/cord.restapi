@@ -17,7 +17,7 @@ class CommandStaticExecuteTest : public ::testing::Test {
 public:
   void SetUp() {
     _credential.setUserId("400001000001634860");
-    _credential.setAppKey("c99ebc84714c0c316dd891602dc916d238ef73ed");
+    _credential.setAppKey("4c2f65777d38eb07d32d111061005dcd5a119150");
     _manager.setCache(&_cache);
     _manager.setCridential(_credential);
     _manager.setRequest(RequestFactory::Http);

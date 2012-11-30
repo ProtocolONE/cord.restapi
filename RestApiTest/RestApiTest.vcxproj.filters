@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TestEventLoopFinisher.cpp" />
+    <ClCompile Include="GeneratedFiles\Release\moc_TestEventLoopFinisher.cpp" />
+    <ClCompile Include="src\CommandExecuteTest.cpp" />
+    <ClCompile Include="src\Commands\Games\GetMw2ServerListTest.cpp" />
+    <ClCompile Include="src\Commands\Social\GetFriendsByGameTest.cpp" />
+    <ClCompile Include="src\Commands\User\SaveMainInfoTest.cpp" />
+    <ClCompile Include="src\Commands\User\UserGetProfileTest.cpp" />
+    <ClCompile Include="src\Commands\User\ValidateMainInfoTest.cpp" />
+    <ClCompile Include="src\RestApiManagerTest.cpp" />
+    <ClCompile Include="src\Commands\User\GetUserServiceAccountTest.cpp" />
+    <ClCompile Include="src\CommandTest.cpp" />
+    <ClCompile Include="src\Commands\Service\ServicegetLicenseTest.cpp" />
+    <ClCompile Include="src\CommandBaseTest.cpp" />
+    <ClCompile Include="src\Commands\Games\csserverlisttest.cpp" />
+    <ClCompile Include="src\Commands\Marketing\SetGnaInstallStepTest.cpp" />
+    <ClCompile Include="src\Auth\GenericAuthTest.cpp" />
+    <ClCompile Include="src\Auth\RegistryCredentialStorageTest.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\Commands\Service\DetailedServiceInfoTest.cpp" />
+    <ClCompile Include="src\Commands\Service\GetDetailedServicesTest.cpp" />
+    <ClCompile Include="src\Commands\User\GetUserMainInfoTest.cpp" />
+    <ClCompile Include="src\Commands\User\SetUserActivityTest.cpp" />
+    <ClCompile Include="src\HttpCommandRequestTest.cpp" />
+    <ClCompile Include="src\TestEventLoopFinisher.cpp" />
+    <ClCompile Include="src\Commands\Games\GetCAInGameBannerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\CommandTest.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="include\TestEventLoopFinisher.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+      <ParseFiles>true</ParseFiles>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -19,7 +19,7 @@ namespace GGS {
 
     CommandBase::CommandBase(QObject *parent/*=0*/) 
       : QObject(parent),
-        _restApiUrl("https://api.gamenet.ru:8443/restapi"),
+        _restApiUrl("https://gnapi.com:8443/restapi"),
         _isRestapiOverrided(false),
         _isAuthRequire(false),
         _isCacheable(false),

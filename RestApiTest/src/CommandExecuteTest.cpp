@@ -21,7 +21,7 @@ public:
     _manager.setCache(&_cache);
     _manager.setCridential(_credential);
     _manager.setRequest(RequestFactory::Http);
-    _manager.setUri("https://api.gamenet.ru/restapi");
+    _manager.setUri("https://gnapi.com/restapi");
 
     RestApiManager::setCommonInstance(&_manager);
   }

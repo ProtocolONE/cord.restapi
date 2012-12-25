@@ -36,7 +36,7 @@ TEST_F(HttpRequestCommandTest, successExecuteTest)
   HttpCommandRequest request;
   QSignalSpy response(&request, SIGNAL(finish(GGS::RestApi::CommandBase::CommandResults, QString)));
 
-  execute(request, QUrl("http://api.gamenet.dev/restapi"));
+  execute(request, QUrl("http://gnapi.com/restapi"));
 
   ASSERT_EQ(1, response.count());
 

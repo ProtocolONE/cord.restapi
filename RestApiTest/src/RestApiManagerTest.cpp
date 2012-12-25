@@ -22,7 +22,7 @@ public:
   {
     manager = new RestApiManager();
     manager->setRequest(RequestFactory::Http);
-    manager->setUri("https://api.gamenet.ru/restapi");
+    manager->setUri("https://gnapi.com/restapi");
   }
 
   virtual void TearDown() 

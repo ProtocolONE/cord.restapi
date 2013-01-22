@@ -50,7 +50,7 @@ namespace GGS {
           SetGnaInstallStep();
           ~SetGnaInstallStep();
           
-          virtual bool SetGnaInstallStep::callMethod(const QDomDocument& response);
+          virtual bool callMethod(const QDomDocument& response);
           bool isSuccess();
 
           void setHwid(const QString& hwid);

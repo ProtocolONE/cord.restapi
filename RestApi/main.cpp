@@ -1,5 +1,4 @@
 #include <RestApi/GameNetCredential>
-#include <RestApi/Auth/GameNetAuthBase>
 #include <RestApi/CommandBase>
 
 #include <Windows.h>
@@ -9,7 +8,6 @@ void registerTypes()
 {
   qRegisterMetaType<GGS::RestApi::CommandBase::Error>("GGS::RestApi::CommandBase::Error");
   qRegisterMetaType<GGS::RestApi::GameNetCredential>("GGS::RestApi::GameNetCredential");                                 
-  qRegisterMetaType<GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes>("GGS::RestApi::Auth::GameNetAuthBase::AuthResultCodes");    
   qRegisterMetaType<GGS::RestApi::CommandBase::CommandResults>("GGS::RestApi::CommandBase::CommandResults");
 }
 

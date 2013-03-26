@@ -12,6 +12,7 @@
 #include <RestApi/RestApiManager>
 
 #include <QtCore/QDebug>
+#include <QtCore/QUrlQuery>
 #include <QtXml/QDomDocument>
 
 namespace GGS {
@@ -166,8 +167,11 @@ namespace GGS {
       QMap<QString, QString>::const_iterator it = this->_commandParameters.begin();
       QMap<QString, QString>::const_iterator end = this->_commandParameters.end();
 
+      QUrlQuery params;
       for(;it != end; ++it)
-        request.addQueryItem(it.key(), it.value());
+        params.addQueryItem(it.key(), it.value());
+
+      request.setQuery(params);
 
       return request;
     }

@@ -16,7 +16,6 @@
     <ClCompile Include="src\CommandBaseTest.cpp" />
     <ClCompile Include="src\Commands\Games\csserverlisttest.cpp" />
     <ClCompile Include="src\Commands\Marketing\SetGnaInstallStepTest.cpp" />
-    <ClCompile Include="src\Auth\GenericAuthTest.cpp" />
     <ClCompile Include="src\Auth\RegistryCredentialStorageTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Commands\Service\DetailedServiceInfoTest.cpp" />

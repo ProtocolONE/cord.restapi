@@ -8,11 +8,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RestApiTest", "RestApiTest\
 		{D41A08DF-6411-4BBF-BE34-E554ABFE0FD1} = {D41A08DF-6411-4BBF-BE34-E554ABFE0FD1}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestQml", "TestQml\TestQml.vcxproj", "{53304982-F138-49E6-8CAD-AD3BEF194ADD}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D41A08DF-6411-4BBF-BE34-E554ABFE0FD1} = {D41A08DF-6411-4BBF-BE34-E554ABFE0FD1}
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1E108567-57D4-41AA-B51A-C3F43FAF3318}"
 	ProjectSection(SolutionItems) = preProject
 		Deploy.props = Deploy.props
@@ -33,15 +28,12 @@ Global
 		{869D979D-48EB-469A-B9C3-2D7EC8998BFE}.Debug|Win32.Build.0 = Debug|Win32
 		{869D979D-48EB-469A-B9C3-2D7EC8998BFE}.Release|Win32.ActiveCfg = Release|Win32
 		{869D979D-48EB-469A-B9C3-2D7EC8998BFE}.Release|Win32.Build.0 = Release|Win32
-		{53304982-F138-49E6-8CAD-AD3BEF194ADD}.Debug|Win32.ActiveCfg = Debug|Win32
-		{53304982-F138-49E6-8CAD-AD3BEF194ADD}.Debug|Win32.Build.0 = Debug|Win32
-		{53304982-F138-49E6-8CAD-AD3BEF194ADD}.Release|Win32.ActiveCfg = Release|Win32
-		{53304982-F138-49E6-8CAD-AD3BEF194ADD}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		Qt5Version = $(DefaultQtVersion)
 		QtVersion = 4.8.2
 	EndGlobalSection
 EndGlobal

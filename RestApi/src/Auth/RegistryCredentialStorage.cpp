@@ -36,9 +36,9 @@ namespace GGS {
       const QString RegistryCredentialStorage::calcHash(const GameNetCredential& credential)
       {
         QCryptographicHash hash(QCryptographicHash::Sha1);
-        hash.addData(credential.userId().toAscii());
-        hash.addData(credential.appKey().toAscii());
-        hash.addData(credential.cookie().toAscii());
+        hash.addData(credential.userId().toLatin1());
+        hash.addData(credential.appKey().toLatin1());
+        hash.addData(credential.cookie().toLatin1());
 
         return QString(hash.result().toHex());
       }

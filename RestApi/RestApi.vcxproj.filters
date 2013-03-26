@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="GeneratedFiles\Debug\moc_CommandBase.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameNetAuthBase.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_getcsserverlist.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetFriendsByGame.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetLicense.cpp" />
@@ -20,7 +19,6 @@
     <ClCompile Include="GeneratedFiles\Debug\moc_UserServiceAccountResponse.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_ValidateMainInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_CommandBase.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_GameNetAuthBase.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_getcsserverlist.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GetFriendsByGame.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GetLicense.cpp" />
@@ -45,7 +43,6 @@
     <ClCompile Include="src\Commands\Games\Response\Mw2ServerListResponse.cpp" />
     <ClCompile Include="src\Commands\Games\GetMw2ServerList.cpp" />
     <ClCompile Include="src\RequestFactory.cpp" />
-    <ClCompile Include="src\Auth\GameNetAuthBase.cpp" />
     <ClCompile Include="src\Commands\Games\gettoken.cpp" />
     <ClCompile Include="src\Commands\Games\getcsserverlist.cpp" />
     <ClCompile Include="src\Auth\RegistryCredentialStorage.cpp" />
@@ -54,28 +51,13 @@
     <ClCompile Include="src\Commands\User\Response\UserServiceAccountResponse.cpp" />
     <ClCompile Include="src\Commands\User\SetUserActivity.cpp" />
     <ClCompile Include="src\FakeCache.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_AuthManagerViewModel.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetBalance.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_AuthManagerViewModel.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GetBalance.cpp" />
     <ClCompile Include="src\Commands\User\GetBalance.cpp" />
-    <ClCompile Include="src\Auth\AuthManagerViewModel.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_AuthManager.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GameNetCredential.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_GenericAuth.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_HttpCommandRequest.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_UserAgentWebPage.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_VkontakteAuth.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_VkontakteWebView.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_AuthManager.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GameNetCredential.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_GenericAuth.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_HttpCommandRequest.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_UserAgentWebPage.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_VkontakteAuth.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_VkontakteWebView.cpp" />
-    <ClCompile Include="src\Auth\AuthManager.cpp" />
-    <ClCompile Include="src\Auth\GenericAuth.cpp" />
     <ClCompile Include="src\GameNetCridential.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetDetailedServices.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetUserMainInfo.cpp" />
@@ -97,9 +79,6 @@
     <ClCompile Include="src\RestApiManager.cpp" />
     <ClCompile Include="src\CommandBase.cpp" />
     <ClCompile Include="src\Commands\User\Response\UserMainInfoResponse.cpp" />
-    <ClCompile Include="src\Auth\Vkontakte\VkontakteAuth.cpp" />
-    <ClCompile Include="src\Auth\Vkontakte\VkontakteWebView.cpp" />
-    <ClCompile Include="src\Auth\Vkontakte\UserAgentWebPage.cpp" />
     <ClCompile Include="src\Commands\User\ValidateMainInfo.cpp" />
     <ClCompile Include="src\Commands\Games\GetCAInGameBanner.cpp">
       <Filter>Source Files</Filter>
@@ -127,6 +106,9 @@
     <ClInclude Include="include\RestApi\FakeCache.h" />
     <ClInclude Include="include\RestApi\CacheInterface.h" />
     <ClInclude Include="include\RestApi\restapi_global.h" />
+    <ClInclude Include="include\RestApi\Auth\CredentialStorageInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RestApi.rc" />
@@ -135,7 +117,6 @@
     <CustomBuild Include="include\RestApi\Commands\Games\getcsserverlist.h" />
     <CustomBuild Include="include\RestApi\Commands\Service\GetLicense.h" />
     <CustomBuild Include="include\RestApi\RequestBase.h" />
-    <CustomBuild Include="include\RestApi\Auth\GameNetAuthBase.h" />
     <CustomBuild Include="include\RestApi\Commands\Games\GetMw2ServerList.h" />
     <CustomBuild Include="include\RestApi\Commands\Social\GetFriendsByGame.h" />
     <CustomBuild Include="include\RestApi\Commands\User\GetProfile.h" />
@@ -144,18 +125,11 @@
     <CustomBuild Include="include\RestApi\Commands\User\ValidateMainInfo.h" />
     <CustomBuild Include="include\RestApi\Commands\User\SaveMainInfo.h" />
     <CustomBuild Include="include\RestApi\Auth\RegistryCredentialStorage.h" />
-    <CustomBuild Include="include\RestApi\Auth\Vkontakte\UserAgentWebPage.h" />
-    <CustomBuild Include="include\RestApi\Auth\Vkontakte\VkontakteWebView.h" />
-    <CustomBuild Include="include\RestApi\Auth\Vkontakte\VkontakteAuth.h" />
-    <CustomBuild Include="include\RestApi\Auth\AuthManager.h" />
-    <CustomBuild Include="include\RestApi\Auth\AuthManagerViewModel.h" />
     <CustomBuild Include="include\RestApi\Commands\User\GetBalance.h" />
-    <CustomBuild Include="include\RestApi\Auth\CredentialStorageInterface.h" />
     <CustomBuild Include="include\RestApi\Commands\Marketing\SetGnaInstallStep.h" />
     <CustomBuild Include="include\RestApi\Commands\User\setuseractivity.h" />
     <CustomBuild Include="include\RestApi\Commands\User\Response\UserServiceAccountResponse.h" />
     <CustomBuild Include="include\RestApi\Commands\User\GetUserServiceAccount.h" />
-    <CustomBuild Include="include\RestApi\Auth\GenericAuth.h" />
     <CustomBuild Include="include\RestApi\GameNetCredential.h" />
     <CustomBuild Include="include\RestApi\Commands\User\Response\UserMainInfoResponse.h" />
     <CustomBuild Include="include\RestApi\Commands\User\GetUserMainInfo.h" />

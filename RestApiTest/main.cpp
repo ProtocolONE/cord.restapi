@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include <RestApi/GameNetCredential.h>
-#include <RestApi/Auth/GameNetAuthBase.h>
 #include <RestApi/CommandBase>
 
 #include <QtCore/QCoreApplication>

@@ -7,8 +7,7 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QEventLoop>
-#include <QtCore/QtConcurrentRun>
-
+#include <QtConcurrentRun>
 #include <QtTest/QSignalSpy>
 
 using GGS::RestApi::RestApiManager;

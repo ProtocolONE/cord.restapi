@@ -44,7 +44,7 @@ namespace GGS {
       //http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.2.1
       QNetworkReply *reply = (this->_requestString.length() < 2048)
         ? this->_networkManager->get(QNetworkRequest(request))
-        : this->_networkManager->post(QNetworkRequest(request), request.encodedQuery());
+        : this->_networkManager->post(QNetworkRequest(request), request.query(QUrl::FullyEncoded).toUtf8());
 
       connect(reply, SIGNAL(finished()), this, SLOT(requestFinish()));
     }

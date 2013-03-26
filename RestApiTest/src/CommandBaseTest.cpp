@@ -3,6 +3,7 @@
 #include <RestApi/CommandBase.h>
 
 #include <QUrl>
+#include <QUrlQuery>
 
 using GGS::RestApi::CommandBase;
 
@@ -37,8 +38,12 @@ TEST_F(CommandbaseTest, urlTest)
   tst.appendParameter("ключ", "зна-че-ни-е");
 
   QUrl excepted(tst.restapiUrl());
-  excepted.addQueryItem("key1", "value1");
-  excepted.addQueryItem("ключ", "зна-че-ни-е");
+  QUrlQuery query;
+  query.addQueryItem("key1", "value1");
+  query.addQueryItem("ключ", "зна-че-ни-е");
+
+  excepted.setQuery(query);
+
 
   ASSERT_EQ(excepted, tst.url());
 }

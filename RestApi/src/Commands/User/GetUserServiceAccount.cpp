@@ -51,6 +51,11 @@ namespace GGS {
         {
           this->appendParameter("serviceId", id);
         }
+
+        void GetUserServiceAccount::setHwid(const QString &hwid)
+        {
+           this->appendParameter("hwid", hwid);
+        }
       }
     }
   }

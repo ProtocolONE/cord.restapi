@@ -32,6 +32,7 @@ namespace GGS {
           ~GetUserServiceAccount();
 
           inline void setServiceId(const QString &id);
+          inline void setHwid(const QString &hwid);
 
           virtual bool callMethod( const QDomDocument& response );
 

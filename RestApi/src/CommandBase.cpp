@@ -162,7 +162,8 @@ namespace GGS {
 
     const QUrl CommandBase::url()
     {
-      QUrl request(this->_restApiUrl);
+      QUrl request;
+      request.setUrl(this->_restApiUrl);
 
       QMap<QString, QString>::const_iterator it = this->_commandParameters.begin();
       QMap<QString, QString>::const_iterator end = this->_commandParameters.end();

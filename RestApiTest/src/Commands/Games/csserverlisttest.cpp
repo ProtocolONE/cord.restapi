@@ -9,14 +9,14 @@ class CSServerListTest : public CommandTest
 {
 };
 
-TEST_F(CSServerListTest, successNetworkTest) 
-{
-  GGS::RestApi::Commands::Games::GetCSServerList serverList;
-  execute(&serverList);
-
-  ASSERT_EQ(0, serverList.errorCode());
-  ASSERT_TRUE(serverList.getServers().size());
-}
+//TEST_F(CSServerListTest, successNetworkTest) 
+//{
+//  GGS::RestApi::Commands::Games::GetCSServerList serverList;
+//  execute(&serverList);
+//
+//  ASSERT_EQ(0, serverList.errorCode());
+//  ASSERT_TRUE(serverList.getServers().size());
+//}
 
 TEST_F(CSServerListTest, successLocalTest) 
 {

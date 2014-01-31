@@ -98,6 +98,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_InstallerStep.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="src\Commands\Service\GetServices.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetServices.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GetServices.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\RestApi\RequestFactory.h" />
@@ -144,6 +153,9 @@
     </CustomBuild>
     <CustomBuild Include="include\RestApi\Commands\Games\gettoken.h" />
     <CustomBuild Include="include\RestApi\Commands\Marketing\InstallerStep.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\RestApi\Commands\Service\GetServices.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

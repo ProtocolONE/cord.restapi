@@ -17,7 +17,7 @@
 namespace GGS {
   namespace RestApi {
 
-    RestApiManager* RestApiManager::_commonInstance;
+    RestApiManager* RestApiManager::_commonInstance = 0;
 
     RestApiManager::RestApiManager(QObject *parent /*= 0*/) 
       : QObject(parent),

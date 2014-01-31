@@ -100,7 +100,7 @@ TEST_F(GetUserMainInfoTest, successNetworkTest)
   ASSERT_EQ("0", response->marketingId());
   ASSERT_EQ("gnaunittest", response->nickname());
   ASSERT_EQ("gnaunittest", response->nametech());
-  ASSERT_EQ("http://www.gamenet.ru/users/gnaunittest", response->profileUrl());
+  ASSERT_EQ("http://gamenet.ru/users/gnaunittest", response->profileUrl());
   ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/small/60/48/63/400001000001634860.jpg", response->smallAvatarUrl());
   ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/medium/60/48/63/400001000001634860.jpg", response->mediumAvatarUrl());
   ASSERT_EQ("http://images.gamenet.ru/pics/user/avatar/large/60/48/63/400001000001634860.jpg", response->largeAvatarUrl());

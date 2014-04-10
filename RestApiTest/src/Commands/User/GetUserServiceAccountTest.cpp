@@ -9,21 +9,6 @@ class GetUserServiceAccountTest : public CommandTest
 {
 };
 
-TEST_F(GetUserServiceAccountTest, successNetworkTest)
-{
-  GetUserServiceAccount command;
-  command.setServiceId("300002010000000000");
-  
-  executeWithAuth(&command);
-
-  UserServiceAccountResponse *response = command.response();
-  ASSERT_EQ(0, command.errorCode());
-  ASSERT_TRUE(response->getLogin().size());
-  ASSERT_TRUE(response->getToken().size());
-  ASSERT_TRUE(response->getStatus().size());
-  ASSERT_TRUE(response->getPassword().size());
-}
-
 TEST_F(GetUserServiceAccountTest, failedNetworkTest)
 {
   GetUserServiceAccount command;

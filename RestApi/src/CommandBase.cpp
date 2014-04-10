@@ -170,8 +170,7 @@ namespace GGS {
 
       QUrlQuery params;
       for(;it != end; ++it)
-        request.addEncodedQueryItem(QUrl::toPercentEncoding(it.key()), QUrl::toPercentEncoding(it.value()));
-        params.addQueryItem(it.key(), it.value());
+        params.addQueryItem(QUrl::toPercentEncoding(it.key()), QUrl::toPercentEncoding(it.value()));
 
       request.setQuery(params);
 

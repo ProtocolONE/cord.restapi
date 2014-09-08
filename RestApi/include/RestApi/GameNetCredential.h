@@ -1,7 +1,7 @@
 /****************************************************************************
 ** This file is a part of Syncopate Limited GameNet Application or it parts.
 **
-** Copyright (�) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
 ** All rights reserved.
 **
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
@@ -11,7 +11,7 @@
 #ifndef _GGS_RESTAPI_GAMENETCREDENTIAL_H_
 #define _GGS_RESTAPI_GAMENETCREDENTIAL_H_
 
-#include "restapi_global.h"
+#include <RestApi/restapi_global.h>
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
@@ -22,26 +22,42 @@ namespace GGS {
     {
       Q_OBJECT
     public:
-      GameNetCredential(void);
-      ~GameNetCredential(void);
+      GameNetCredential();
+      ~GameNetCredential();
       
       GameNetCredential(const GameNetCredential &p);
       GameNetCredential &operator=(const GameNetCredential &p);
+      bool operator==(const GameNetCredential& rhs) const;
 
-      const QString& appKey() const { return _appKey; }
-      void setAppKey(const QString& val) { _appKey = val; }
+      /**
+       * \fn  bool GameNetCredential::isEmpty() const;
+       *
+       * \brief Проверяет заполнена ли структура. Метод проверяет заполнение ТОЛЬКО userId.
+       *        Если необходимо проверка остальных полей, проверяйте их отдельно.
+       *
+       * \author  Ilya Tkachenko
+       * \date  25.09.2014
+       *
+       * \return  true если userId пустой, иначе false.
+       */
 
-      const QString& userId() const { return _userId; }
-      void setUserId(const QString& val) { _userId = val; }
+      bool isEmpty() const;
 
-      const QString& cookie() const { return _cookie; }
-      void setCookie(const QString& val) { _cookie = val; }
+      const QString& appKey() const;
+      void setAppKey(const QString& val);
+
+      const QString& userId() const;
+      void setUserId(const QString& val);
+
+      const QString& cookie() const;
+      void setCookie(const QString& val);
 
     private:
       QString _appKey;
       QString _userId;
       QString _cookie;
     };
+
   }
 }
 #endif // _GGS_RESTAPI_GAMENETCREDENTIAL_H_

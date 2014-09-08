@@ -36,61 +36,27 @@
     <ClCompile Include="GeneratedFiles\Release\moc_UserServiceAccountResponse.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_ValidateMainInfo.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\Commands\Social\GetFriendsByGame.cpp" />
-    <ClCompile Include="src\Commands\User\GetProfile.cpp" />
-    <ClCompile Include="src\Commands\User\Response\UserGetProfileResponse.cpp" />
-    <ClCompile Include="src\Commands\User\SaveMainInfo.cpp" />
-    <ClCompile Include="src\Commands\Games\Response\Mw2ServerListResponse.cpp" />
-    <ClCompile Include="src\Commands\Games\GetMw2ServerList.cpp" />
-    <ClCompile Include="src\RequestFactory.cpp" />
-    <ClCompile Include="src\Commands\Games\gettoken.cpp" />
-    <ClCompile Include="src\Commands\Games\getcsserverlist.cpp" />
-    <ClCompile Include="src\Auth\RegistryCredentialStorage.cpp" />
-    <ClCompile Include="src\Commands\Service\GetLicense.cpp" />
-    <ClCompile Include="src\Commands\User\GetUserServiceAccount.cpp" />
-    <ClCompile Include="src\Commands\User\Response\UserServiceAccountResponse.cpp" />
-    <ClCompile Include="src\Commands\User\SetUserActivity.cpp" />
-    <ClCompile Include="src\FakeCache.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetBalance.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GetBalance.cpp" />
-    <ClCompile Include="src\Commands\User\GetBalance.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GameNetCredential.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_HttpCommandRequest.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GameNetCredential.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_HttpCommandRequest.cpp" />
-    <ClCompile Include="src\GameNetCridential.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetDetailedServices.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetUserMainInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_UserMainInfoResponse.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GetDetailedServices.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GetUserMainInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_UserMainInfoResponse.cpp" />
-    <ClCompile Include="src\Commands\User\GetUserMainInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_DetailedServiceInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_DetailedServicesResponse.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_DetailedServiceInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_DetailedServicesResponse.cpp" />
-    <ClCompile Include="src\HttpCommandRequest.cpp" />
-    <ClCompile Include="src\Commands\Service\Response\DetailedServiceInfo.cpp" />
-    <ClCompile Include="src\Commands\Service\Response\DetailedServicesResponse.cpp" />
-    <ClCompile Include="src\Commands\Service\GetDetailedServices.cpp" />
-    <ClCompile Include="src\Commands\Marketing\SetGnaInstallStep.cpp" />
-    <ClCompile Include="src\RequestBase.cpp" />
-    <ClCompile Include="src\RestApiManager.cpp" />
-    <ClCompile Include="src\CommandBase.cpp" />
-    <ClCompile Include="src\Commands\User\Response\UserMainInfoResponse.cpp" />
-    <ClCompile Include="src\Commands\User\ValidateMainInfo.cpp" />
-    <ClCompile Include="src\Commands\Games\GetCAInGameBanner.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GetCAInGameBanner.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GetCAInGameBanner.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\Marketing\InstallerStep.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_InstallerStep.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -98,14 +64,50 @@
     <ClCompile Include="GeneratedFiles\Release\moc_InstallerStep.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="src\Commands\Service\GetServices.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GetServices.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GetServices.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\CommandBase.cpp" />
+    <ClCompile Include="src\RestApi\RestApiManager.cpp" />
+    <ClCompile Include="src\RestApi\FakeCache.cpp" />
+    <ClCompile Include="src\RestApi\HttpCommandRequest.cpp" />
+    <ClCompile Include="src\RestApi\RequestBase.cpp" />
+    <ClCompile Include="src\RestApi\RequestFactory.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Games\Response\Mw2ServerListResponse.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Games\GetCAInGameBanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Commands\Games\getcsserverlist.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Games\GetMw2ServerList.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Games\gettoken.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Marketing\InstallerStep.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Commands\Marketing\SetGnaInstallStep.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Service\Response\DetailedServiceInfo.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Service\Response\DetailedServicesResponse.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Service\GetDetailedServices.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Service\GetLicense.cpp" />
+    <ClCompile Include="src\RestApi\Commands\Service\GetServices.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Commands\Social\GetFriendsByGame.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\Response\UserGetProfileResponse.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\Response\UserMainInfoResponse.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\Response\UserServiceAccountResponse.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\GetBalance.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\GetProfile.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\GetUserMainInfo.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\GetUserServiceAccount.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\SaveMainInfo.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\SetUserActivity.cpp" />
+    <ClCompile Include="src\RestApi\Commands\User\ValidateMainInfo.cpp" />
+    <ClCompile Include="src\RestApi\Auth\RegistryCredentialStorage.cpp" />
+    <ClCompile Include="src\RestApi\GameNetCredential.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

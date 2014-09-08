@@ -38,9 +38,6 @@ namespace GGS {
 
           Response::UserServiceAccountResponse* response() { return this->_response; }
 
-        signals:
-          void result();
-
         private:
           Response::UserServiceAccountResponse* _response;
         };

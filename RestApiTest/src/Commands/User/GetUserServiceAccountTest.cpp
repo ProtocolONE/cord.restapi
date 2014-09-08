@@ -21,7 +21,7 @@ TEST_F(GetUserServiceAccountTest, failedNetworkTest)
   ASSERT_NE(0, command.errorCode());
 }
 
-TEST_F(GetUserServiceAccountTest, successNetworkSaltTest)
+TEST_F(GetUserServiceAccountTest, DISABLED_successNetworkSaltTest)
 {
   GetUserServiceAccount command;
   QString salt("WjjRnOuelLO/D7Ys+rIVelaGCIiuStBxr2yL4Ut9TFk=");

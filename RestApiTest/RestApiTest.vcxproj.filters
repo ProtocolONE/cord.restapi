@@ -20,7 +20,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\Commands\Service\DetailedServiceInfoTest.cpp" />
     <ClCompile Include="src\Commands\Service\GetDetailedServicesTest.cpp" />
-    <ClCompile Include="src\Commands\User\GetUserMainInfoTest.cpp" />
     <ClCompile Include="src\Commands\User\SetUserActivityTest.cpp" />
     <ClCompile Include="src\HttpCommandRequestTest.cpp" />
     <ClCompile Include="src\TestEventLoopFinisher.cpp" />

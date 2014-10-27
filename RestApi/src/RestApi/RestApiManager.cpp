@@ -48,8 +48,9 @@ namespace GGS {
       connect(request, SIGNAL(finish(GGS::RestApi::CommandBase::CommandResults, QString)),
         command, SLOT(resultCallback(GGS::RestApi::CommandBase::CommandResults, QString)));
 
-      QObject::connect(command, SIGNAL(genericError(GGS::RestApi::CommandBase::Error, QString)), 
-        this, SIGNAL(genericError(GGS::RestApi::CommandBase::Error, QString)), Qt::UniqueConnection);
+      QObject::connect(command, &CommandBase::genericError,
+        this, &RestApiManager::onGenericError, Qt::UniqueConnection);
+
       QMetaObject::invokeMethod(request, 
                                 "execute", 
                                 Qt::QueuedConnection, 
@@ -93,6 +94,16 @@ namespace GGS {
       return RestApiManager::_commonInstance;
     }
 
+    void RestApiManager::onGenericError(GGS::RestApi::CommandBase::Error error, QString message)
+    {
+      emit this->genericError(error, message);
+
+      CommandBase *command = qobject_cast<CommandBase*>(QObject::sender());
+      if (!command)
+        return;
+
+      emit this->genericErrorEx(error, message, command);
+    }
 
   }
 }

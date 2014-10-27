@@ -62,9 +62,13 @@ namespace GGS {
       static RestApiManager* commonInstance();
 
     signals:
+      __declspec(deprecated("QGNA-1011 migrate to genericErrorEx and rename it to genericError"))
       void genericError(GGS::RestApi::CommandBase::Error, QString message);
+      void genericErrorEx(GGS::RestApi::CommandBase::Error, QString message, CommandBase *command);
 
     private:
+      void onGenericError(GGS::RestApi::CommandBase::Error error, QString message);
+
       RequestFactory _factory;
       RequestFactory::RequestType _type;
       QString _uri;

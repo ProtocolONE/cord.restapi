@@ -26,6 +26,9 @@
     <ClCompile Include="src\Commands\Games\GetCAInGameBannerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Commands\Service\GetHostsTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\CommandTest.h" />

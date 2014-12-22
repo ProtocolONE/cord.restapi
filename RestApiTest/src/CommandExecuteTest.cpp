@@ -1,6 +1,6 @@
 #include <RestApi/RestApiManager>
 #include <RestApi/CommandBase>
-#include <RestApi/Commands/User/GetUserMainInfo>
+#include <RestApi/Commands/User/GetProfile>
 #include <RestApi/GameNetCredential>
 #include <RestApi/FakeCache>
 
@@ -51,16 +51,20 @@ public:
 
 TEST_F(CommandStaticExecuteTest, GetProfileTest)
 {
-  GGS::RestApi::Commands::User::GetUserMainInfo command;
+  GGS::RestApi::Commands::User::GetProfile command;
+  command.setProfileId(QStringList("400001000001634860"));
   this->executeCommand(&command);
   ASSERT_EQ(CommandBase::NoError, _lastResult);
-  ASSERT_EQ(QString("gnaunittest"), command.response()->nickname());
-  ASSERT_EQ(QString("gnaunittest"), command.response()->nametech());
+
+  GGS::RestApi::Commands::User::Response::UserGetProfileResponse profile = command.response()["400001000001634860"];
+
+  ASSERT_EQ(QString("gnaunittest"), profile.nickname());
+  ASSERT_EQ(QString("gnaunittest"), profile.nametech());
 }
 
 TEST_F(CommandStaticExecuteTest, GenericErrorTest)
 {
-  GGS::RestApi::Commands::User::GetUserMainInfo command;
+  GGS::RestApi::Commands::User::GetProfile command;
   _credential.setAppKey("fakeAppKeyHehe");
   _manager.setCridential(_credential);
   QSignalSpy errorSpy(&_manager, SIGNAL(genericError(GGS::RestApi::CommandBase::Error, QString)));
@@ -70,7 +74,7 @@ TEST_F(CommandStaticExecuteTest, GenericErrorTest)
   this->executeCommand(&command);
   ASSERT_EQ(CommandBase::GenericError, _lastResult);
 
-  GGS::RestApi::Commands::User::GetUserMainInfo command2;
+  GGS::RestApi::Commands::User::GetProfile command2;
 
   this->executeCommand(&command2);
   ASSERT_EQ(CommandBase::GenericError, _lastResult);

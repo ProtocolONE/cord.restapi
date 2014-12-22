@@ -101,6 +101,7 @@
     </ClCompile>
     <ClCompile Include="src\CommandExecuteTest.cpp" />
     <ClCompile Include="src\Commands\Games\GetCAInGameBannerTest.cpp" />
+    <ClCompile Include="src\Commands\Service\GetHostsTest.cpp" />
     <ClCompile Include="src\Commands\Games\GetMw2ServerListTest.cpp" />
     <ClCompile Include="src\Commands\Social\GetFriendsByGameTest.cpp" />
     <ClCompile Include="src\Commands\User\SaveMainInfoTest.cpp" />

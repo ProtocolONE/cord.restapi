@@ -100,13 +100,21 @@
     <ClCompile Include="src\RestApi\Commands\User\Response\UserServiceAccountResponse.cpp" />
     <ClCompile Include="src\RestApi\Commands\User\GetBalance.cpp" />
     <ClCompile Include="src\RestApi\Commands\User\GetProfile.cpp" />
-    <ClCompile Include="src\RestApi\Commands\User\GetUserMainInfo.cpp" />
     <ClCompile Include="src\RestApi\Commands\User\GetUserServiceAccount.cpp" />
     <ClCompile Include="src\RestApi\Commands\User\SaveMainInfo.cpp" />
     <ClCompile Include="src\RestApi\Commands\User\SetUserActivity.cpp" />
     <ClCompile Include="src\RestApi\Commands\User\ValidateMainInfo.cpp" />
     <ClCompile Include="src\RestApi\Auth\RegistryCredentialStorage.cpp" />
     <ClCompile Include="src\RestApi\GameNetCredential.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetHosts.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GetHosts.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Commands\Service\GetHosts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,7 +151,6 @@
     <CustomBuild Include="include\RestApi\Commands\User\GetUserServiceAccount.h" />
     <CustomBuild Include="include\RestApi\GameNetCredential.h" />
     <CustomBuild Include="include\RestApi\Commands\User\Response\UserMainInfoResponse.h" />
-    <CustomBuild Include="include\RestApi\Commands\User\GetUserMainInfo.h" />
     <CustomBuild Include="include\RestApi\HttpCommandRequest.h" />
     <CustomBuild Include="include\RestApi\Commands\Service\Response\DetailedServiceInfo.h" />
     <CustomBuild Include="include\RestApi\Commands\Service\Response\DetailedServicesResponse.h" />
@@ -158,6 +165,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="include\RestApi\Commands\Service\GetServices.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\RestApi\Commands\Service\GetHosts.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

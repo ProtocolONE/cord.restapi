@@ -42,9 +42,14 @@ namespace GGS {
       }
 
       //http://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.2.1
-      QNetworkReply *reply = (this->_requestString.length() < 2048)
-        ? this->_networkManager->get(QNetworkRequest(request))
-        : this->_networkManager->post(QNetworkRequest(request), request.query(QUrl::FullyEncoded).toUtf8());
+      QNetworkReply *reply;
+      if (this->_requestString.length() < 2048) {
+        reply = this->_networkManager->get(QNetworkRequest(request));
+      } else {
+        QNetworkRequest postRequest(request);
+        postRequest.setHeader(QNetworkRequest::ContentTypeHeader, QLatin1String("application/x-www-form-urlencoded"));
+        reply = this->_networkManager->post(postRequest, request.query(QUrl::FullyEncoded).toUtf8());
+      }
 
       connect(reply, SIGNAL(finished()), this, SLOT(requestFinish()));
     }

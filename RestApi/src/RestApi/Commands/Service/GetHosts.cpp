@@ -36,6 +36,7 @@ namespace GGS {
             QDomElement serviceIdElement = row.firstChildElement("serviceId");
             QDomElement gameIdElement = row.firstChildElement("gameId");
             QDomElement folderNameElement = row.firstChildElement("folderName");
+            QDomElement nameElement = row.firstChildElement("name");
             QDomElement torrentUrlElement = row.firstChildElement("torrentUrl");
             QDomElement hasDownloadPathElement = row.firstChildElement("hasDownloadPath");
             QDomElement isBrowserGameElement = row.firstChildElement("isBrowserGame");
@@ -52,6 +53,7 @@ namespace GGS {
             serviceMap["serviceId"] = serviceIdElement.text();
             serviceMap["gameId"] = gameIdElement.text();
             serviceMap["folderName"] = folderNameElement.text();
+            serviceMap["name"] = nameElement.text();
             serviceMap["torrentUrl"] = torrentUrlElement.text();
             serviceMap["hasDownloadPath"] = hasDownloadPathElement.text();
             serviceMap["isBrowserGame"] = isBrowserGameElement.text();

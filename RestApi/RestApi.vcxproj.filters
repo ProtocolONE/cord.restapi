@@ -43,10 +43,8 @@
     <ClCompile Include="GeneratedFiles\Release\moc_GameNetCredential.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_HttpCommandRequest.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_GetDetailedServices.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_GetUserMainInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_UserMainInfoResponse.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_GetDetailedServices.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_GetUserMainInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Release\moc_UserMainInfoResponse.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_DetailedServiceInfo.cpp" />
     <ClCompile Include="GeneratedFiles\Debug\moc_DetailedServicesResponse.cpp" />

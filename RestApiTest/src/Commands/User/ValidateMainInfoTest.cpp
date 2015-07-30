@@ -16,6 +16,6 @@ TEST_F(ValidateMainInfoTest, successNetworkTest)
 
   //Мы не можем сменить имя, поэтому специально проверяем что нам вернули
   //верное сообщение об ошибка
-  ASSERT_EQ(119, command.errorCode());
+  ASSERT_EQ(115, command.errorCode());
   ASSERT_NE("", command.errorMessage());
 }

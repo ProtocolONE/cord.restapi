@@ -168,6 +168,7 @@ namespace GGS {
         PakkanenVkVerification = 602,
         PakkanenPhoneVerification = 603,
         PakkanenVkPhoneVerification = 604,
+        PakkanenGeoIpBlocked = 605,
       };
 
       Q_DECLARE_FLAGS(RestApiErrors, Error)

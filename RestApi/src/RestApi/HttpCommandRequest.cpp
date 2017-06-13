@@ -12,6 +12,7 @@
 #include <RestApi/CommandBase.h>
 
 #include <QtCore/QDebug>
+
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
 
@@ -19,11 +20,11 @@ namespace GGS {
   namespace RestApi {
 
     HttpCommandRequest::HttpCommandRequest(QObject *parent) 
-      : RequestBase(parent),
-        _networkManager(new QNetworkAccessManager(this))
+      : RequestBase(parent)
+      , _networkManager(new QNetworkAccessManager(this))
     {
-      connect(this->_networkManager, SIGNAL(sslErrors(QNetworkReply*, const QList<QSslError>&)), 
-        this, SLOT(sslErrors(QNetworkReply *, const QList<QSslError>&)));
+      connect(this->_networkManager, &QNetworkAccessManager::sslErrors,
+        this, &HttpCommandRequest::sslErrors);
     }
 
     HttpCommandRequest::~HttpCommandRequest()
@@ -36,7 +37,7 @@ namespace GGS {
       this->_requestString = request.toString();
       if (this->_cache && this->_cache->tryGet(this->_requestString, response)) {
           if (response.size()) {
-            emit finish(CommandBase::NoError, response);
+            emit this->finish(CommandBase::NoError, response);
             return;
           }
       }
@@ -51,7 +52,7 @@ namespace GGS {
         reply = this->_networkManager->post(postRequest, request.query(QUrl::FullyEncoded).toUtf8());
       }
 
-      connect(reply, SIGNAL(finished()), this, SLOT(requestFinish()));
+      connect(reply, &QNetworkReply::finished, this, &HttpCommandRequest::requestFinish);
     }
 
     void HttpCommandRequest::requestFinish()
@@ -61,6 +62,13 @@ namespace GGS {
 
       QString response = QString::fromUtf8(reply->readAll());
       QNetworkReply::NetworkError error = reply->error();
+
+      if (this->_debugLogEnabled) {
+        qDebug()
+          << "Request  " << this->_requestString << "\n"
+          << "NetworkError" << static_cast<quint32>(error)
+          << "Response " << response << "\n";
+      }
 
       CommandBase::CommandResults result;
 

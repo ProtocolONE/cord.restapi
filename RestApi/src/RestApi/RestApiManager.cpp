@@ -1,7 +1,7 @@
 /****************************************************************************
 ** This file is a part of Syncopate Limited GameNet Application or it parts.
 **
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** Copyright (©) 2011 - 2017, Syncopate Limited and/or affiliates. 
 ** All rights reserved.
 **
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
@@ -17,16 +17,19 @@
 namespace GGS {
   namespace RestApi {
 
-    RestApiManager* RestApiManager::_commonInstance = 0;
+    RestApiManager* RestApiManager::_commonInstance = nullptr;
 
     RestApiManager::RestApiManager(QObject *parent /*= 0*/) 
-      : QObject(parent),
-        _cache(0),
-        _uri("https://gnapi.com:8443/restapi") 
+      : QObject(parent)
+      , _type(RequestFactory::Http)
+      , _cache(nullptr)
+      , _uri("https://gnapi.com:8443/restapi") 
+      , _debugLogEnabled(false)
     {
     }
 
-    RestApiManager::~RestApiManager() {
+    RestApiManager::~RestApiManager()
+    {
     }
 
     void RestApiManager::execute(CommandBase *command)
@@ -45,8 +48,9 @@ namespace GGS {
       if (this->_cache) 
         request->setCache(this->_cache);
 
-      connect(request, SIGNAL(finish(GGS::RestApi::CommandBase::CommandResults, QString)),
-        command, SLOT(resultCallback(GGS::RestApi::CommandBase::CommandResults, QString)));
+      request->setDebugLogEnabled(this->_debugLogEnabled);
+
+      QObject::connect(request, &RequestBase::finish, command, &CommandBase::resultCallback);
 
       QObject::connect(command, &CommandBase::genericError,
         this, &RestApiManager::onGenericError, Qt::UniqueConnection);
@@ -81,6 +85,11 @@ namespace GGS {
     {
       Q_CHECK_PTR(cache);
       this->_cache = cache;
+    }
+
+    void RestApiManager::setDebugLogEnabled(bool value)
+    {
+      this->_debugLogEnabled = value;
     }
 
     void RestApiManager::setCommonInstance(RestApiManager *instance)

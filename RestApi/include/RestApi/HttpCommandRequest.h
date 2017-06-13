@@ -1,15 +1,14 @@
 /****************************************************************************
 ** This file is a part of Syncopate Limited GameNet Application or it parts.
 **
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
+** Copyright (©) 2011 - 2017, Syncopate Limited and/or affiliates. 
 ** All rights reserved.
 **
 ** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#ifndef _GGS_RESTAPI_HTTP_COMMAND_REQUEST_H_
-#define _GGS_RESTAPI_HTTP_COMMAND_REQUEST_H_
+#pragma once
 
 #include <RestApi/restapi_global.h>
 #include <RestApi/RequestBase.h>
@@ -38,6 +37,7 @@ namespace GGS {
         \param request The request.
       */
       void execute(const QUrl &request);
+
     private slots:
       void requestFinish();
       void sslErrors(QNetworkReply *reply, const QList<QSslError> &errors);
@@ -45,11 +45,8 @@ namespace GGS {
     private:
       QPointer<QNetworkAccessManager> _networkManager;
 
-
       /*!< Используется для удобства отладки, чтобы было легко понять какая комманда упала. */
       QString _requestString;
     };
   }
 }
-
-#endif // _GGS_RESTAPI_HTTP_COMMAND_REQUEST_H_

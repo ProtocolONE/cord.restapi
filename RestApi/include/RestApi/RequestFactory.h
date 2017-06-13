@@ -8,8 +8,7 @@
 ** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 ****************************************************************************/
 
-#ifndef _GGS_RESTAPI_REQUESTFACTORY_H_
-#define _GGS_RESTAPI_REQUESTFACTORY_H_
+#pragma once
 
 #include <RestApi/restapi_global.h>
 
@@ -31,4 +30,3 @@ namespace GGS {
     };
   }
 }
-#endif //_GGS_RESTAPI_REQUESTFACTORY_H_

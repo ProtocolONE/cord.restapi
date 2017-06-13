@@ -14,7 +14,9 @@ namespace GGS {
   namespace RestApi {
 
     RequestBase::RequestBase(QObject *parent /*= 0*/)
-      : _cache(0)
+      : QObject(parent)
+      , _cache(nullptr)
+      , _debugLogEnabled(false)
     {
     }
 
@@ -26,5 +28,11 @@ namespace GGS {
     {
       this->_cache = cache;
     }
+
+    void RequestBase::setDebugLogEnabled(bool value)
+    {
+      this->_debugLogEnabled = value;
+    }
+
   }
 }

@@ -115,6 +115,15 @@
     <ClCompile Include="src\RestApi\Commands\Service\GetHosts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GetRedirectToken.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GetRedirectToken.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Auth\GetRedirectToken.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\RestApi\RequestFactory.h" />
@@ -166,6 +175,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="include\RestApi\Commands\Service\GetHosts.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\RestApi\Auth\GetRedirectToken.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

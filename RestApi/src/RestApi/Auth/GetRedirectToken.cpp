@@ -1,7 +1,7 @@
 
 #include <RestApi/Auth/GetRedirectToken.h>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     namespace Auth {
 

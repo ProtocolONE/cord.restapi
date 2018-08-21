@@ -1,7 +1,7 @@
 #include <CommandTest.h>
 #include <RestApi/Commands/Service/GetLicense.h>
 
-using GGS::RestApi::Commands::Service::GetLicense;
+using P1::RestApi::Commands::Service::GetLicense;
 
 class GetLicenseTest : public CommandTest
 {
@@ -17,7 +17,7 @@ TEST_F(GetLicenseTest, successNetworkTest)
 
   QString responseHash = command.responseHash();
 
-  GGS::RestApi::Commands::Service::GetLicense command2("300002010000000000");
+  P1::RestApi::Commands::Service::GetLicense command2("300002010000000000");
   command2.setHash(responseHash);
 
   execute(&command2);

@@ -1,22 +1,11 @@
-/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
-
-#ifndef _GGS_RESTAPI_COMMANDS_USER_RESPONSE_USERSERVICEACCOUNTRESPONSE_H_
-#define _GGS_RESTAPI_COMMANDS_USER_RESPONSE_USERSERVICEACCOUNTRESPONSE_H_
+#pragma once
 
 #include <RestApi/restapi_global.h>
 
 #include <QObject>
 #include <QString>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     namespace Commands {
       namespace User {
@@ -25,18 +14,18 @@ namespace GGS {
           class RESTAPI_EXPORT UserServiceAccountResponse: public QObject
           {
               Q_OBJECT
-		  public:
-            void setLogin(const QString login) { this->_login = login; }
-            const QString getLogin() { return this->_login; }
+		      public:
+            void setLogin(const QString login);
+            const QString getLogin();
 
-            void setPassword(const QString password) { this->_password = password; }
-            const QString getPassword() { return this->_password; }
+            void setPassword(const QString password);
+            const QString getPassword();
 
-            void setToken(const QString token) { this->_token = token; }
-            const QString getToken() { return this->_token; }
+            void setToken(const QString token);
+            const QString getToken();
 
-            void setStatus(const QString status) { this->_status = status; }
-            const QString getStatus() { return this->_status; }
+            void setStatus(const QString status);
+            const QString getStatus();
 
           private:
             QString _login;
@@ -49,5 +38,3 @@ namespace GGS {
     }
   }
 }
-
-#endif

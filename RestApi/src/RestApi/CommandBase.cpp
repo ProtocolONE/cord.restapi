@@ -1,21 +1,11 @@
-/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (�) 2011 - 2012, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
-
 #include <RestApi/CommandBase.h>
-#include <RestApi/RestApiManager>
+#include <RestApi/RestApiManager.h>
 
 #include <QtCore/QDebug>
 #include <QtCore/QUrlQuery>
 #include <QtXml/QDomDocument>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
 
     CommandBase::CommandBase(QObject *parent/*=0*/) 
@@ -54,7 +44,7 @@ namespace GGS {
       return &this->_commandParameters;
     }
 
-    void CommandBase::resultCallback(GGS::RestApi::CommandBase::CommandResults commandResultCode, QString response) 
+    void CommandBase::resultCallback(P1::RestApi::CommandBase::CommandResults commandResultCode, QString response) 
     {  
       QObject::sender()->deleteLater();
 

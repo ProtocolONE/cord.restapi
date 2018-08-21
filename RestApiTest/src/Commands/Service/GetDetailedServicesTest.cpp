@@ -1,7 +1,7 @@
 #include <RestApi/CommandBase.h>
 #include <RestApi/Commands/Service/GetDetailedServices.h>
 
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 class GetDetailedServicesTest : public ::testing::Test{
 public:
@@ -191,10 +191,10 @@ public:
 
 TEST_F(GetDetailedServicesTest, ParserTest)
 {
-  using GGS::RestApi::Commands::Service::GetDetailedServices;
-  using GGS::RestApi::CommandBase;
-  using GGS::RestApi::Commands::Service::Response::DetailedServicesResponse;
-  using GGS::RestApi::Commands::Service::Response::DetailedServiceInfo;
+  using P1::RestApi::Commands::Service::GetDetailedServices;
+  using P1::RestApi::CommandBase;
+  using P1::RestApi::Commands::Service::Response::DetailedServicesResponse;
+  using P1::RestApi::Commands::Service::Response::DetailedServiceInfo;
 
   GetDetailedServices *cmd = new GetDetailedServices();
 

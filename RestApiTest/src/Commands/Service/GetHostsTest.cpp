@@ -1,7 +1,7 @@
 #include <CommandTest.h>
 #include <RestApi/Commands/Service/GetHosts.h>
 
-using GGS::RestApi::Commands::Service::GetHosts;
+using P1::RestApi::Commands::Service::GetHosts;
 
 class GetHostsTest : public CommandTest
 {
@@ -9,7 +9,7 @@ class GetHostsTest : public CommandTest
 
 TEST_F(GetHostsTest, successNetworkTest)
 {
-  GGS::RestApi::Commands::Service::GetHosts cmd;
+  P1::RestApi::Commands::Service::GetHosts cmd;
 
   execute(&cmd);
 

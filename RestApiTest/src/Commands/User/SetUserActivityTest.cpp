@@ -1,7 +1,7 @@
 #include <CommandTest.h>
 #include <RestApi/Commands/User/SetUserActivity.h>
 
-using GGS::RestApi::Commands::User::SetUserActivity;
+using P1::RestApi::Commands::User::SetUserActivity;
 
 class SetUserActivityTest : public CommandTest
 {

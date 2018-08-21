@@ -3,8 +3,8 @@
 
 #include <gtest/gtest.h>
 
-using GGS::RestApi::Auth::RegistryCredentialStorage;
-using GGS::RestApi::GameNetCredential;
+using P1::RestApi::Auth::RegistryCredentialStorage;
+using P1::RestApi::GameNetCredential;
 
 class RegistryCredentialStorageTest : public ::testing::Test
 {
@@ -48,7 +48,7 @@ TEST_F(RegistryCredentialStorageTest, saveLoad)
 
 TEST_F(RegistryCredentialStorageTest, saveLoadCustomPath)
 {
-  RegistryCredentialStorage storage("HKEY_CURRENT_USER\\Software\\GGS\\SomePath\\");
+  RegistryCredentialStorage storage("HKEY_CURRENT_USER\\Software\\P1\\SomePath\\");
   storage.reset();
 
   basicSaveLoadTest(storage);

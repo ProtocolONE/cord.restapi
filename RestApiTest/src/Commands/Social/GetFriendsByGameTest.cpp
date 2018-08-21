@@ -1,7 +1,7 @@
 ﻿#include <CommandTest.h>
 #include <RestApi/Commands/Social/GetFriendsByGame.h>
 
-using namespace GGS::RestApi::Commands::Social;
+using namespace P1::RestApi::Commands::Social;
 
 class GetFriendsByGameTest : public CommandTest
 {
@@ -58,7 +58,7 @@ TEST_F(GetFriendsByGameTest, successNetworkTest)
 TEST_F(GetFriendsByGameTest, responseTest)
 {
   GetFriendsByGame command;
-  command.resultCallback(GGS::RestApi::CommandBase::NoError, GetFriendsByGameTestResponse);
+  command.resultCallback(P1::RestApi::CommandBase::NoError, GetFriendsByGameTestResponse);
   
   FriendsInGamesMap response = command.response();
   

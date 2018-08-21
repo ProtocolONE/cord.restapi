@@ -2,8 +2,8 @@
 #include <RestApi/Commands/User/Response/UserGetProfileResponse.h>
 #include <RestApi/Commands/User/GetProfile.h>
 
-using GGS::RestApi::Commands::User::GetProfile;
-using GGS::RestApi::Commands::User::Response::UserGetProfileResponse;
+using P1::RestApi::Commands::User::GetProfile;
+using P1::RestApi::Commands::User::Response::UserGetProfileResponse;
 
 class UserGetProfileTest : public CommandTest
 {
@@ -79,9 +79,9 @@ TEST_F(UserGetProfileTest, successNetworkTest)
 TEST_F(UserGetProfileTest, responseTest)
 {
   GetProfile command;
-  command.resultCallback(GGS::RestApi::CommandBase::NoError, userGetProfileTestQueryResponse);
+  command.resultCallback(P1::RestApi::CommandBase::NoError, userGetProfileTestQueryResponse);
   
-  GGS::RestApi::Commands::User::GetProfileMap response = command.response();
+  P1::RestApi::Commands::User::GetProfileMap response = command.response();
   ASSERT_EQ(response.count(), 2);
   
   Q_FOREACH(UserGetProfileResponse userProfile, response.values()){

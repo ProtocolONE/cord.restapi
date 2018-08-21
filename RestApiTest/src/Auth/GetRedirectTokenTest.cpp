@@ -1,7 +1,7 @@
 #include <CommandTest.h>
 #include <RestApi/Auth/GetRedirectToken.h>
 
-using namespace GGS::RestApi::Auth;
+using namespace P1::RestApi::Auth;
 
 class GetRedirectTokenTest : public CommandTest
 {

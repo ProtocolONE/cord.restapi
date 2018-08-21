@@ -1,15 +1,4 @@
-/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
-
-#ifndef _GGS_RESTAPI_COMMAND_BASE_H_
-#define _GGS_RESTAPI_COMMAND_BASE_H_
+#pragma once
 
 #include <RestApi/restapi_global.h>
 
@@ -21,12 +10,12 @@
 
 class QDomDocument;
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     class RestApiManager;
     /* Всегда пля подключения к этому сигналу, в параметрах необходимо
     указывать полный путь! Например
-    connect( abc, SIGNAL( result(GGS::RestApi::CommandBase::CommandResults ), ... ); // ПРАВИЛЬНО
+    connect( abc, SIGNAL( result(P1::RestApi::CommandBase::CommandResults ), ... ); // ПРАВИЛЬНО
 
     connect( abc, SIGNAL( result(CommandResults ), ... ); // НЕПРАВИЛЬНО, даже если CommandResults находится в области видимости
 
@@ -49,14 +38,14 @@ namespace GGS {
     // Подключаемся к сигналу результата. Данный сигнал будет вызван в любом случае, даже если
     // произошла какая-либо ошибка. В параметрах сигнала передается код выполнения команды.
 
-    connect(&command, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)),
-    this,     SLOT(SetUserActivityResult(GGS::RestApi::CommandBase::CommandResults)));
+    connect(&command, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)),
+    this,     SLOT(SetUserActivityResult(P1::RestApi::CommandBase::CommandResults)));
 
 
     // Задаем нужные нам параметры к команде
     command.setGameId(71);
 
-    // Выполняем команду, после выполнения будет вызван сигнал result(GGS::RestApi::CommandBase::CommandResults)
+    // Выполняем команду, после выполнения будет вызван сигнал result(P1::RestApi::CommandBase::CommandResults)
     // с соответствующим кодом.
     restapi.execute(&command);
 
@@ -70,31 +59,31 @@ namespace GGS {
 
     ...
 
-    void result(GGS::RestApi::CommandBase::CommandResults code)
+    void result(P1::RestApi::CommandBase::CommandResults code)
     {
-    if (code == GGS::RestApi::CommandBase::NoError)
+    if (code == P1::RestApi::CommandBase::NoError)
     command.getBlance(); // возвратит баланс
     }
 
     Если у команды возвращаемых параметров много, то для этого случая мы их оборачиваем в т.н класс Response
     где групируем все данные. Например:
 
-    void GetUserServiceAccount::GetUserServiceAccountResult( GGS::RestApi::CommandBase::CommandResults code )
+    void GetUserServiceAccount::GetUserServiceAccountResult( P1::RestApi::CommandBase::CommandResults code )
     {
-    if (code == GGS::RestApi::CommandBase::NoError){
+    if (code == P1::RestApi::CommandBase::NoError){
     command.response()->getLogin(); // работаем с данными
     command.response()->getToken();
     command.response()->getStatus();
     command.response()->getPassword();
-    } else if (code == GGS::RestApi::CommandBase::GenericError)
+    } else if (code == P1::RestApi::CommandBase::GenericError)
     // реакция на ошибку
     }
     */
     class RESTAPI_EXPORT CommandBase : public QObject
     {
       Q_OBJECT
-      Q_ENUMS(GGS::RestApi::CommandBase::CommandResults);
-      Q_ENUMS(GGS::RestApi::CommandBase::Error);
+      Q_ENUMS(P1::RestApi::CommandBase::CommandResults);
+      Q_ENUMS(P1::RestApi::CommandBase::Error);
       Q_FLAGS(RestApiErrors);
 
     public:
@@ -228,7 +217,7 @@ namespace GGS {
       const QUrl url();
 
     public slots:
-      void resultCallback(GGS::RestApi::CommandBase::CommandResults commandResultCode, QString response);
+      void resultCallback(P1::RestApi::CommandBase::CommandResults commandResultCode, QString response);
 
       void execute();
       void execute(RestApiManager *manager);
@@ -248,13 +237,11 @@ namespace GGS {
       QMap<QString, QString> _commandParameters;
 
     signals:
-      void result(GGS::RestApi::CommandBase::CommandResults);
-      void genericError(GGS::RestApi::CommandBase::Error error, QString message);
+      void result(P1::RestApi::CommandBase::CommandResults);
+      void genericError(P1::RestApi::CommandBase::Error error, QString message);
     };
   }
 }
 
-Q_DECLARE_METATYPE(GGS::RestApi::CommandBase::CommandResults);
-Q_DECLARE_METATYPE(GGS::RestApi::CommandBase::Error);
-
-#endif // _GGS_RESTAPI_COMMAND_BASE_H_
+Q_DECLARE_METATYPE(P1::RestApi::CommandBase::CommandResults);
+Q_DECLARE_METATYPE(P1::RestApi::CommandBase::Error);

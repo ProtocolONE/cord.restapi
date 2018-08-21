@@ -1,20 +1,10 @@
-/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (©) 2011 - 2017, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
-
 #include <RestApi/CommandBase.h>
 #include <RestApi/RequestBase.h>
 #include <RestApi/RestApiManager.h>
 
 #include <QtCore/QObject>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
 
     RestApiManager* RestApiManager::_commonInstance = nullptr;
@@ -103,7 +93,7 @@ namespace GGS {
       return RestApiManager::_commonInstance;
     }
 
-    void RestApiManager::onGenericError(GGS::RestApi::CommandBase::Error error, QString message)
+    void RestApiManager::onGenericError(P1::RestApi::CommandBase::Error error, QString message)
     {
       emit this->genericError(error, message);
 

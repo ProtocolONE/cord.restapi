@@ -1,7 +1,7 @@
 #include <CommandTest.h>
 #include <RestApi/Commands/User/ValidateMainInfo.h>
 
-using GGS::RestApi::Commands::User::ValidateMainInfo;
+using P1::RestApi::Commands::User::ValidateMainInfo;
 
 class ValidateMainInfoTest : public CommandTest
 {

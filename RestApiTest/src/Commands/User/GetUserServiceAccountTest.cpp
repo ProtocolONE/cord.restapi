@@ -2,8 +2,8 @@
 #include <RestApi/Commands/User/GetUserServiceAccount.h>
 #include <RestApi/Commands/User/Response/UserServiceAccountResponse.h>
 
-using GGS::RestApi::Commands::User::GetUserServiceAccount;
-using GGS::RestApi::Commands::User::Response::UserServiceAccountResponse;
+using P1::RestApi::Commands::User::GetUserServiceAccount;
+using P1::RestApi::Commands::User::Response::UserServiceAccountResponse;
 
 class GetUserServiceAccountTest : public CommandTest
 {

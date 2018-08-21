@@ -10,9 +10,9 @@
 #include <QtConcurrentRun>
 #include <QtTest/QSignalSpy>
 
-using GGS::RestApi::RestApiManager;
-using GGS::RestApi::RequestFactory;
-using GGS::RestApi::Commands::Service::GetDetailedServices;
+using P1::RestApi::RestApiManager;
+using P1::RestApi::RequestFactory;
+using P1::RestApi::Commands::Service::GetDetailedServices;
 
 class RestApiManagerTest : public ::testing::Test
 {
@@ -38,7 +38,7 @@ TEST_F(RestApiManagerTest, executionTest)
   GetDetailedServices command;
    
   TestEventLoopFinisher loopKiller(&loop, 20000);
-  QObject::connect(&command, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)), 
+  QObject::connect(&command, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)), 
     &loopKiller, SLOT(terminateLoop()));
 
   manager->execute(&command);
@@ -54,16 +54,16 @@ TEST_F(RestApiManagerTest, multiExecutionTest)
   GetDetailedServices command2;
   GetDetailedServices command3;
 
-  QSignalSpy spyCommand1(&command1, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)));
-  QSignalSpy spyCommand2(&command2, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)));
-  QSignalSpy spyCommand3(&command3, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)));
+  QSignalSpy spyCommand1(&command1, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)));
+  QSignalSpy spyCommand2(&command2, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)));
+  QSignalSpy spyCommand3(&command3, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)));
 
   TestEventLoopFinisher loopKiller(&loop, 10000, 3);
-  QObject::connect(&command1, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)), 
+  QObject::connect(&command1, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)), 
     &loopKiller, SLOT(terminateLoop()));
-  QObject::connect(&command2, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)), 
+  QObject::connect(&command2, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)), 
     &loopKiller, SLOT(terminateLoop()));
-  QObject::connect(&command3, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)), 
+  QObject::connect(&command3, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)), 
     &loopKiller, SLOT(terminateLoop()));
 
   manager->execute(&command1);
@@ -81,7 +81,7 @@ TEST_F(RestApiManagerTest, DISABLED_executionConcurrentTest)
   GetDetailedServices command;
 
   TestEventLoopFinisher loopKiller(&loop, 20000);
-  QObject::connect(&command, SIGNAL(result(GGS::RestApi::CommandBase::CommandResults)), 
+  QObject::connect(&command, SIGNAL(result(P1::RestApi::CommandBase::CommandResults)), 
     &loopKiller, SLOT(terminateLoop()));
 
   QtConcurrent::run(manager, &RestApiManager::execute, &command);

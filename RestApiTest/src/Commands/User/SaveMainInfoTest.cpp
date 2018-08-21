@@ -1,7 +1,7 @@
 #include <CommandTest.h>
 #include <RestApi/Commands/User/SaveMainInfo.h>
 
-using GGS::RestApi::Commands::User::SaveMainInfo;
+using P1::RestApi::Commands::User::SaveMainInfo;
 
 class SaveMainInfoTest : public CommandTest
 {

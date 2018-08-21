@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 #include <RestApi/Commands/Service/Response/DetailedServiceInfo.h>
 
@@ -201,7 +201,7 @@ public:
 
 TEST_F(DetailedServiceInfoTest, deserializeMainInfoTest)
 {
-  using GGS::RestApi::Commands::Service::Response::DetailedServiceInfo;
+  using P1::RestApi::Commands::Service::Response::DetailedServiceInfo;
 
   QDomDocument doc;
   doc.setContent(this->getNormalServiceInfoExample());

@@ -1,24 +1,15 @@
-/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (©) 2011 - 2017, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
 #pragma once
 
 #include <RestApi/restapi_global.h>
 #include <RestApi/GameNetCredential.h>
 #include <RestApi/RequestFactory.h>
-#include <RestApi/CommandBase>
+#include <RestApi/CommandBase.h>
 
 #include <QtCore/QObject>
 #include <QtCore/QUrl>
 #include <QtCore/QPointer>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     class CacheInterface;
 
@@ -64,11 +55,11 @@ namespace GGS {
 
     signals:
       __declspec(deprecated("QGNA-1011 migrate to genericErrorEx and rename it to genericError"))
-      void genericError(GGS::RestApi::CommandBase::Error, QString message);
-      void genericErrorEx(GGS::RestApi::CommandBase::Error, QString message, CommandBase *command);
+      void genericError(P1::RestApi::CommandBase::Error, QString message);
+      void genericErrorEx(P1::RestApi::CommandBase::Error, QString message, CommandBase *command);
 
     private:
-      void onGenericError(GGS::RestApi::CommandBase::Error error, QString message);
+      void onGenericError(P1::RestApi::CommandBase::Error error, QString message);
 
       RequestFactory _factory;
       RequestFactory::RequestType _type;

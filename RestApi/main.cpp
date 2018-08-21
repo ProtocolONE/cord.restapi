@@ -1,15 +1,8 @@
-#include <RestApi/GameNetCredential>
-#include <RestApi/CommandBase>
+
+#include <RestApi/RegisterTypes.h>
 
 #include <Windows.h>
 #include <QtCore/QMetaType>
-
-void registerTypes()
-{
-  qRegisterMetaType<GGS::RestApi::CommandBase::Error>("GGS::RestApi::CommandBase::Error");
-  qRegisterMetaType<GGS::RestApi::GameNetCredential>("GGS::RestApi::GameNetCredential");                                 
-  qRegisterMetaType<GGS::RestApi::CommandBase::CommandResults>("GGS::RestApi::CommandBase::CommandResults");
-}
 
 BOOL WINAPI DllMain(
   HINSTANCE hinstDLL,  // handle to DLL module
@@ -22,7 +15,7 @@ BOOL WINAPI DllMain(
   case DLL_PROCESS_ATTACH:
     // Initialize once for each new process.
     // Return FALSE to fail DLL load.
-    registerTypes();
+    P1::RestApi::registerTypes();
     break;
 
   case DLL_THREAD_ATTACH:

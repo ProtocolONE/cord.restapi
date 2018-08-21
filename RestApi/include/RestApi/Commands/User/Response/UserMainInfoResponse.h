@@ -1,22 +1,11 @@
-/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
-
-#ifndef _GGS_RESTAPI_COMMANDS_USER_RESPONSE_USERMAININFORESPONSE_H_
-#define _GGS_RESTAPI_COMMANDS_USER_RESPONSE_USERMAININFORESPONSE_H_
+#pragma once
 
 #include <RestApi/restapi_global.h>
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     namespace Commands {
       namespace User {
@@ -29,32 +18,32 @@ namespace GGS {
             UserMainInfoResponse();
             ~UserMainInfoResponse();
 
-            QString marketingId() const { return _marketingId; }
-            void setMarketingId(QString val) { _marketingId = val; }
+            QString marketingId() const;
+            void setMarketingId(QString val);
             
-            QString nickname() const { return _nickname; }
-            void setNickname(QString val) { _nickname = val; }
+            QString nickname() const;
+            void setNickname(QString val);
 
-            QString nametech() const { return _nametech; }
-            void setNametech(QString val) { _nametech = val; }
+            QString nametech() const;
+            void setNametech(QString val);
 
-            int sex() const { return _sex; }
-            void setSex(int val) { _sex = val; }
+            int sex() const;
+            void setSex(int val);
 
-            QString profileUrl() const { return _profileUrl; }
-            void setProfileUrl(QString val) { _profileUrl = val; }
+            QString profileUrl() const;
+            void setProfileUrl(QString val);
 
-            QString smallAvatarUrl() const { return _smallAvatarUrl; }
-            void setSmallAvatarUrl(QString val) { _smallAvatarUrl = val; }
+            QString smallAvatarUrl() const;
+            void setSmallAvatarUrl(QString val);
 
-            QString mediumAvatarUrl() const { return _mediumAvatarUrl; }
-            void setMediumAvatarUrl(QString val) { _mediumAvatarUrl = val; }
+            QString mediumAvatarUrl() const;
+            void setMediumAvatarUrl(QString val);
 
-            QString largeAvatarUrl() const { return _largeAvatarUrl; }
-            void setLargeAvatarUrl(QString val) { _largeAvatarUrl = val; }
+            QString largeAvatarUrl() const;
+            void setLargeAvatarUrl(QString val);
 
-            QString steamId() const { return _steamId; }
-            void setSteamId(QString val) { _steamId = val; }
+            QString steamId() const;
+            void setSteamId(QString val);
 
           private:
             QString _marketingId;
@@ -74,4 +63,3 @@ namespace GGS {
     }
   }
 }
-#endif // _GGS_RESTAPI_COMMANDS_USER_RESPONSE_USERMAININFORESPONSE_H_

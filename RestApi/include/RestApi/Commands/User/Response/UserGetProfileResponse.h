@@ -1,22 +1,11 @@
-﻿/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
-
-#ifndef _GGS_RESTAPI_COMMANDS_USER_RESPONSE_GETPROFILERESPONSE_H_
-#define _GGS_RESTAPI_COMMANDS_USER_RESPONSE_GETPROFILERESPONSE_H_
+﻿#pragma once
 
 #include <RestApi/restapi_global.h>
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     namespace Commands {
       namespace User {
@@ -89,4 +78,3 @@ namespace GGS {
   }
 }
 
-#endif // USERGETPROFILERESPONSE_H

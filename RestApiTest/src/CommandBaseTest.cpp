@@ -1,11 +1,11 @@
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
 
 #include <RestApi/CommandBase.h>
 
 #include <QUrl>
 #include <QUrlQuery>
 
-using GGS::RestApi::CommandBase;
+using P1::RestApi::CommandBase;
 
 class CommandbaseTest : public ::testing::Test
 {

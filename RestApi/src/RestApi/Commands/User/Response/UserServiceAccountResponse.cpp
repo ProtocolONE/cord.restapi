@@ -1,20 +1,50 @@
-/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
+#include <RestApi/Commands/User/Response/UserServiceAccountResponse.h>
 
-#include "RestApi/Commands/User/Response/UserServiceAccountResponse.h"
-
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     namespace Commands {
       namespace User {
         namespace Response {
+
+          void UserServiceAccountResponse::setLogin(const QString login)
+          {
+            this->_login = login;
+          }
+
+          const QString UserServiceAccountResponse::getLogin()
+          {
+            return this->_login;
+          }
+
+          void UserServiceAccountResponse::setPassword(const QString password)
+          {
+            this->_password = password;
+          }
+
+          const QString UserServiceAccountResponse::getPassword()
+          {
+            return this->_password;
+          }
+
+          void UserServiceAccountResponse::setToken(const QString token)
+          {
+            this->_token = token;
+          }
+
+          const QString UserServiceAccountResponse::getToken()
+          {
+            return this->_token;
+          }
+
+          void UserServiceAccountResponse::setStatus(const QString status)
+          {
+            this->_status = status;
+          }
+
+          const QString UserServiceAccountResponse::getStatus()
+          {
+            return this->_status;
+          }
 
         }
       }

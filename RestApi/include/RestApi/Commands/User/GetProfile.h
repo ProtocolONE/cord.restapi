@@ -1,16 +1,4 @@
-﻿/****************************************************************************
-** This file is a part of Syncopate Limited GameNet Application or it parts.
-**
-** Copyright (©) 2011 - 2012, Syncopate Limited and/or affiliates. 
-** All rights reserved.
-**
-** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
-** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
-****************************************************************************/
-
-#ifndef _GGS_RESTAPI_COMMANDS_USER_GETPROFILE_H_
-#define _GGS_RESTAPI_COMMANDS_USER_GETPROFILE_H_
-
+﻿#pragma once
 #include <RestApi/Commands/User/Response/UserGetProfileResponse.h>
 
 #include <RestApi/restapi_global.h>
@@ -20,14 +8,14 @@
 #include <QtCore/QStringList>
 #include <QtCore/QMap>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     namespace Commands {
       namespace User {
 
-        using namespace GGS::RestApi::Commands::User::Response;
+        using namespace P1::RestApi::Commands::User::Response;
 
-        typedef QMap<QString, GGS::RestApi::Commands::User::UserGetProfileResponse> GetProfileMap;
+        typedef QMap<QString, P1::RestApi::Commands::User::UserGetProfileResponse> GetProfileMap;
 
         class RESTAPI_EXPORT GetProfile : public CommandBase
         {
@@ -57,4 +45,3 @@ namespace GGS {
   }
 }
 
-#endif // GETPROFILE_H

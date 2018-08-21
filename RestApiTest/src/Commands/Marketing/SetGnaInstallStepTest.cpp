@@ -1,10 +1,10 @@
 #include <CommandTest.h>
 
-#include <RestApi/CommandBase>
+#include <RestApi/CommandBase.h>
 #include <RestApi/Commands/Marketing/SetGnaInstallStep.h>
 
-using GGS::RestApi::CommandBase;
-using GGS::RestApi::Commands::Marketing::SetGnaInstallStep;
+using P1::RestApi::CommandBase;
+using P1::RestApi::Commands::Marketing::SetGnaInstallStep;
 
 class SetGnaInstallStepTest : public CommandTest
 {

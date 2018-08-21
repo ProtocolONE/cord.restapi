@@ -1,6 +1,6 @@
 #include <RestApi/Commands/User/SaveMainInfo.h>
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     namespace Commands {
       namespace User {

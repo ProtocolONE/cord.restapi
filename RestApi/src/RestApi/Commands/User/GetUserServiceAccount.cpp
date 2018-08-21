@@ -1,7 +1,7 @@
 
 #include "RestApi/Commands/User/GetUserServiceAccount.h"
 
-namespace GGS {
+namespace P1 {
   namespace RestApi {
     namespace Commands {
       namespace User {

@@ -13,7 +13,7 @@ public:
       "		<row>                                                                                                       " \
       "			<serv_id>300002010000000000</serv_id>                                                                   " \
       "			<serv_name>Aika</serv_name>                                                                             " \
-      "			<serv_url>http://gamenet.ru/games/aika</serv_url>                                                       " \
+      "			<serv_url>http://protocol.one/games/aika</serv_url>                                                       " \
       "			<serv_desc>Aika</serv_desc>                                                                             " \
       "			<serv_sub_status>free</serv_sub_status>                                                                 " \
       "			<serv_authtypeid>token</serv_authtypeid>                                                                " \
@@ -21,7 +21,7 @@ public:
       "		<row>                                                                                                       " \
       "			<serv_id>300003010000000000</serv_id>                                                                   " \
       "			<serv_name>BS</serv_name>                                                                               " \
-      "			<serv_url>http://gamenet.ru/games/bs</serv_url>                                                         " \
+      "			<serv_url>http://protocol.one/games/bs</serv_url>                                                         " \
       "			<serv_desc></serv_desc>                                                                                 " \
       "			<serv_sub_status>free</serv_sub_status>                                                                 " \
       "			<serv_authtypeid>token</serv_authtypeid>                                                                " \
@@ -45,28 +45,28 @@ public:
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300002010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://fs0.gamenet.ru/update/aika/</servinfo_value>                                     " \
+      "			<servinfo_value>http://fs0.protocol.one/update/aika/</servinfo_value>                                     " \
       "			<ref_name>—сылка на обновление клиента (http)</ref_name>                                                " \
       "			<ref_code>update_http</ref_code>                                                                        " \
       "                                                                                                                   " \
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300002010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://fs0.gamenet.ru/update/aika/</servinfo_value>                                     " \
+      "			<servinfo_value>http://fs0.protocol.one/update/aika/</servinfo_value>                                     " \
       "			<ref_name>—сылка на клиент (http)</ref_name>                                                            " \
       "			<ref_code>client_http</ref_code>                                                                        " \
       "                                                                                                                   " \
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300002010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://fs0.gamenet.ru/update/aika/</servinfo_value>                                     " \
+      "			<servinfo_value>http://fs0.protocol.one/update/aika/</servinfo_value>                                     " \
       "			<ref_name>—сылка на клиент (torrent)</ref_name>                                                         " \
       "			<ref_code>client_torrent</ref_code>                                                                     " \
       "                                                                                                                   " \
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300002010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://www.gamenet.ru/register/launcher/aika/</servinfo_value>                          " \
+      "			<servinfo_value>http://www.protocol.one/register/launcher/aika/</servinfo_value>                          " \
       "			<ref_name>Cсылка дл€ незарегистрированных пользователей</ref_name>                                      " \
       "			<ref_code>noreg_url</ref_code>                                                                          " \
       "                                                                                                                   " \
@@ -80,7 +80,7 @@ public:
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300002010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://www.gamenet.ru/games/aika/screenshots</servinfo_value>                           " \
+      "			<servinfo_value>http://www.protocol.one/games/aika/screenshots</servinfo_value>                           " \
       "			<ref_name>—раница дл€ пользовател€ не играющего в данную игру</ref_name>                                " \
       "			<ref_code>AuthUserSite1</ref_code>                                                                      " \
       "                                                                                                                   " \
@@ -94,7 +94,7 @@ public:
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300002010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://www.gamenet.ru/games/aika</servinfo_value>                                       " \
+      "			<servinfo_value>http://www.protocol.one/games/aika</servinfo_value>                                       " \
       "			<ref_name>—раница дл€ пользовател€ играющего в данную игру</ref_name>                                   " \
       "			<ref_code>AuthUserSite2</ref_code>                                                                      " \
       "                                                                                                                   " \
@@ -108,7 +108,7 @@ public:
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300003010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://www.gamenet.ru/games/bs</servinfo_value>                                         " \
+      "			<servinfo_value>http://www.protocol.one/games/bs</servinfo_value>                                         " \
       "			<ref_name>—раница дл€ пользовател€ играющего в данную игру</ref_name>                                   " \
       "			<ref_code>AuthUserSite2</ref_code>                                                                      " \
       "                                                                                                                   " \
@@ -129,7 +129,7 @@ public:
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300003010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://www.gamenet.ru/games/bs/screenshots</servinfo_value>                             " \
+      "			<servinfo_value>http://www.protocol.one/games/bs/screenshots</servinfo_value>                             " \
       "			<ref_name>—раница дл€ пользовател€ не играющего в данную игру</ref_name>                                " \
       "			<ref_code>AuthUserSite1</ref_code>                                                                      " \
       "                                                                                                                   " \
@@ -157,28 +157,28 @@ public:
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300003010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://fs0.gamenet.ru/update/bs/</servinfo_value>                                       " \
+      "			<servinfo_value>http://fs0.protocol.one/update/bs/</servinfo_value>                                       " \
       "			<ref_name>—сылка на обновление клиента (http)</ref_name>                                                " \
       "			<ref_code>update_http</ref_code>                                                                        " \
       "                                                                                                                   " \
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300003010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://fs0.gamenet.ru/update/bs/</servinfo_value>                                       " \
+      "			<servinfo_value>http://fs0.protocol.one/update/bs/</servinfo_value>                                       " \
       "			<ref_name>—сылка на клиент (http)</ref_name>                                                            " \
       "			<ref_code>client_http</ref_code>                                                                        " \
       "                                                                                                                   " \
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300003010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://fs0.gamenet.ru/update/bs/</servinfo_value>                                       " \
+      "			<servinfo_value>http://fs0.protocol.one/update/bs/</servinfo_value>                                       " \
       "			<ref_name>—сылка на клиент (torrent)</ref_name>                                                         " \
       "			<ref_code>client_torrent</ref_code>                                                                     " \
       "                                                                                                                   " \
       "		</row>                                                                                                      " \
       "		<row>                                                                                                       " \
       "			<servinfo_serv_id>300003010000000000</servinfo_serv_id>                                                 " \
-      "			<servinfo_value>http://www.gamenet.ru/register/launcher/bs/</servinfo_value>                            " \
+      "			<servinfo_value>http://www.protocol.one/register/launcher/bs/</servinfo_value>                            " \
       "			<ref_name>Cсылка дл€ незарегистрированных пользователей</ref_name>                                      " \
       "			<ref_code>noreg_url</ref_code>                                                                          " \
       "                                                                                                                   " \
@@ -205,7 +205,7 @@ TEST_F(GetDetailedServicesTest, ParserTest)
   DetailedServiceInfo *aikaInfo = serviceList[300002010000000000];
   ASSERT_EQ(300002010000000000, aikaInfo->id());
   ASSERT_EQ(0, QString("Aika").compare(aikaInfo->name()) );
-  ASSERT_EQ(0, QString("http://gamenet.ru/games/aika").compare(aikaInfo->serviceUrl()) );
+  ASSERT_EQ(0, QString("http://protocol.one/games/aika").compare(aikaInfo->serviceUrl()) );
   
   QString tmp;
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("launcher"), tmp));
@@ -215,28 +215,28 @@ TEST_F(GetDetailedServicesTest, ParserTest)
   ASSERT_EQ(0, QString("631").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("update_http"), tmp));
-  ASSERT_EQ(0, QString("http://fs0.gamenet.ru/update/aika/").compare(tmp) );
+  ASSERT_EQ(0, QString("http://fs0.protocol.one/update/aika/").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("client_http"), tmp));
-  ASSERT_EQ(0, QString("http://fs0.gamenet.ru/update/aika/").compare(tmp) );
+  ASSERT_EQ(0, QString("http://fs0.protocol.one/update/aika/").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("client_torrent"), tmp));
-  ASSERT_EQ(0, QString("http://fs0.gamenet.ru/update/aika/").compare(tmp) );
+  ASSERT_EQ(0, QString("http://fs0.protocol.one/update/aika/").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("noreg_url"), tmp));
-  ASSERT_EQ(0, QString("http://www.gamenet.ru/register/launcher/aika/").compare(tmp) );
+  ASSERT_EQ(0, QString("http://www.protocol.one/register/launcher/aika/").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("shortcutname"), tmp));
   ASSERT_EQ(0, QString("AIKA").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("AuthUserSite1"), tmp));
-  ASSERT_EQ(0, QString("http://www.gamenet.ru/games/aika/screenshots").compare(tmp) );
+  ASSERT_EQ(0, QString("http://www.protocol.one/games/aika/screenshots").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("ServiceIndex"), tmp));
   ASSERT_EQ(0, QString("5").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("AuthUserSite2"), tmp));
-  ASSERT_EQ(0, QString("http://www.gamenet.ru/games/aika").compare(tmp) );
+  ASSERT_EQ(0, QString("http://www.protocol.one/games/aika").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("DisplayName"), tmp));
   ASSERT_EQ(0, QString("Aika Online").compare(tmp) );
@@ -245,7 +245,7 @@ TEST_F(GetDetailedServicesTest, ParserTest)
   aikaInfo = serviceList[300003010000000000];
   ASSERT_EQ(300003010000000000, aikaInfo->id());
   ASSERT_EQ(0, QString("BS").compare(aikaInfo->name()) );
-  ASSERT_EQ(0, QString("http://gamenet.ru/games/bs").compare(aikaInfo->serviceUrl()) );
+  ASSERT_EQ(0, QString("http://protocol.one/games/bs").compare(aikaInfo->serviceUrl()) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("launcher"), tmp));
   ASSERT_EQ(0, QString("bslauncher.exe").compare(tmp) );
@@ -254,28 +254,28 @@ TEST_F(GetDetailedServicesTest, ParserTest)
   ASSERT_EQ(0, QString("71").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("update_http"), tmp));
-  ASSERT_EQ(0, QString("http://fs0.gamenet.ru/update/bs/").compare(tmp) );
+  ASSERT_EQ(0, QString("http://fs0.protocol.one/update/bs/").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("client_http"), tmp));
-  ASSERT_EQ(0, QString("http://fs0.gamenet.ru/update/bs/").compare(tmp) );
+  ASSERT_EQ(0, QString("http://fs0.protocol.one/update/bs/").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("client_torrent"), tmp));
-  ASSERT_EQ(0, QString("http://fs0.gamenet.ru/update/bs/").compare(tmp) );
+  ASSERT_EQ(0, QString("http://fs0.protocol.one/update/bs/").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("noreg_url"), tmp));
-  ASSERT_EQ(0, QString("http://www.gamenet.ru/register/launcher/bs/").compare(tmp) );
+  ASSERT_EQ(0, QString("http://www.protocol.one/register/launcher/bs/").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("shortcutname"), tmp));
   ASSERT_EQ(0, QString("BS.ru").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("AuthUserSite1"), tmp));
-  ASSERT_EQ(0, QString("http://www.gamenet.ru/games/bs/screenshots").compare(tmp) );
+  ASSERT_EQ(0, QString("http://www.protocol.one/games/bs/screenshots").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("ServiceIndex"), tmp));
   ASSERT_EQ(0, QString("100").compare(tmp) );
 
   ASSERT_TRUE(aikaInfo->detailedInfo(QString("AuthUserSite2"), tmp));
-  ASSERT_EQ(0, QString("http://www.gamenet.ru/games/bs").compare(tmp) );
+  ASSERT_EQ(0, QString("http://www.protocol.one/games/bs").compare(tmp) );
 
   delete cmd;
   // UNDONE check parsed object

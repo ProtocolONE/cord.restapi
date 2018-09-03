@@ -1,7 +1,7 @@
 #pragma once
 
 #include <RestApi/restapi_global.h>
-#include <RestApi/GameNetCredential.h>
+#include <RestApi/ProtocolOneCredential.h>
 #include <RestApi/Auth/CredentialStorageInterface.h>
 
 #include <QtCore/QString>
@@ -23,13 +23,13 @@ namespace P1 {
         RegistryCredentialStorage(const QString &path);
         virtual ~RegistryCredentialStorage();
 
-        virtual void save(const GameNetCredential& credential);
+        virtual void save(const ProtocolOneCredential& credential);
 
-        virtual bool tryLoad(GameNetCredential& credential);
+        virtual bool tryLoad(ProtocolOneCredential& credential);
 
         virtual void reset();
       private:
-        const QString calcHash(const GameNetCredential& credential);
+        const QString calcHash(const ProtocolOneCredential& credential);
         QString _path;
         QPointer<QSettings> _settings;
       };

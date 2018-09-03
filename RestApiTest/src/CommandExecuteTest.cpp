@@ -1,7 +1,7 @@
 #include <RestApi/RestApiManager.h>
 #include <RestApi/CommandBase.h>
 #include <RestApi/Commands/User/GetProfile.h>
-#include <RestApi/GameNetCredential.h>
+#include <RestApi/ProtocolOneCredential.h>
 #include <RestApi/FakeCache.h>
 
 #include "TestEventLoopFinisher.h"
@@ -43,7 +43,7 @@ public:
     this->_lastResult = arguments.at(0).value<P1::RestApi::CommandBase::CommandResults>();
   }
 
-  GameNetCredential _credential;
+  ProtocolOneCredential _credential;
   FakeCache _cache;
   RestApiManager _manager;
   P1::RestApi::CommandBase::CommandResults _lastResult;

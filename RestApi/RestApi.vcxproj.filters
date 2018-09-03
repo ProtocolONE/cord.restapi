@@ -398,12 +398,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CommandBase.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Static Release\moc_GameNetCredential.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Static Debug\moc_GameNetCredential.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GameNetCredential.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -515,9 +509,6 @@
     <ClCompile Include="src\RestApi\FakeCache.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\RestApi\GameNetCredential.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\RestApi\HttpCommandRequest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -531,6 +522,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\RestApi\RestApiManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Static Release\moc_ProtocolOneCredential.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Static Debug\moc_ProtocolOneCredential.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ProtocolOneCredential.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ProtocolOneCredential.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\ProtocolOneCredential.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -657,9 +663,6 @@
     <CustomBuild Include="include\RestApi\CommandBase.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="include\RestApi\GameNetCredential.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="include\RestApi\HttpCommandRequest.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -667,6 +670,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="include\RestApi\RestApiManager.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="include\RestApi\ProtocolOneCredential.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

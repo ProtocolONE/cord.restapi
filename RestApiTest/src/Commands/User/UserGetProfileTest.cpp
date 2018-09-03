@@ -20,17 +20,17 @@ QString userGetProfileTestQueryResponse = "<response>" \
   "<sex>2</sex>" \
   "<online>1</online>"
   "<id>400007000003292660</id>" \
-  "<profile>http://www.gamenet.ru/users/ljuvilla</profile>" \
+  "<profile>http://www.protocol.one/users/ljuvilla</profile>" \
   "<hasAvatar>1</hasAvatar>" \
   "<lastOnline>1340782715</lastOnline>" \
   "<avatarSmall>" \
-  "http://images.gamenet.ru/pics/user/avatar/small/60/26/29/400007000003292660/1316772590.jpg" \
+  "http://images.protocol.one/pics/user/avatar/small/60/26/29/400007000003292660/1316772590.jpg" \
   "</avatarSmall>" \
   "<avatarMedium>" \
-  "http://images.gamenet.ru/pics/user/avatar/medium/60/26/29/400007000003292660/1316772590.jpg" \
+  "http://images.protocol.one/pics/user/avatar/medium/60/26/29/400007000003292660/1316772590.jpg" \
   "</avatarMedium>" \
   "<avatarLarge>" \
-  "http://images.gamenet.ru/pics/user/avatar/large/60/26/29/400007000003292660/1316772590.jpg" \
+  "http://images.protocol.one/pics/user/avatar/large/60/26/29/400007000003292660/1316772590.jpg" \
   "</avatarLarge>" \
   "<isFriend>1</isFriend>" \
   "</shortInfo>" \
@@ -44,17 +44,17 @@ QString userGetProfileTestQueryResponse = "<response>" \
   "<sex>1</sex>" \
   "<online>1</online>" \
   "<id>400007000007655620</id>" \
-  "<profile>http://www.gamenet.ru/users/fyvafitsuea</profile>" \
+  "<profile>http://www.protocol.one/users/fyvafitsuea</profile>" \
   "<hasAvatar>1</hasAvatar>" \
   "<lastOnline>1340782728</lastOnline>" \
   "<avatarSmall>" \
-  "http://images.gamenet.ru/pics/user/avatar/small/20/56/65/400007000007655620/1317044121.jpg" \
+  "http://images.protocol.one/pics/user/avatar/small/20/56/65/400007000007655620/1317044121.jpg" \
   "</avatarSmall>" \
   "<avatarMedium>" \
-  "http://images.gamenet.ru/pics/user/avatar/medium/20/56/65/400007000007655620/1317044121.jpg" \
+  "http://images.protocol.one/pics/user/avatar/medium/20/56/65/400007000007655620/1317044121.jpg" \
   "</avatarMedium>" \
   "<avatarLarge>" \
-  "http://images.gamenet.ru/pics/user/avatar/large/20/56/65/400007000007655620/1317044121.jpg" \
+  "http://images.protocol.one/pics/user/avatar/large/20/56/65/400007000007655620/1317044121.jpg" \
   "</avatarLarge>" \
   "<isFriend>1</isFriend>" \
   "</shortInfo>" \
@@ -92,12 +92,12 @@ TEST_F(UserGetProfileTest, responseTest)
       ASSERT_EQ(userProfile.registerDate(), "19.07.2011");
       ASSERT_EQ(userProfile.sex(), 2);
       ASSERT_EQ(userProfile.online(), true);
-      ASSERT_EQ(userProfile.profileLink(), "http://www.gamenet.ru/users/ljuvilla");
+      ASSERT_EQ(userProfile.profileLink(), "http://www.protocol.one/users/ljuvilla");
       ASSERT_EQ(userProfile.hasAvatar(), true);
       ASSERT_EQ(userProfile.lastOnline(), 1340782715);
-      ASSERT_EQ(userProfile.avatarSmall(), "http://images.gamenet.ru/pics/user/avatar/small/60/26/29/400007000003292660/1316772590.jpg");
-      ASSERT_EQ(userProfile.avatarMedium(), "http://images.gamenet.ru/pics/user/avatar/medium/60/26/29/400007000003292660/1316772590.jpg");
-      ASSERT_EQ(userProfile.avatarLarge(), "http://images.gamenet.ru/pics/user/avatar/large/60/26/29/400007000003292660/1316772590.jpg");
+      ASSERT_EQ(userProfile.avatarSmall(), "http://images.protocol.one/pics/user/avatar/small/60/26/29/400007000003292660/1316772590.jpg");
+      ASSERT_EQ(userProfile.avatarMedium(), "http://images.protocol.one/pics/user/avatar/medium/60/26/29/400007000003292660/1316772590.jpg");
+      ASSERT_EQ(userProfile.avatarLarge(), "http://images.protocol.one/pics/user/avatar/large/60/26/29/400007000003292660/1316772590.jpg");
     } 
     else if (userProfile.userId() == "400007000007655620"){
       ASSERT_EQ(userProfile.nickname(), "фывафйцуеа");
@@ -105,12 +105,12 @@ TEST_F(UserGetProfileTest, responseTest)
       ASSERT_EQ(userProfile.registerDate(), "26.09.2011");
       ASSERT_EQ(userProfile.sex(), 1);
       ASSERT_EQ(userProfile.online(), true);
-      ASSERT_EQ(userProfile.profileLink(), "http://www.gamenet.ru/users/fyvafitsuea");
+      ASSERT_EQ(userProfile.profileLink(), "http://www.protocol.one/users/fyvafitsuea");
       ASSERT_EQ(userProfile.hasAvatar(), true);
       ASSERT_EQ(userProfile.lastOnline(), 1340782728);
-      ASSERT_EQ(userProfile.avatarSmall(), "http://images.gamenet.ru/pics/user/avatar/small/20/56/65/400007000007655620/1317044121.jpg");
-      ASSERT_EQ(userProfile.avatarMedium(), "http://images.gamenet.ru/pics/user/avatar/medium/20/56/65/400007000007655620/1317044121.jpg");
-      ASSERT_EQ(userProfile.avatarLarge(), "http://images.gamenet.ru/pics/user/avatar/large/20/56/65/400007000007655620/1317044121.jpg");
+      ASSERT_EQ(userProfile.avatarSmall(), "http://images.protocol.one/pics/user/avatar/small/20/56/65/400007000007655620/1317044121.jpg");
+      ASSERT_EQ(userProfile.avatarMedium(), "http://images.protocol.one/pics/user/avatar/medium/20/56/65/400007000007655620/1317044121.jpg");
+      ASSERT_EQ(userProfile.avatarLarge(), "http://images.protocol.one/pics/user/avatar/large/20/56/65/400007000007655620/1317044121.jpg");
     }
   }
 }

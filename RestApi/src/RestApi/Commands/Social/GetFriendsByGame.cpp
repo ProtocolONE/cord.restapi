@@ -12,7 +12,7 @@ namespace P1 {
 
           this->appendParameter("method", "social.getFriendsByGame");
           this->appendParameter("version", "1");
-          this->appendParameter("lang", "qgna_ru");
+          this->appendParameter("lang", "launcher_ru");
           this->appendParameter("gameId", gameId.join(","));
           this->setAuthRequire(true);
         }
@@ -22,7 +22,7 @@ namespace P1 {
         {
           this->appendParameter("method", "social.getFriendsByGame");
           this->appendParameter("version", "1");
-          this->appendParameter("lang", "qgna_ru");
+          this->appendParameter("lang", "launcher_ru");
           this->setAuthRequire(true);
         }
 

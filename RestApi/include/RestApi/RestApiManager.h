@@ -1,7 +1,7 @@
 #pragma once
 
 #include <RestApi/restapi_global.h>
-#include <RestApi/GameNetCredential.h>
+#include <RestApi/ProtocolOneCredential.h>
 #include <RestApi/RequestFactory.h>
 #include <RestApi/CommandBase.h>
 
@@ -38,7 +38,7 @@ namespace P1 {
       /// <summary>Задает авторизацию для все комманд.</summary>
       /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
       /// <param name="credential">The credential.</param>
-      void setCridential(const GameNetCredential &credential);
+      void setCridential(const ProtocolOneCredential &credential);
 
       void setCache(CacheInterface *cache);
 
@@ -48,13 +48,13 @@ namespace P1 {
         \fn credential
         \brief Возвращает текущий объект с данными авторизациию.
       */
-      const GameNetCredential &credential();
+      const ProtocolOneCredential &credential();
 
       static void setCommonInstance(RestApiManager *instance);
       static RestApiManager* commonInstance();
 
     signals:
-      __declspec(deprecated("QGNA-1011 migrate to genericErrorEx and rename it to genericError"))
+      __declspec(deprecated("migrate to genericErrorEx and rename it to genericError"))
       void genericError(P1::RestApi::CommandBase::Error, QString message);
       void genericErrorEx(P1::RestApi::CommandBase::Error, QString message, CommandBase *command);
 
@@ -64,7 +64,7 @@ namespace P1 {
       RequestFactory _factory;
       RequestFactory::RequestType _type;
       QString _uri;
-      GameNetCredential _credential;
+      ProtocolOneCredential _credential;
       CacheInterface *_cache;
 
       bool _debugLogEnabled;

@@ -12,7 +12,7 @@ namespace P1 {
 
           this->appendParameter("method", "user.getProfile");
           this->appendParameter("version", "1");
-          this->appendParameter("lang", "qgna_ru");
+          this->appendParameter("lang", "launcher_ru");
           this->appendParameter("shortInfo", QString::number(this->_shortInfo));
           if (!profileId.isEmpty())
             this->appendParameter("profileId", profileId.join(","));

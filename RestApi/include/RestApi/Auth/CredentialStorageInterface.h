@@ -1,7 +1,7 @@
 #pragma once
 
 #include <RestApi/restapi_global.h>
-#include <RestApi/GameNetCredential.h>
+#include <RestApi/ProtocolOneCredential.h>
 
 namespace P1 {
   namespace RestApi {
@@ -10,8 +10,8 @@ namespace P1 {
       {
       public:
         virtual ~CredentialStorageInterface() {};
-        virtual void save(const GameNetCredential& credential) = 0;
-        virtual bool tryLoad(GameNetCredential& credential) = 0;
+        virtual void save(const ProtocolOneCredential& credential) = 0;
+        virtual bool tryLoad(ProtocolOneCredential& credential) = 0;
         virtual void reset() = 0;
       };
     }

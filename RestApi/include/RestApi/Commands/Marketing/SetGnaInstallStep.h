@@ -2,7 +2,7 @@
 
 #include <RestApi/restapi_global.h>
 #include <RestApi/CommandBase.h>
-#include <RestApi/GameNetCredential.h>
+#include <RestApi/ProtocolOneCredential.h>
 
 #include <QtCore/QVariantMap>
 #include <QtCore/QMetaType>
@@ -17,7 +17,7 @@ namespace P1 {
 		  // Метод сохраняет данные об инсталляции и запуске игр из ГНА
 		  /*
 		  Параметры
-				string userId 				 Идентификатор пользователя в GameNet
+				string userId 				 Идентификатор пользователя в ProtocolOne
 				string appKey 				 Персональный ключ пользователя для работы с внешними приложениями.
 				string hwid 				 HWID
 				string serviceId			 ID сервиса. Не нужен, если считаем первый запуск ГНА

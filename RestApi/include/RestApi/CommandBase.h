@@ -21,7 +21,7 @@ namespace P1 {
 
     Пример использования команд:
 
-    GameNetCredential auth;   // Класс для хранения авторизации
+    ProtocolOneCredential auth;   // Класс для хранения авторизации
     auth.setAppKey(QString("92da94c6a632951c8d588f596826bfd1470843f0"));
     auth.setUserId("400001000000172890");
 
@@ -31,7 +31,7 @@ namespace P1 {
 
     RestApiManager restapi;
 
-    restapi.setUri(QString("http://api.gamenet.dev/restapi"));
+    restapi.setUri(QString("http://api.protocol.one/restapi"));
     restapi.setCridential(auth);
     restapi.setRequest(&request);
 

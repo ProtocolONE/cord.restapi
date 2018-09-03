@@ -215,11 +215,6 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GameNetCredential.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_GetBalance.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
@@ -276,6 +271,11 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_InstallerStep.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ProtocolOneCredential.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -345,11 +345,6 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GameNetCredential.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_GetBalance.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
@@ -406,6 +401,11 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_InstallerStep.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ProtocolOneCredential.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -475,11 +475,6 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Static Debug\moc_GameNetCredential.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Debug\moc_GetBalance.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -492,7 +487,6 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Debug\moc_GetFriendsByGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Debug\moc_GetHosts.cpp">
@@ -507,7 +501,6 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Debug\moc_GetProfile.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Debug\moc_GetRedirectToken.cpp">
@@ -540,9 +533,12 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Static Debug\moc_ProtocolOneCredential.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Debug\moc_RegistryCredentialStorage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Debug\moc_RequestBase.cpp">
@@ -605,11 +601,6 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Static Release\moc_GameNetCredential.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Release\moc_GetBalance.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -623,7 +614,6 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
     <ClCompile Include="GeneratedFiles\Static Release\moc_GetFriendsByGame.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Release\moc_GetHosts.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
@@ -638,7 +628,6 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
     <ClCompile Include="GeneratedFiles\Static Release\moc_GetProfile.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Release\moc_GetRedirectToken.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
@@ -670,10 +659,13 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Static Release\moc_ProtocolOneCredential.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Release\moc_RegistryCredentialStorage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Static Release\moc_RequestBase.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">true</ExcludedFromBuild>
@@ -744,7 +736,7 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
     <ClCompile Include="src\RestApi\Commands\User\SetUserActivity.cpp" />
     <ClCompile Include="src\RestApi\Commands\User\ValidateMainInfo.cpp" />
     <ClCompile Include="src\RestApi\FakeCache.cpp" />
-    <ClCompile Include="src\RestApi\GameNetCredential.cpp" />
+    <ClCompile Include="src\RestApi\ProtocolOneCredential.cpp" />
     <ClCompile Include="src\RestApi\HttpCommandRequest.cpp" />
     <ClCompile Include="src\RestApi\RegisterTypes.cpp" />
     <ClCompile Include="src\RestApi\RequestBase.cpp" />
@@ -1151,23 +1143,23 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DNDEBUG -DRESTAPI_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns"</Command>
     </CustomBuild>
     <ClInclude Include="include\RestApi\FakeCache.h" />
-    <CustomBuild Include="include\RestApi\GameNetCredential.h">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+    <CustomBuild Include="include\RestApi\ProtocolOneCredential.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DNDEBUG -DRESTAPI_STATIC_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DNDEBUG -DRESTAPI_STATIC_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-IC:\Program Files (x86)\Visual Leak Detector\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DRESTAPI_STATIC_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Static Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DRESTAPI_STATIC_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-IC:\Program Files (x86)\Visual Leak Detector\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DRESTAPI_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DRESTAPI_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-IC:\Program Files (x86)\Visual Leak Detector\include"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DNDEBUG -DRESTAPI_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_NO_DEBUG -DNDEBUG -DRESTAPI_LIB -DQT_DLL -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_XML_LIB -DQT_XMLPATTERNS_LIB -D_USING_V110_SDK71_ -D_WINDLL "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(ProjectDir)include" "-I$(QTDIR)\include\QtCore" "-I$(QTDIR)\include\QtNetwork" "-I$(QTDIR)\include\QtXml" "-I$(QTDIR)\include\QtXmlPatterns" "-IC:\Program Files (x86)\Visual Leak Detector\include"</Command>
     </CustomBuild>
     <CustomBuild Include="include\RestApi\HttpCommandRequest.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Static Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>

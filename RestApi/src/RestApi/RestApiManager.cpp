@@ -61,12 +61,12 @@ namespace P1 {
       this->_type = type;
     }
 
-    void RestApiManager::setCridential(const GameNetCredential &credential)
+    void RestApiManager::setCridential(const ProtocolOneCredential &credential)
     {
       this->_credential = credential;
     }
 
-    const GameNetCredential &RestApiManager::credential()
+    const ProtocolOneCredential &RestApiManager::credential()
     {
       return this->_credential;
     }

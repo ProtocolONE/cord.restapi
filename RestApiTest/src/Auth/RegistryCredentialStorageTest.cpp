@@ -1,17 +1,17 @@
 #include <RestApi/Auth/RegistryCredentialStorage.h>
-#include <RestApi/GameNetCredential.h>
+#include <RestApi/ProtocolOneCredential.h>
 
 #include <gtest/gtest.h>
 
 using P1::RestApi::Auth::RegistryCredentialStorage;
-using P1::RestApi::GameNetCredential;
+using P1::RestApi::ProtocolOneCredential;
 
 class RegistryCredentialStorageTest : public ::testing::Test
 {
 public:
   void basicSaveLoadTest(RegistryCredentialStorage &storage)
   {
-    GameNetCredential credential;
+    ProtocolOneCredential credential;
     QString userId("123123123");
     QString appKey("jk1rghksdfgnsdjklfgnsdjklfgn34");
     QString cookie("djkflsghui2n5489dfjkln12093=-12mfsdf1=12+123");
@@ -19,12 +19,12 @@ public:
     credential.setAppKey(appKey);
     credential.setCookie(cookie);
 
-    GameNetCredential credential1;
+    ProtocolOneCredential credential1;
     ASSERT_FALSE(storage.tryLoad(credential1));
 
     storage.save(credential);
 
-    GameNetCredential credential2;
+    ProtocolOneCredential credential2;
     ASSERT_TRUE(storage.tryLoad(credential2));
 
     ASSERT_EQ(0, credential.userId().compare(credential2.userId()));
@@ -33,7 +33,7 @@ public:
 
     storage.reset();
 
-    GameNetCredential credential3;
+    ProtocolOneCredential credential3;
     ASSERT_FALSE(storage.tryLoad(credential3));
   }
 };

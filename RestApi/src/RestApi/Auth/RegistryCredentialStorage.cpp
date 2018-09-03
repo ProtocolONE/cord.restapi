@@ -6,7 +6,7 @@ namespace P1 {
     namespace Auth {
 
       RegistryCredentialStorage::RegistryCredentialStorage()
-        : _path("HKEY_CURRENT_USER\\Software\\Pone\\QGNA\\")
+        : _path("HKEY_CURRENT_USER\\Software\\ProtocolOne\\Launcher\\")
       {
         this->_settings = new QSettings(this->_path, QSettings::NativeFormat);
       }
@@ -23,7 +23,7 @@ namespace P1 {
           delete this->_settings;
       }
 
-      const QString RegistryCredentialStorage::calcHash(const GameNetCredential& credential)
+      const QString RegistryCredentialStorage::calcHash(const ProtocolOneCredential& credential)
       {
         QCryptographicHash hash(QCryptographicHash::Sha1);
         hash.addData(credential.userId().toLatin1());
@@ -33,7 +33,7 @@ namespace P1 {
         return QString(hash.result().toHex());
       }
 
-      void RegistryCredentialStorage::save(const GameNetCredential& credential)
+      void RegistryCredentialStorage::save(const ProtocolOneCredential& credential)
       {
         //ВАЖНО! Код сохраняющий данные в реестр и вычисляющий CRC нельзя
         //менять не исправляя синхронно код gnalogin/getCredential который нужен
@@ -44,7 +44,7 @@ namespace P1 {
         this->_settings->setValue("crc", this->calcHash(credential));
       }
 
-      bool RegistryCredentialStorage::tryLoad(GameNetCredential& credential)
+      bool RegistryCredentialStorage::tryLoad(ProtocolOneCredential& credential)
       {
         if (!this->_settings->contains("userId")
           || !this->_settings->contains("appKey")
@@ -55,7 +55,7 @@ namespace P1 {
            return false;
         }
 
-        GameNetCredential savedCredential;
+        ProtocolOneCredential savedCredential;
         savedCredential.setUserId(this->_settings->value("userId").toString());
         savedCredential.setAppKey(this->_settings->value("appKey").toString());
         savedCredential.setCookie(this->_settings->value("cookie").toString());

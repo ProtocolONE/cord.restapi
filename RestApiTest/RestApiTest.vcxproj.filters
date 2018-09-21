@@ -19,18 +19,6 @@
     <ClCompile Include="src\Auth\RegistryCredentialStorageTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="deps\gmock-gtest-all.cc" />
-    <ClCompile Include="GeneratedFiles\Static Release\moc_TestEventLoopFinisher.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Static Debug\moc_TestEventLoopFinisher.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_TestEventLoopFinisher.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_TestEventLoopFinisher.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Auth\GetRedirectTokenTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -115,8 +103,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="include\TestEventLoopFinisher.h">
+    <QtMoc Include="include\TestEventLoopFinisher.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </QtMoc>
   </ItemGroup>
 </Project>

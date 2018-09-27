@@ -69,6 +69,10 @@ namespace P1 {
         result = CommandBase::NetworkError;
       }
 
+      if (this->_cache && result == CommandBase::NoError) {
+        this->_cache->put(this->_requestString, response, 30);
+      }
+
       emit this->finish(result, response);
     }
 

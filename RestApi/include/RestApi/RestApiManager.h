@@ -2,8 +2,11 @@
 
 #include <RestApi/restapi_global.h>
 #include <RestApi/ProtocolOneCredential.h>
-#include <RestApi/RequestFactory.h>
-#include <RestApi/CommandBase.h>
+
+#include <RestApi/Request/RequestFactory.h>
+
+#include <RestApi/Command/CommandBase.h>
+#include <RestApi/RefreshTokenManager.h>
 
 #include <QtCore/QObject>
 #include <QtCore/QUrl>
@@ -13,59 +16,46 @@ namespace P1 {
   namespace RestApi {
     class CacheInterface;
 
+    namespace Command {
+      class CommandBase;
+    }
+    
+
     class RESTAPI_EXPORT RestApiManager : public QObject
     {
       Q_OBJECT
     public:
-      RestApiManager(QObject *parent = 0);
-      ~RestApiManager();
+      explicit RestApiManager(QObject *parent = 0);
+      virtual ~RestApiManager();
 
-      /// <summary>Задает адрес рестапи сервера.</summary>
-      /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
-      /// <param name="uri">Url до рестапишного сервера.</param>
       void setUri(const QString& uri);
 
-      /// <summary>Устанавливает класс, через который выполняются рестапишные комманды.</summary>
-      /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
-      /// <param name="request">[in] If non-null, the request.</param>
-      void setRequest(RequestFactory::RequestType type);
+      Q_INVOKABLE void execute(Command::CommandBase *command);
 
-      /// <summary>Выполняет комманду.</summary>
-      /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
-      /// <param name="command">[in] If non-null, the command.</param>
-      Q_INVOKABLE void execute(CommandBase *command);
-
-      /// <summary>Задает авторизацию для все комманд.</summary>
-      /// <remarks>Ilya.Tkachenko, 05.03.2012.</remarks>
-      /// <param name="credential">The credential.</param>
       void setCridential(const ProtocolOneCredential &credential);
-
       void setCache(CacheInterface *cache);
-
       void setDebugLogEnabled(bool value);
 
-      /*!
-        \fn credential
-        \brief Возвращает текущий объект с данными авторизациию.
-      */
       const ProtocolOneCredential &credential();
+
+      void updateCredential(const ProtocolOneCredential &old, const ProtocolOneCredential &value);
 
       static void setCommonInstance(RestApiManager *instance);
       static RestApiManager* commonInstance();
 
     signals:
-      __declspec(deprecated("migrate to genericErrorEx and rename it to genericError"))
-      void genericError(P1::RestApi::CommandBase::Error, QString message);
-      void genericErrorEx(P1::RestApi::CommandBase::Error, QString message, CommandBase *command);
+      void authorizationError(const ProtocolOneCredential &credential, Command::CommandBase *command);
 
     private:
-      void onGenericError(P1::RestApi::CommandBase::Error error, QString message);
+      void onCommandResult();
+      void onRefreshTokentRequest(const ProtocolOneCredential& value);
 
-      RequestFactory _factory;
-      RequestFactory::RequestType _type;
+      Request::RequestFactory _factory;
+      
       QString _uri;
       ProtocolOneCredential _credential;
       CacheInterface *_cache;
+      RefreshTokenManager _refreshManger;
 
       bool _debugLogEnabled;
 

@@ -1,4 +1,8 @@
 #include <RestApi/ProtocolOneCredential.h>
+#include <QtCore/QStringList>
+#include <QtCore/QDebug>
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonObject>
 
 namespace P1 {
   namespace RestApi {
@@ -7,40 +11,67 @@ namespace P1 {
     {
     }
 
-    ProtocolOneCredential::ProtocolOneCredential(const ProtocolOneCredential &p)
-      : _appKey(p._appKey),
-        _userId(p._userId),
-        _cookie(p._cookie)
+    ProtocolOneCredential::ProtocolOneCredential(
+      const QString& acccessTokent, const QDateTime& accessTokenExpiredTime, QObject *parent)
+      : _acccessTokent(acccessTokent)
+      , _accessTokenExpiredTime(accessTokenExpiredTime)
     {
+      this->parseToken();
+    }
+
+    bool ProtocolOneCredential::operator==(const ProtocolOneCredential& other) const
+    {
+      return this->_acccessTokent == other._acccessTokent
+        && this->_accessTokenExpiredTime == other._accessTokenExpiredTime;
+    }
+
+    bool ProtocolOneCredential::operator!=(const ProtocolOneCredential& other) const
+    {
+      return !(*this == other);
     }
 
     ProtocolOneCredential::~ProtocolOneCredential()
     {
     }
 
-    ProtocolOneCredential & ProtocolOneCredential::operator=(const ProtocolOneCredential &p)
+    ProtocolOneCredential& ProtocolOneCredential::operator=(const ProtocolOneCredential &p)
     {
-      this->_appKey = p.appKey();
-      this->_userId = p.userId();
-      this->_cookie = p.cookie();
+      this->_acccessTokent = p._acccessTokent;
+      this->_accessTokenExpiredTime = p._accessTokenExpiredTime;
+
+      this->parseToken();
       return *this;
     }
 
-    bool ProtocolOneCredential::operator==(const ProtocolOneCredential& rhs) const
+    bool ProtocolOneCredential::isEmpty() const
     {
-      return this->_appKey == rhs._appKey
-        && this->_userId == rhs._userId
-        && this->_cookie == rhs._cookie;
+      return this->_acccessTokent.isEmpty();
     }
 
-    const QString& ProtocolOneCredential::appKey() const
+    bool ProtocolOneCredential::isValid() const
     {
-      return this->_appKey;
+      return !this->_acccessTokent.isEmpty() && QDateTime::currentDateTimeUtc() < this->_accessTokenExpiredTime;
     }
 
-    void ProtocolOneCredential::setAppKey(const QString& val)
+    const QString& ProtocolOneCredential::acccessTokent() const
     {
-      this->_appKey = val;
+      return this->_acccessTokent;
+    }
+
+    void ProtocolOneCredential::setAcccessTokent(const QString& val)
+    {
+      this->_acccessTokent = val;
+      this->parseToken();
+    }
+
+    const QDateTime& ProtocolOneCredential::accessTokenExpiredTime() const
+    {
+      return this->_accessTokenExpiredTime;
+    }
+
+    void ProtocolOneCredential::setAccessTokenExpiredTime(const QDateTime& val)
+    {
+      this->_accessTokenExpiredTime = val;
     }
 
     const QString& ProtocolOneCredential::userId() const
@@ -48,24 +79,26 @@ namespace P1 {
       return this->_userId;
     }
 
-    void ProtocolOneCredential::setUserId(const QString& val)
+    void ProtocolOneCredential::parseToken()
     {
-      this->_userId = val;
-    }
+      this->_userId.clear();
+      if (this->_acccessTokent.isEmpty())
+        return;
 
-    const QString& ProtocolOneCredential::cookie() const
-    {
-      return this->_cookie;
-    }
+      QStringList tokens = this->_acccessTokent.split('.');
+      if (tokens.length() != 3)
+        return;
 
-    void ProtocolOneCredential::setCookie(const QString& val)
-    {
-      this->_cookie = val;
-    }
+      QJsonParseError jsonError;
+      QJsonDocument doc = QJsonDocument::fromJson(QByteArray::fromBase64(tokens[1].toLatin1()), &jsonError);
+      if (jsonError.error != QJsonParseError::NoError) {
+        WARNING_LOG << jsonError.errorString();
+        return;
+      }
 
-    bool ProtocolOneCredential::isEmpty() const
-    {
-      return this->_userId.isEmpty();
+      QJsonObject root = doc.object();
+      QJsonValue userId = root["id"];
+      this->_userId = userId.toString();
     }
 
   }

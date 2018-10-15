@@ -5,7 +5,7 @@
 namespace P1 {
   namespace RestApi {
 
-    RESTAPI_EXPORT void registerTypes();
+    RESTAPI_EXPORT __declspec(noinline)  void registerTypes();
 
   }
 }

@@ -4,47 +4,44 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QString>
+#include <QtCore/QDateTime>
+
+#include <QtCore/QSharedData>
 
 namespace P1 {
   namespace RestApi {
-    class RESTAPI_EXPORT ProtocolOneCredential : public QObject
-    {
-      Q_OBJECT
-    public:
-        ProtocolOneCredential();
-      ~ProtocolOneCredential();
-      
-      ProtocolOneCredential(const ProtocolOneCredential &p);
-      ProtocolOneCredential &operator=(const ProtocolOneCredential &p);
-      bool operator==(const ProtocolOneCredential& rhs) const;
 
-      /**
-       * \fn  bool ProtocolOneCredential::isEmpty() const;
-       *
-       * \brief Проверяет заполнена ли структура. Метод проверяет заполнение ТОЛЬКО userId.
-       *        Если необходимо проверка остальных полей, проверяйте их отдельно.
-       *
-       * \author  Ilya Tkachenko
-       * \date  25.09.2014
-       *
-       * \return  true если userId пустой, иначе false.
-       */
+    class RESTAPI_EXPORT ProtocolOneCredential
+    {
+    public:
+      ProtocolOneCredential();
+      ProtocolOneCredential(
+        const QString& acccessTokent,
+        const QDateTime& accessTokenExpiredTime, QObject *parent = 0);
+
+      ProtocolOneCredential& operator=(const ProtocolOneCredential& other);
+      bool operator==(const ProtocolOneCredential& other) const;
+      bool operator!=(const ProtocolOneCredential& other) const;
+
+      virtual ~ProtocolOneCredential();
 
       bool isEmpty() const;
+      bool isValid() const;
 
-      const QString& appKey() const;
-      void setAppKey(const QString& val);
+      const QString& acccessTokent() const;
+      void setAcccessTokent(const QString& val);
+
+      const QDateTime& accessTokenExpiredTime() const;
+      void setAccessTokenExpiredTime(const QDateTime& val);
 
       const QString& userId() const;
-      void setUserId(const QString& val);
-
-      const QString& cookie() const;
-      void setCookie(const QString& val);
 
     private:
-      QString _appKey;
+      void parseToken();
+
       QString _userId;
-      QString _cookie;
+      QString _acccessTokent;
+      QDateTime _accessTokenExpiredTime;
     };
 
   }

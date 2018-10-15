@@ -1,40 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\Debug\moc_TestEventLoopFinisher.cpp" />
-    <ClCompile Include="GeneratedFiles\Release\moc_TestEventLoopFinisher.cpp" />
-    <ClCompile Include="src\CommandExecuteTest.cpp" />
-    <ClCompile Include="src\Commands\Games\GetMw2ServerListTest.cpp" />
-    <ClCompile Include="src\Commands\Social\GetFriendsByGameTest.cpp" />
-    <ClCompile Include="src\Commands\User\SaveMainInfoTest.cpp" />
-    <ClCompile Include="src\Commands\User\UserGetProfileTest.cpp" />
-    <ClCompile Include="src\Commands\User\ValidateMainInfoTest.cpp" />
-    <ClCompile Include="src\RestApiManagerTest.cpp" />
-    <ClCompile Include="src\Commands\User\GetUserServiceAccountTest.cpp" />
-    <ClCompile Include="src\CommandTest.cpp" />
-    <ClCompile Include="src\Commands\Service\ServicegetLicenseTest.cpp" />
-    <ClCompile Include="src\CommandBaseTest.cpp" />
-    <ClCompile Include="src\Commands\Games\csserverlisttest.cpp" />
-    <ClCompile Include="src\Commands\Marketing\SetGnaInstallStepTest.cpp" />
-    <ClCompile Include="src\Auth\RegistryCredentialStorageTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="deps\gmock-gtest-all.cc" />
-    <ClCompile Include="src\Auth\GetRedirectTokenTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Auth\RegistryCredentialStorageTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Commands\Marketing\SetGnaInstallStepTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\Service\DetailedServiceInfoTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\Service\GetDetailedServicesTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\Service\GetHostsTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Commands\Service\ServicegetLicenseTest.cpp">
@@ -47,9 +19,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Commands\User\SaveMainInfoTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Commands\User\SetUserActivityTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Commands\User\UserGetProfileTest.cpp">
@@ -67,21 +36,21 @@
     <ClCompile Include="src\CommandTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\HttpCommandRequestTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\RestApiManagerTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TestEventLoopFinisher.cpp">
+    <ClCompile Include="src\CredentialTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Api\V1\LoginTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Api\V1\GetHosTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deps\gtest\gtest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\CommandTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,10 +70,5 @@
       <Extensions>moc;h;cpp</Extensions>
       <ParseFiles>true</ParseFiles>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="include\TestEventLoopFinisher.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
 </Project>

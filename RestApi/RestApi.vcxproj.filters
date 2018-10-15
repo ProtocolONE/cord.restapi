@@ -2,211 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="GeneratedFiles\Debug\moc_RegistryCredentialStorage.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_RegistryCredentialStorage.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_gettoken.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_gettoken.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SetGnaInstallStep.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SetGnaInstallStep.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DetailedServiceInfo.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DetailedServiceInfo.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_DetailedServicesResponse.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_DetailedServicesResponse.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GetDetailedServices.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GetDetailedServices.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GetLicense.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GetLicense.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GetFriendsByGame.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GetFriendsByGame.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_UserGetProfileResponse.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_UserGetProfileResponse.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_UserMainInfoResponse.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_UserMainInfoResponse.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_UserServiceAccountResponse.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_UserServiceAccountResponse.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GetBalance.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GetBalance.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GetProfile.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GetProfile.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_GetUserServiceAccount.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_GetUserServiceAccount.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_SaveMainInfo.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_SaveMainInfo.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_setuseractivity.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_setuseractivity.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_ValidateMainInfo.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_ValidateMainInfo.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CommandBase.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CommandBase.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_HttpCommandRequest.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_HttpCommandRequest.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_RequestBase.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_RequestBase.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_RestApiManager.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_RestApiManager.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Auth\GetRedirectToken.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Auth\RegistryCredentialStorage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Games\gettoken.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Marketing\InstallerStep.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Marketing\SetGnaInstallStep.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Service\Response\DetailedServiceInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Service\Response\DetailedServicesResponse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Service\GetDetailedServices.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Service\GetHosts.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Service\GetLicense.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Service\GetServices.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\Social\GetFriendsByGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\Response\UserGetProfileResponse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\Response\UserMainInfoResponse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\Response\UserServiceAccountResponse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\GetBalance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\GetProfile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\GetUserServiceAccount.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\SaveMainInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\SetUserActivity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\Commands\User\ValidateMainInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\CommandBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\RestApi\FakeCache.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\HttpCommandRequest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\RegisterTypes.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\RequestBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RestApi\RequestFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\RestApi\RestApiManager.cpp">
@@ -215,11 +11,50 @@
     <ClCompile Include="src\RestApi\ProtocolOneCredential.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\RestApi\Command\RestApiCommandBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Command\CommandBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Request\HttpCommandRequest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Request\RequestBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Request\RequestFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\RegisterTypes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\RefreshTokenManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\RefreshTokenState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Api\V1\Auth\Login.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Request\JsonRequest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Command\JsonCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Api\V1\Auth\Refresh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RestApi\Api\V1\GetHost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
     <ClInclude Include="version.h" />
-    <ClInclude Include="include\RestApi\Auth\CredentialStorageInterface.h">
+    <ClInclude Include="include\RestApi\Request\RequestFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\RestApi\CacheInterface.h">
@@ -228,13 +63,16 @@
     <ClInclude Include="include\RestApi\FakeCache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\RestApi\ProtocolOneCredential.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\RestApi\RegisterTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\RestApi\RequestFactory.h">
+    <ClInclude Include="include\RestApi\restapi_global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\RestApi\restapi_global.h">
+    <ClInclude Include="include\RestApi\Api\V1\GetHost.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -273,79 +111,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="include\RestApi\Auth\GetRedirectToken.h">
+    <QtMoc Include="include\RestApi\Api\V1\Auth\Login.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Auth\RegistryCredentialStorage.h">
+    <QtMoc Include="include\RestApi\Api\V1\Auth\Refresh.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Games\gettoken.h">
+    <QtMoc Include="include\RestApi\Command\CommandBase.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Marketing\InstallerStep.h">
+    <QtMoc Include="include\RestApi\Command\JsonCommand.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Marketing\SetGnaInstallStep.h">
+    <QtMoc Include="include\RestApi\Command\RestApiCommandBase.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Service\Response\DetailedServiceInfo.h">
+    <QtMoc Include="include\RestApi\Request\HttpCommandRequest.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Service\Response\DetailedServicesResponse.h">
+    <QtMoc Include="include\RestApi\Request\JsonRequest.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Service\GetDetailedServices.h">
+    <QtMoc Include="include\RestApi\Request\RequestBase.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Service\GetHosts.h">
+    <QtMoc Include="include\RestApi\RefreshTokenManager.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Service\GetLicense.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Service\GetServices.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\Social\GetFriendsByGame.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\Response\UserGetProfileResponse.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\Response\UserMainInfoResponse.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\Response\UserServiceAccountResponse.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\GetBalance.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\GetProfile.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\GetUserServiceAccount.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\SaveMainInfo.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\setuseractivity.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\Commands\User\ValidateMainInfo.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\CommandBase.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\HttpCommandRequest.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\ProtocolOneCredential.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="include\RestApi\RequestBase.h">
+    <QtMoc Include="include\RestApi\RefreshTokenState.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="include\RestApi\RestApiManager.h">

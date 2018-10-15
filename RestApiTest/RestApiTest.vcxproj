@@ -13,15 +13,16 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{869D979D-48EB-469A-B9C3-2D7EC8998BFE}</ProjectGuid>
     <Keyword>Qt4VSv1.0</Keyword>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <PropertyGroup Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">
@@ -59,7 +60,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;QT_DLL;QT_CORE_LIB;QT_NETWORK_LIB;QT_TESTLIB_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;QT_CONCURRENT_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_CORE_LIB;QT_NETWORK_LIB;QT_TESTLIB_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;QT_CONCURRENT_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -74,6 +75,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>qtmaind.lib;RestApiX86d.lib;Qt5Cored.lib;Qt5Networkd.lib;Qt5Testd.lib;Qt5Xmld.lib;Qt5XmlPatternsd.lib;Qt5Concurrentd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <ShowProgress>NotSet</ShowProgress>
     </Link>
     <PreBuildEvent>
       <Command>xcopy /Y /I /R "$(TargetDir)..\..\RestApi\$(ConfigurationName)\*.dll" "$(TargetDir)"</Command>
@@ -87,14 +89,14 @@
       <InputFile>%(FullPath)</InputFile>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <IncludePath>$(ProjectDir)include;$(ProjectDir)..\RestApi\include;$(ProjectDir)deps;.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtTest;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;$(QTDIR)\include\QtConcurrent;%(AdditionalIncludeDirectories)</IncludePath>
-      <Define>UNICODE;WIN32;QT_DLL;QT_CORE_LIB;QT_NETWORK_LIB;QT_TESTLIB_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;QT_CONCURRENT_LIB;_USING_V110_SDK71_</Define>
+      <Define>UNICODE;WIN32;QT_CORE_LIB;QT_NETWORK_LIB;QT_TESTLIB_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;QT_CONCURRENT_LIB;%(PreprocessorDefinitions)</Define>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_DLL;QT_CORE_LIB;QT_NETWORK_LIB;QT_TESTLIB_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;QT_CONCURRENT_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_NETWORK_LIB;QT_TESTLIB_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;QT_CONCURRENT_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -122,7 +124,7 @@
       <InputFile>%(FullPath)</InputFile>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <IncludePath>$(ProjectDir)include;$(ProjectDir)..\RestApi\include;$(ProjectDir)deps;.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;$(QTDIR)\include;$(QTDIR)\include\QtCore;$(QTDIR)\include\QtNetwork;$(QTDIR)\include\QtTest;$(QTDIR)\include\QtXml;$(QTDIR)\include\QtXmlPatterns;$(QTDIR)\include\QtConcurrent;%(AdditionalIncludeDirectories)</IncludePath>
-      <Define>UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_DLL;QT_CORE_LIB;QT_NETWORK_LIB;QT_TESTLIB_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;QT_CONCURRENT_LIB;_USING_V110_SDK71_</Define>
+      <Define>UNICODE;WIN32;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_NETWORK_LIB;QT_TESTLIB_LIB;QT_XML_LIB;QT_XMLPATTERNS_LIB;QT_CONCURRENT_LIB;%(PreprocessorDefinitions)</Define>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
       <DynamicSource>output</DynamicSource>
     </QtMoc>
@@ -130,31 +132,12 @@
   <ItemGroup>
     <ClCompile Include="deps\gmock-gtest-all.cc" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\Auth\GetRedirectTokenTest.cpp" />
-    <ClCompile Include="src\Auth\RegistryCredentialStorageTest.cpp" />
-    <ClCompile Include="src\CommandBaseTest.cpp" />
-    <ClCompile Include="src\CommandExecuteTest.cpp" />
-    <ClCompile Include="src\Commands\Marketing\SetGnaInstallStepTest.cpp" />
-    <ClCompile Include="src\Commands\Service\DetailedServiceInfoTest.cpp" />
-    <ClCompile Include="src\Commands\Service\GetDetailedServicesTest.cpp" />
-    <ClCompile Include="src\Commands\Service\GetHostsTest.cpp" />
-    <ClCompile Include="src\Commands\Service\ServicegetLicenseTest.cpp" />
-    <ClCompile Include="src\Commands\Games\GetMw2ServerListTest.cpp" />
-    <ClCompile Include="src\Commands\Social\GetFriendsByGameTest.cpp" />
-    <ClCompile Include="src\Commands\User\GetUserServiceAccountTest.cpp" />
-    <ClCompile Include="src\Commands\User\SaveMainInfoTest.cpp" />
-    <ClCompile Include="src\Commands\User\SetUserActivityTest.cpp" />
-    <ClCompile Include="src\Commands\User\UserGetProfileTest.cpp" />
-    <ClCompile Include="src\Commands\User\ValidateMainInfoTest.cpp" />
-    <ClCompile Include="src\CommandTest.cpp" />
-    <ClCompile Include="src\HttpCommandRequestTest.cpp" />
-    <ClCompile Include="src\RestApiManagerTest.cpp" />
-    <ClCompile Include="src\TestEventLoopFinisher.cpp" />
+    <ClCompile Include="src\Api\V1\GetHosTest.cpp" />
+    <ClCompile Include="src\Api\V1\LoginTest.cpp" />
+    <ClCompile Include="src\CredentialTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deps\gtest\gtest.h" />
-    <ClInclude Include="include\CommandTest.h" />
-    <QtMoc Include="include\TestEventLoopFinisher.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
@@ -164,7 +147,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties UicDir=".\GeneratedFiles" MocDir=".\GeneratedFiles\$(ConfigurationName)" MocOptions="" RccDir=".\GeneratedFiles" lupdateOnBuild="0" lupdateOptions="" lreleaseOptions="" QtVersion_x0020_Win32="$(DefaultQtVersion)" Qt5Version_x0020_Win32="$(DefaultQtVersion)" />
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_Win32="conan-333e69ac00eb936364053dce8d4cab2a1a5a9a11" MocOptions="" QtVersion_x0020_Win32="$(DefaultQtVersion)" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

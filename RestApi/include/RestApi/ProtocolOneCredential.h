@@ -25,6 +25,8 @@ namespace P1 {
 
       virtual ~ProtocolOneCredential();
 
+      void clear();
+
       bool isEmpty() const;
       bool isValid() const;
 

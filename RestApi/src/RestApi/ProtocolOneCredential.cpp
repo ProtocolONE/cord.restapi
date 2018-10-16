@@ -34,6 +34,13 @@ namespace P1 {
     {
     }
 
+    void ProtocolOneCredential::clear()
+    {
+      this->_userId.clear();
+      this->_acccessTokent.clear();
+      this->_accessTokenExpiredTime = QDateTime::currentDateTime().addSecs(-1);
+    }
+
     ProtocolOneCredential& ProtocolOneCredential::operator=(const ProtocolOneCredential &p)
     {
       this->_acccessTokent = p._acccessTokent;

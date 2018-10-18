@@ -78,6 +78,12 @@ namespace P1 {
         if (shouldUsePost)
           request.setHeader(QNetworkRequest::ContentTypeHeader, QLatin1String("application/x-www-form-urlencoded"));
 
+        if (cmd->isAuthRequire()) {
+          request.setRawHeader(
+            QByteArray("Authorization"),
+            QString("Bearer %1").arg(cmd->credential().acccessTokent()).toLatin1());
+        }
+
         QNetworkReply *reply;
         if (shouldUsePost)
           reply = this->_networkManager->post(request, query.toString(QUrl::FullyEncoded).toUtf8());

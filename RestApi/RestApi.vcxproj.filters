@@ -72,9 +72,6 @@
     <ClInclude Include="include\RestApi\restapi_global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\RestApi\Api\V1\GetHost.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="RestApi.rc" />
@@ -142,6 +139,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="include\RestApi\RestApiManager.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="include\RestApi\Api\V1\GetHost.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

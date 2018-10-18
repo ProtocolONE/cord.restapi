@@ -43,6 +43,13 @@ namespace P1 {
 
         QNetworkRequest request(url);
         request.setHeader(QNetworkRequest::ContentTypeHeader, QLatin1String("application/json;charset=UTF-8"));
+
+        if (cmd->isAuthRequire()) {
+          request.setRawHeader(
+            QByteArray("Authorization"),
+            QString("Bearer %1").arg(cmd->credential().acccessTokent()).toLatin1());
+        }
+
         QNetworkReply *reply;
         reply = this->_networkManager->post(request, cmd->postData());
         QObject::connect(reply, &QNetworkReply::finished, this, &JsonRequest::requestFinish);

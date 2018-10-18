@@ -16,6 +16,7 @@ namespace P1 {
 
         class RESTAPI_EXPORT GetHost : public P1::RestApi::Command::RestApiCommandBase
         {
+          Q_OBJECT
         public:
           explicit GetHost(QObject *parent = 0);
           GetHost(const QString& gameId, QObject *parent = 0);

@@ -19,6 +19,11 @@ namespace P1 {
         const QString& acccessTokent,
         const QDateTime& accessTokenExpiredTime, QObject *parent = 0);
 
+      ProtocolOneCredential(
+        const QString& acccessTokent,
+        const QString& accessTokenExpiredTime, QObject *parent = 0);
+
+
       ProtocolOneCredential& operator=(const ProtocolOneCredential& other);
       bool operator==(const ProtocolOneCredential& other) const;
       bool operator!=(const ProtocolOneCredential& other) const;
@@ -36,6 +41,9 @@ namespace P1 {
       const QDateTime& accessTokenExpiredTime() const;
       void setAccessTokenExpiredTime(const QDateTime& val);
 
+      QString accessTokenExpiredTimeAsString() const;
+      void setAccessTokenExpiredTime(const QString& val);
+
       const QString& userId() const;
 
     private:
@@ -46,5 +54,6 @@ namespace P1 {
       QDateTime _accessTokenExpiredTime;
     };
 
+    Q_DECLARE_METATYPE(ProtocolOneCredential);
   }
 }

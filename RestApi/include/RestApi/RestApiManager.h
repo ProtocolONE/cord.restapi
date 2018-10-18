@@ -19,7 +19,6 @@ namespace P1 {
     namespace Command {
       class CommandBase;
     }
-    
 
     class RESTAPI_EXPORT RestApiManager : public QObject
     {
@@ -44,7 +43,7 @@ namespace P1 {
       static RestApiManager* commonInstance();
 
     signals:
-      void authorizationError(const ProtocolOneCredential &credential, Command::CommandBase *command);
+      void authorizationError(const ProtocolOneCredential &credential, const Command::CommandBase *command);
 
     private:
       void onCommandResult();

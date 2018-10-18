@@ -24,6 +24,7 @@ namespace P1 {
         explicit RequestBase(QObject *parent = 0);
         virtual ~RequestBase();
 
+        const Command::CommandBase *command() const;
         void setCommand(Command::CommandBase *command);
 
         virtual void setCache(CacheInterface *cache);

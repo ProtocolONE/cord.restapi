@@ -19,6 +19,14 @@ namespace P1 {
       this->parseToken();
     }
 
+    ProtocolOneCredential::ProtocolOneCredential(
+      const QString& acccessTokent, const QString& accessTokenExpiredTime, QObject *parent /*= 0*/)
+      : _acccessTokent(acccessTokent)
+    {
+      this->setAccessTokenExpiredTime(accessTokenExpiredTime);
+      this->parseToken();
+    }
+
     bool ProtocolOneCredential::operator==(const ProtocolOneCredential& other) const
     {
       return this->_acccessTokent == other._acccessTokent
@@ -79,6 +87,24 @@ namespace P1 {
     void ProtocolOneCredential::setAccessTokenExpiredTime(const QDateTime& val)
     {
       this->_accessTokenExpiredTime = val;
+    }
+
+    void ProtocolOneCredential::setAccessTokenExpiredTime(const QString& val)
+    {
+      bool ok;
+      qint64 at;
+      at = val.toLongLong(&ok);
+      if (ok) {
+        this->_accessTokenExpiredTime = QDateTime::fromMSecsSinceEpoch(at * 1000);
+      } else {
+        this->_accessTokenExpiredTime = QDateTime::currentDateTime().addSecs(-1);
+      }
+    }
+
+    QString ProtocolOneCredential::accessTokenExpiredTimeAsString() const
+    {
+      qint64 expiredTime = this->_accessTokenExpiredTime.toMSecsSinceEpoch() / 1000;
+      return QString::number(expiredTime);
     }
 
     const QString& ProtocolOneCredential::userId() const

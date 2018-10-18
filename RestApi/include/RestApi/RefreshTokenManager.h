@@ -4,12 +4,19 @@
 #include <QtCore/QMutex>
 #include <QtCore/QHash>
 
-#include <RestApi/ProtocolOneCredential.h>
-#include <RestApi/RefreshTokenState.h>
-#include <RestApi/Request/RequestBase.h>
-
 namespace P1 {
   namespace RestApi {
+
+    namespace Request {
+      class RequestBase;
+    }
+
+    namespace Command {
+      class CommandBase;
+    }
+
+    class RefreshTokenState;
+    class ProtocolOneCredential;
 
     class RefreshTokenManager : public QObject
     {
@@ -22,7 +29,7 @@ namespace P1 {
       void updateCredential(const ProtocolOneCredential &old, const ProtocolOneCredential &value);
 
     signals:
-      void refreshTokenRequest(const ProtocolOneCredential &credential);
+      void refreshTokenRequest(const ProtocolOneCredential &credential, const Command::CommandBase* command);
 
     private:
       QMutex _mutex;

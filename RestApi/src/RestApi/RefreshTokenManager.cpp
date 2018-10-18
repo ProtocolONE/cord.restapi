@@ -1,5 +1,11 @@
 #include <RestApi/RefreshTokenManager.h>
+
+#include <RestApi/RefreshTokenState.h>
+#include <RestApi/ProtocolOneCredential.h>
+
 #include <RestApi/Request/RequestBase.h>
+#include <RestApi/Command/CommandBase.h>
+
 #include <QtCore/QMutexLocker>
 
 namespace P1 {
@@ -21,15 +27,18 @@ namespace P1 {
       RefreshTokenState *state = nullptr;
       if (this->_states.contains(credential.acccessTokent())) {
         state = this->_states[credential.acccessTokent()];
-        QObject::connect(state, &RefreshTokenState::credentialReceived, sender, &Request::RequestBase::updateCredential);
+        QObject::connect(state, &RefreshTokenState::credentialReceived, 
+          sender, &Request::RequestBase::updateCredential, Qt::QueuedConnection);
         return;
       } 
         
       state = new RefreshTokenState(this);
       this->_states[credential.acccessTokent()] = state;
 
-      QObject::connect(state, &RefreshTokenState::credentialReceived, sender, &Request::RequestBase::updateCredential);
-      this->refreshTokenRequest(credential);
+      QObject::connect(state, &RefreshTokenState::credentialReceived, 
+        sender, &Request::RequestBase::updateCredential, Qt::QueuedConnection);
+
+      this->refreshTokenRequest(credential, sender->command());
     }
 
     void RefreshTokenManager::updateCredential(const ProtocolOneCredential &old, const ProtocolOneCredential &value)
@@ -38,8 +47,13 @@ namespace P1 {
       if (!this->_states.contains(old.acccessTokent()))
         return;
 
-      RefreshTokenState *state = this->_states[old.acccessTokent()];
+      const QString& acccessTokent(old.acccessTokent());
+      RefreshTokenState *state = this->_states[acccessTokent];
       state->setCredential(value);
+
+      this->_states.remove(acccessTokent);
+
+      state->deleteLater();
     }
 
   }

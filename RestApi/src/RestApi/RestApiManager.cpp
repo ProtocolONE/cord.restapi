@@ -21,6 +21,8 @@ namespace P1 {
       , _cache(nullptr)
       , _debugLogEnabled(false)
     {
+      QObject::connect(&this->_refreshManger, &RefreshTokenManager::refreshTokenRequest,
+        this, &RestApiManager::authorizationError, Qt::QueuedConnection);
     }
 
     RestApiManager::~RestApiManager()
@@ -44,10 +46,12 @@ namespace P1 {
       request->setDebugLogEnabled(this->_debugLogEnabled);
       request->setCommand(command);
 
-      QObject::connect(request, &RequestBase::refreshAuth, this, &RestApiManager::onRefreshTokentRequest);
+      QObject::connect(request, &RequestBase::refreshAuth, 
+        this, &RestApiManager::onRefreshTokentRequest, Qt::QueuedConnection);
 
       QObject::connect(command, &CommandBase::result,
-        this, &RestApiManager::onCommandResult, Qt::UniqueConnection);
+        this, &RestApiManager::onCommandResult
+        , static_cast<Qt::ConnectionType>(Qt::UniqueConnection | Qt::QueuedConnection) );
 
       QTimer::singleShot(0, request, &RequestBase::execute);
     }

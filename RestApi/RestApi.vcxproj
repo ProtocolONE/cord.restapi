@@ -147,7 +147,7 @@ $(QTDIR)\bin\lupdate.exe "$(ProjectDir)\." -ts "$(ProjectDir)\i18n\$(ProjectName
     <QtMoc Include="include\RestApi\Request\HttpCommandRequest.h" />
     <QtMoc Include="include\RestApi\Request\JsonRequest.h" />
     <QtMoc Include="include\RestApi\Request\RequestBase.h" />
-    <ClInclude Include="include\RestApi\Api\V1\GetHost.h" />
+    <QtMoc Include="include\RestApi\Api\V1\GetHost.h" />
     <ClInclude Include="include\RestApi\CacheInterface.h" />
     <ClInclude Include="include\RestApi\FakeCache.h" />
     <ClInclude Include="include\RestApi\ProtocolOneCredential.h" />

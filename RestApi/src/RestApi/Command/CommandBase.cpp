@@ -91,7 +91,7 @@ namespace P1 {
 
       bool CommandBase::hasCredential() const
       {
-        return this->_credential.isEmpty();
+        return !this->_credential.isEmpty();
       }
 
       int CommandBase::type() const

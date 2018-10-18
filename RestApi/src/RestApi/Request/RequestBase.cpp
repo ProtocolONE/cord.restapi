@@ -27,6 +27,11 @@ namespace P1 {
       {
       }
 
+      const P1::RestApi::Command::CommandBase * RequestBase::command() const
+      {
+        return this->_command;
+      }
+
       void RequestBase::setCommand(CommandBase *command)
       {
         Q_CHECK_PTR(command);
